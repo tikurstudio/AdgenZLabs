@@ -398,6 +398,7 @@ img {
   font-style: italic;
   color: var(--accent-gold);
   background: linear-gradient(135deg, var(--accent-gold), #FFF);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
