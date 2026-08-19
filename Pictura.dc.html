@@ -3,12 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AdgenZ Labs — The Creative Lab Built to Out-Gen the Noise</title>
+<meta name="description" content="AdgenZ Labs builds Meta performance creatives, hooks, claims, UGC stills and AI video for brands who want AI without the slop.">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="shortcut icon" href="./favicon.svg">
+<link rel="apple-touch-icon" href="./favicon.svg">
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>AdgenZ Labs — The Creative Lab Built to Out-Gen the Noise</title>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="shortcut icon" href="./favicon.svg">
+<link rel="apple-touch-icon" href="./favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"> href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
 <style>
@@ -40,6 +49,382 @@
   .gs-hoverable.gs-filled:hover .gs-inner { color: #FFF !important; }
   .gs-hoverable:hover .gs-arrow-base { opacity: 0 !important; }
   .gs-hoverable:hover .gs-arrow-hover { opacity: 1 !important; }
+  
+  
+  
+  .legal-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 30000;
+    background: rgba(8, 8, 8, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: modalFade 0.25s ease-out;
+  }
+  .legal-modal-card {
+    background: #141416;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 720px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    color: #FCFCFC;
+    font-family: 'Inter Tight', sans-serif;
+    position: relative;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.85);
+    overflow: hidden;
+  }
+  .legal-modal-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .legal-modal-body {
+    padding: 32px;
+    overflow-y: auto;
+    line-height: 1.65;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.8);
+  }
+  .legal-tab-btn {
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+  .legal-tab-btn.active {
+    background: #F2D338;
+    color: #111;
+  }
+  .legal-tab-btn.inactive {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.6);
+  }
+
+  
+  /* Admin Panel Styling */
+  .admin-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40000;
+    background: rgba(5, 5, 5, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: modalFade 0.25s ease-out;
+  }
+  .admin-modal-card {
+    background: #121214;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 1100px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    color: #FCFCFC;
+    font-family: 'Inter Tight', sans-serif;
+    position: relative;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.9);
+    overflow: hidden;
+  }
+  .admin-auth-card {
+    background: #141416;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 440px;
+    padding: 40px;
+    color: #FCFCFC;
+    font-family: 'Inter Tight', sans-serif;
+    position: relative;
+    box-shadow: 0 30px 90px rgba(0,0,0,0.9);
+    text-align: center;
+  }
+  .admin-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #161618;
+  }
+  .admin-body {
+    padding: 32px;
+    overflow-y: auto;
+    flex: 1;
+  }
+  .admin-tab-btn {
+    padding: 9px 20px;
+    border-radius: 999px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+  .admin-tab-btn.active {
+    background: #F2D338;
+    color: #111;
+  }
+  .admin-tab-btn.inactive {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.65);
+  }
+  .admin-input {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #FFF;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14.5px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+  .admin-input:focus {
+    border-color: #F2D338;
+  }
+  .admin-gallery-item {
+    background: #18181A;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .admin-gallery-item:hover {
+    border-color: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+  }
+  .admin-btn-primary {
+    background: #F2D338;
+    color: #111;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14.5px;
+    transition: transform 0.15s ease;
+  }
+  .admin-btn-secondary {
+    background: rgba(255,255,255,0.08);
+    color: #FFF;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13.5px;
+  }
+  .admin-btn-danger {
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 6px 12px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    cursor: pointer;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 12px;
+  }
+
+  /* Interactive Elements & Toast */
+  .toast-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #111114;
+    color: #FFF;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: toastIn 0.3s cubic-bezier(0.22,1,0.36,1);
+  }
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .billing-toggle-wrap {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0,0,0,0.06);
+    padding: 4px;
+    border-radius: 999px;
+    margin-top: 24px;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .billing-toggle-btn {
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+  .billing-toggle-btn.active {
+    background: #111114;
+    color: #FFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .billing-toggle-btn.inactive {
+    background: transparent;
+    color: rgba(0,0,0,0.6);
+  }
+  .interactive-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: modalFade 0.25s ease-out;
+  }
+  .interactive-modal-content {
+    background: #18181A;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 540px;
+    padding: 36px;
+    color: #FFF;
+    font-family: 'Inter Tight', sans-serif;
+    position: relative;
+    box-shadow: 0 30px 90px rgba(0,0,0,0.8);
+  }
+  .input-field {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #FFF;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+  .input-field:focus {
+    border-color: #F2D338;
+  }
+
+  /* Anti-download & Protection */
+  img, video, .gallery-card img, .modal-img-wrap img {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+    pointer-events: none !important;
+  }
+  .gallery-card {
+    cursor: pointer !important;
+    position: relative;
+  }
+  .gallery-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.6) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .gallery-card:hover::after {
+    opacity: 1;
+  }
+  .gallery-card-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .gallery-card:hover .gallery-card-badge {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .gallery-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(10, 10, 10, 0.94);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: modalFade 0.3s ease-out forwards;
+  }
+  .gallery-modal-card {
+    position: relative;
+    max-width: 1040px;
+    width: 100%;
+    max-height: 90vh;
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  }
+  @media (max-width: 860px) {
+    .gallery-modal-card {
+      grid-template-columns: 1fr;
+      max-height: 94vh;
+      overflow-y: auto;
+    }
+  }
+
   /* Nixole section */
   .mesh-showcase {
     position: relative;
@@ -333,7 +718,8 @@ function AnimatedGetStarted({ variant, baseDelay, hoverable=false }) {
   const lettersStart = baseDelay + 0.55;
 
   return h("div", {
-    className: `gs-btn ${hoverable?"gs-hoverable":""} ${isFilled?"gs-filled":"gs-outline"}`,
+    onClick: (e) => { e.stopPropagation(); if (window.__adgenzScroll) window.__adgenzScroll("pricing"); },
+    className: `gs-btn ${hoverable?"gs-hoverable":""} ${isFilled?"gs-filled":"gs-outline"}`, style: { cursor: "pointer" },
     style: { position: "relative", display: "inline-flex", alignItems: "center", overflow: "hidden",
       height: 41, borderRadius: 25, border, background: bg,
       transform: "scale(0)", transformOrigin: "center",
@@ -469,7 +855,44 @@ class Component extends DCLogic {
       loadProgress: 0, appVisible: false, splashFading: false, splashGone: false,
       heroSrc: null,
       palletProgress: 0, palletHeroSeen: false, sec2Seen: false, sec3Seen: false,
-      palletInView: false, palletSlide: 0, palletHover: null,
+      palletInView: false, palletSlide: 0, palletHover: null, galleryDetailIndex: null,
+      billingQuarterly: false, legalModalTab: null,
+      adminOpen: false,
+      adminAuthed: false,
+      adminPassInput: "",
+      adminError: null,
+      adminTab: "gallery",
+      adminLockUntil: 0,
+      adminAttempts: 0,
+      customImages: null,
+      customPricing: null,
+      adminNewImgSrc: "",
+      adminNewImgTitle: "",
+      adminNewImgChannel: "Meta / TikTok",
+      adminNewImgThumb: "38%",
+      adminEditIndex: null,
+      adminSettingsLinkedIn: "https://www.linkedin.com/in/adgenz-lab?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+      adminSettingsEmail: "hello@adgenzlabs.com",
+      adminSettingsNewPass: "",
+      footerFormName: "",
+      footerFormEmail: "",
+      footerFormMsg: "",
+      footerFormSubmitted: false,
+      footerSuccessMsg: "",
+
+
+      activeTestimonial: 0,
+      activeServiceFeature: 2,
+      serviceDetailsOpen: false,
+      librarySearchTerm: "",
+      bookingModalOpen: false,
+      bookingTier: "Growth",
+      bookingSubmitted: false,
+      bookingBrand: "",
+      bookingEmail: "",
+      bookingSpend: "$20k - $50k",
+      toastMsg: null,
+
     };
     this.parallaxRefs = new Map();
     this._galleryCards = new Map();
@@ -480,24 +903,33 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    document.title = "AdgenZ Labs — The Creative Lab Built to Out-Gen the Noise";
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) { link = document.createElement("link"); link.rel = "icon"; document.head.appendChild(link); }
+    link.type = "image/svg+xml";
+    link.href = "./favicon.svg";
     this._onResize = () => { this.setState({ vp: { w: window.innerWidth, h: window.innerHeight } }); if (this._palletInit) this._measurePallet(); };
     window.addEventListener("resize", this._onResize);
 
-    // ---- Splash: preload images, then reveal app ----
-    const assets = USER_IMAGES.filter(Boolean).concat([
-      "https://qclay.design/lovable/pictura/frame.svg",
-      "https://qclay.design/lovable/pictura/arrow-right-dark.svg",
-      "https://qclay.design/lovable/pictura/arrow-right-white.svg",
-    ]);
-    const total = assets.length;
-    let loaded = 0, videoProg = 0, imgsDone = false, videoDone = false, finished = false;
-    const startT = Date.now();
-    const MIN_SPLASH = 1600, MAX_SPLASH = 25000;
-    const VIDEO_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260417_061226_74f0749c-a22d-42b3-895e-5d6203bc741c.mp4";
-    const update = () => {
-      if (finished) return;
-      this.setState({ loadProgress: (loaded / total) * 0.35 + videoProg * 0.65 });
+    // ---- Fast & Optimized Splash: preload assets & stream video immediately ----
+    window.__adgenzScroll = (key) => this.scrollToSection(key);
+    
+    // Anti-download protection
+    this._preventDownload = (e) => {
+      if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO' || e.target.closest('.gallery-card') || e.target.closest('.modal-img-wrap')) {
+        e.preventDefault();
+      }
     };
+    window.addEventListener('contextmenu', this._preventDownload);
+    window.addEventListener('dragstart', this._preventDownload);
+
+    const HERO_VID_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260417_061226_74f0749c-a22d-42b3-895e-5d6203bc741c.mp4";
+    const assets = USER_IMAGES.filter(Boolean).slice(0, 12);
+    const total = assets.length + 1;
+    let loaded = 0, finished = false;
+    const startT = Date.now();
+    const MIN_SPLASH = 700, MAX_SPLASH = 2000;
+
     const finish = () => {
       if (finished) return;
       finished = true;
@@ -505,62 +937,36 @@ class Component extends DCLogic {
       const wait = Math.max(0, MIN_SPLASH - (Date.now() - startT));
       this._splashT1 = setTimeout(() => {
         this.setState({ loadProgress: 1, appVisible: true, splashFading: true });
-        this._linesT = setTimeout(() => this.setState({ linesLoaded: true }), 1500);
-        this._splashT2 = setTimeout(() => this.setState({ splashGone: true }), 750);
+        this._linesT = setTimeout(() => this.setState({ linesLoaded: true }), 900);
+        this._splashT2 = setTimeout(() => this.setState({ splashGone: true }), 500);
       }, wait);
     };
-    const maybeFinish = () => { if (imgsDone && videoDone) finish(); };
-    const onOne = () => {
+
+    const onItemDone = () => {
       loaded++;
-      update();
-      if (loaded >= total) { imgsDone = true; maybeFinish(); }
+      this.setState({ loadProgress: Math.min(1, loaded / total) });
+      if (loaded >= total) finish();
     };
-    this._preloadImgs = assets.map(src => {
+
+    // Preload video buffer so it's moving the instant splash fades out
+    const vidPreload = document.createElement("video");
+    vidPreload.src = HERO_VID_URL;
+    vidPreload.preload = "auto";
+    vidPreload.muted = true;
+    vidPreload.playsInline = true;
+    vidPreload.addEventListener("loadeddata", onItemDone, { once: true });
+    vidPreload.addEventListener("canplay", onItemDone, { once: true });
+    vidPreload.addEventListener("error", onItemDone, { once: true });
+    vidPreload.load();
+
+    assets.forEach(src => {
       const im = new Image();
-      im.onload = onOne; im.onerror = onOne;
+      im.onload = onItemDone;
+      im.onerror = onItemDone;
       im.src = src;
-      return im;
     });
-    // Stream-download the hero background video with progress; play from memory.
-    (async () => {
-      try {
-        // Serve from persistent cache when available (downloads only on first visit).
-        let resp = null;
-        try {
-          const cache = await caches.open("pictura-media-v1");
-          const hit = await cache.match(VIDEO_URL);
-          if (hit) { resp = hit; }
-          else {
-            resp = await fetch(VIDEO_URL);
-            if (resp.ok) { try { cache.put(VIDEO_URL, resp.clone()).catch(() => {}); } catch (_) {} }
-          }
-        } catch (_) {
-          resp = await fetch(VIDEO_URL);
-        }
-        if (!resp.ok || !resp.body) throw new Error("bad response");
-        const totalBytes = parseInt(resp.headers.get("Content-Length") || "0", 10);
-        const reader = resp.body.getReader();
-        const chunks = [];
-        let received = 0;
-        for (;;) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          chunks.push(value);
-          received += value.length;
-          if (totalBytes) { videoProg = Math.min(1, received / totalBytes); update(); }
-        }
-        const blobUrl = URL.createObjectURL(new Blob(chunks, { type: "video/mp4" }));
-        this._heroBlobUrl = blobUrl;
-        videoProg = 1;
-        this.setState({ heroSrc: blobUrl });
-      } catch (e) {
-        // Fall back to streaming straight from the CDN.
-      }
-      videoDone = true;
-      update();
-      maybeFinish();
-    })();
-    this._splashMaxT = setTimeout(() => { imgsDone = true; videoDone = true; finish(); }, MAX_SPLASH);
+
+    this._splashMaxT = setTimeout(finish, MAX_SPLASH);
 
     // scroll-driven heart dispersal (sticky hero scrubbed by scroll position)
     const MAX = 600;
@@ -582,9 +988,9 @@ class Component extends DCLogic {
     // keys
     this._onKey = (e) => {
       if (this.state.sliderIndex === null) return;
-      if (e.key === "Escape") this.closeSlider();
-      if (e.key === "ArrowRight") this.nextSlide();
-      if (e.key === "ArrowLeft") this.prevSlide();
+      if (e.key === "Escape") { this.closeSlider(); this.setState({ galleryDetailIndex: null }); }
+      if (e.key === "ArrowRight") { if (this.state.galleryDetailIndex !== null) this.nextGalleryDetail(); else this.nextSlide(); }
+      if (e.key === "ArrowLeft") { if (this.state.galleryDetailIndex !== null) this.prevGalleryDetail(); else this.prevSlide(); }
     };
     window.addEventListener("keydown", this._onKey);
 
@@ -801,7 +1207,7 @@ class Component extends DCLogic {
             "The tools got cheap, so feeds got flooded. Same weightless, obviously-AI garbage. We're designers first. AI is just the fastest brush we've ever held."),
           h("div", { style: { display: "flex", gap: 16, justifyContent: "center", marginTop: 28, paddingBottom: 80, opacity: 0,
             animation: s.palletHeroSeen ? "heroWordIn 0.6s ease-out forwards" : "none", animationDelay: "2.4s" } },
-            primaryBtn("See how we work"))
+            h("button", { onClick: () => this.scrollToSection("thelab"), onMouseEnter: (e) => e.currentTarget.style.background = "#333333", onMouseLeave: (e) => e.currentTarget.style.background = "#111111", style: { background: "#111111", color: "#fff", fontFamily: IT, fontSize: 15, fontWeight: 600, padding: "14px 28px", borderRadius: 9999, border: "none", cursor: "pointer", transition: "background 0.2s" } }, "See how we work"))
         )
       ),
 
@@ -821,7 +1227,7 @@ class Component extends DCLogic {
             "300+ concepts a month that don't look generated — because a designer directs every one. Angles, not variations."),
           h("div", { style: { display: "flex", marginTop: 48, gap: 12, opacity: 0,
             animation: s.sec2Seen ? "blurWordIn 0.6s ease-out forwards" : "none", animationDelay: "0.7s" } },
-            primaryBtn("Get creatives"), readMore(true))
+            h("button", { onClick: () => this.scrollToSection("pricing"), onMouseEnter: (e) => e.currentTarget.style.background = "#333333", onMouseLeave: (e) => e.currentTarget.style.background = "#111111", style: { background: "#111111", color: "#fff", fontFamily: IT, fontSize: 15, fontWeight: 600, padding: "14px 28px", borderRadius: 9999, border: "none", cursor: "pointer", transition: "background 0.2s" } }, "Get creatives"), h("button", { onClick: () => this.scrollToSection("work"), onMouseEnter: (e) => e.currentTarget.style.background = "rgba(0,0,0,0.05)", onMouseLeave: (e) => e.currentTarget.style.background = "transparent", style: { background: "transparent", color: "#111111", fontFamily: IT, fontSize: 15, fontWeight: 500, padding: "14px 20px", borderRadius: 9999, border: "1.5px solid rgba(0,0,0,0.15)", cursor: "pointer", transition: "background 0.2s" } }, "Read more"))
         )
       )
     );
@@ -908,23 +1314,77 @@ class Component extends DCLogic {
     );
   }
 
+  renderBookingModal() {
+    if (!this.state.bookingModalOpen) return null;
+    const IT = "'Inter Tight', sans-serif";
+    const tier = this.state.bookingTier;
+
+    return h("div", { className: "interactive-modal-overlay", onClick: this.closeBooking },
+      h("div", { className: "interactive-modal-content", onClick: (e) => e.stopPropagation() },
+        h("button", { onClick: this.closeBooking, "aria-label": "Close",
+          style: { position: "absolute", top: 24, right: 24, width: 32, height: 32, borderRadius: "50%",
+            background: "rgba(255,255,255,0.08)", border: "none", color: "#FFF", fontSize: 16, cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "center" } }, "✕"),
+        
+        this.state.bookingSubmitted ? (
+          h("div", { style: { textAlign: "center", padding: "40px 0" } },
+            h("div", { style: { width: 64, height: 64, borderRadius: "50%", background: "#F2D338", color: "#111", fontSize: 32, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" } }, "✓"),
+            h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 36, margin: "0 0 12px", color: "#FFF" } }, "Creative Brief Received"),
+            h("p", { style: { color: "rgba(255,255,255,0.7)", fontSize: 15, lineHeight: 1.5 } }, "We are reviewing your brand and will send back 3 custom concept angles within 24 hours.")
+          )
+        ) : (
+          h("form", { onSubmit: this.handleBookingSubmit },
+            h("div", { style: { fontSize: 12, fontWeight: 700, letterSpacing: "1.5px", color: "#F2D338", textTransform: "uppercase", marginBottom: 8 } }, "Start Your Pipeline"),
+            h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 34, margin: "0 0 12px", color: "#FFF", letterSpacing: "-1px" } }, `Get ${tier}`),
+            h("p", { style: { fontSize: 14, color: "rgba(255,255,255,0.65)", marginBottom: 24, lineHeight: 1.5 } }, "Tell us your brand and ad goals. We begin production within 48 hours."),
+            
+            h("div", { style: { display: "flex", flexDirection: "column", gap: 16 } },
+              h("div", null,
+                h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Brand Name or Website"),
+                h("input", { required: true, className: "input-field", placeholder: "e.g. Acme Skincare (acme.com)",
+                  value: this.state.bookingBrand, onChange: (e) => this.setState({ bookingBrand: e.target.value }) })
+              ),
+              h("div", null,
+                h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Work Email"),
+                h("input", { required: true, type: "email", className: "input-field", placeholder: "you@brand.com",
+                  value: this.state.bookingEmail, onChange: (e) => this.setState({ bookingEmail: e.target.value }) })
+              ),
+              h("div", null,
+                h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Monthly Meta Ad Spend"),
+                h("select", { className: "input-field", style: { background: "#222" },
+                  value: this.state.bookingSpend, onChange: (e) => this.setState({ bookingSpend: e.target.value }) },
+                  h("option", { value: "$5k - $20k" }, "$5k - $20k / mo"),
+                  h("option", { value: "$20k - $50k" }, "$20k - $50k / mo"),
+                  h("option", { value: "$50k - $150k" }, "$50k - $150k / mo"),
+                  h("option", { value: "$150k+" }, "$150k+ / mo")
+                )
+              ),
+              h("button", { type: "submit",
+                style: { marginTop: 12, padding: "16px", borderRadius: 999, background: "#F2D338", color: "#111114", border: "none", fontFamily: IT, fontSize: 16, fontWeight: 700, cursor: "pointer", transition: "transform 0.15s ease" } },
+                "Request First Batch ↗")
+            )
+          )
+        )
+      )
+    );
+  }
+
   renderPricing() {
     const IT = "'Inter Tight', sans-serif";
     const vp = this.state.vp;
     const cols = vp.w < 900 ? 1 : 3;
-    const tiers = [
-      { name: "Static Pack", price: "$2.4k", unit: "/mo", tagline: "For lean teams testing the waters.",
-        features: ["40 static Meta concepts", "Hooks, claims & comparisons", "Launch-ready, named files", "48-hour first batch"], featured: false },
-      { name: "Growth", price: "$5.8k", unit: "/mo", tagline: "Static + motion, directed by a designer.",
-        features: ["120 concepts a month", "AI UGC & video creative", "Creative strategy calls", "Weekly testing roadmap", "Slack channel access"], featured: true },
-      { name: "Full Retainer", price: "Custom", unit: "", tagline: "We own your creative pipeline.",
-        features: ["300+ concepts a month", "Dedicated creative director", "Angles, not variations", "Landing-page creative", "Priority turnaround"], featured: false },
-    ];
+    const isQ = this.state.billingQuarterly;
+
+    const rawTiers = this.getPricingTiers();
+    const tiers = rawTiers.map(t => ({
+      ...t,
+      price: isQ ? (t.priceQ || t.price) : t.price
+    }));
     const check = (dark) => h("svg", { width: 16, height: 16, viewBox: "0 0 24 24", fill: "none",
       stroke: dark ? "#F2D338" : "#111114", strokeWidth: 2.4, strokeLinecap: "round", strokeLinejoin: "round",
       style: { flexShrink: 0, marginTop: 2 } }, h("polyline", { points: "20 6 9 17 4 12" }));
 
-    return h("section", { ref: (el) => this._pricingEl = el, style: {
+    return h("section", { id: "pricing-section", ref: (el) => this._pricingEl = el, style: {
       background: "#F2F2F0", color: "#111114", fontFamily: IT, padding: "100px 24px 110px",
       position: "relative", zIndex: 2 } },
       h("div", { style: { maxWidth: 1180, margin: "0 auto" } },
@@ -935,7 +1395,18 @@ class Component extends DCLogic {
             letterSpacing: "-2px", lineHeight: 1.02, margin: 0 } }, "Buy the output, not the hours."),
           h("p", { style: { fontFamily: IT, fontSize: 17, color: "rgba(0,0,0,0.55)", maxWidth: 520,
             margin: "20px auto 0", lineHeight: 1.55 } },
-            "Flat monthly rate. Cancel anytime. Every concept directed by a designer — no per-asset surprises.")
+            "Flat monthly rate. Cancel anytime. Every concept directed by a designer — no per-asset surprises."),
+          
+          // Billing Toggle Switch
+          h("div", { className: "billing-toggle-wrap" },
+            h("button", { type: "button",
+              onClick: () => this.setState({ billingQuarterly: false }),
+              className: `billing-toggle-btn ${!isQ ? "active" : "inactive"}` }, "Monthly"),
+            h("button", { type: "button",
+              onClick: () => this.setState({ billingQuarterly: true }),
+              className: `billing-toggle-btn ${isQ ? "active" : "inactive"}` },
+              "Quarterly ", h("span", { style: { color: isQ ? "#F2D338" : "#8A6D15", fontWeight: 700, marginLeft: 4 } }, "Save 20%"))
+          )
         ),
         h("div", { style: { display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 20, alignItems: "stretch" } },
           tiers.map((t) => h("div", { key: t.name, style: {
@@ -960,7 +1431,7 @@ class Component extends DCLogic {
               t.features.map((f) => h("div", { key: f, style: { display: "flex", gap: 10, alignItems: "flex-start",
                 fontFamily: IT, fontSize: 14.5, lineHeight: 1.4,
                 color: t.featured ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.75)" } }, check(t.featured), f))),
-            h("button", { onClick: () => this.scrollToSection("contact"),
+            h("button", { onClick: () => this.openBooking(t.name),
               onMouseEnter: (e) => e.currentTarget.style.opacity = "0.85",
               onMouseLeave: (e) => e.currentTarget.style.opacity = "1",
               style: { marginTop: 28, padding: "14px 24px", borderRadius: 999, border: "none", cursor: "pointer",
@@ -969,48 +1440,98 @@ class Component extends DCLogic {
               t.price === "Custom" ? "Talk to us" : "Get started")
           ))
         )
-      )
+      ),
+      this.renderBookingModal()
     );
   }
 
   renderFooter() {
     const IT = "'Inter Tight', sans-serif";
     const vp = this.state.vp;
+
+    const handleFooterLink = (l) => {
+      if (l === "Work") { this.scrollToSection("work"); }
+      else if (l === "The Lab" || l === "About") { this.scrollToSection("thelab"); }
+      else if (l === "Pricing" || l === "Retainer") { this.scrollToSection("pricing"); }
+      else if (l === "Static Meta" || l === "AI UGC & video" || l === "Creative strategy") { this.scrollToSection("thelab"); }
+      else if (l === "LinkedIn") {
+        window.open("https://www.linkedin.com/in/adgenz-lab?utm_source=share_via&utm_content=profile&utm_medium=member_android", "_blank");
+      }
+      else if (l === "Privacy" || l === "Privacy Policy") {
+        this.openLegal("privacy");
+      }
+      else if (l === "Terms" || l === "Terms of Service") {
+        this.openLegal("terms");
+      }
+      else if (l === "hello@adgenzlabs.com") {
+        this.copyEmail({ preventDefault: () => {} });
+      }
+      else if (l === "Instagram" || l === "X / Twitter" || l === "Twitter") {
+        this.showToast(`Connecting to ${l}...`);
+      }
+      else {
+        this.scrollToSection("contact");
+      }
+    };
+
     const col = (title, links) => h("div", { key: title, style: { display: "flex", flexDirection: "column", gap: 12 } },
       h("div", { style: { fontFamily: IT, fontSize: 12, fontWeight: 600, letterSpacing: "1.5px",
         color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginBottom: 4 } }, title),
-      links.map((l) => h("a", { key: l, href: "#", onClick: (e) => e.preventDefault(),
+      links.map((l) => h("a", { key: l, href: l === "LinkedIn" ? "https://www.linkedin.com/in/adgenz-lab?utm_source=share_via&utm_content=profile&utm_medium=member_android" : "#",
+        target: l === "LinkedIn" ? "_blank" : undefined,
+        rel: l === "LinkedIn" ? "noopener noreferrer" : undefined,
+        onClick: (e) => {
+          if (l !== "LinkedIn") e.preventDefault();
+          handleFooterLink(l);
+        },
         onMouseEnter: (e) => e.currentTarget.style.color = "#FFF",
         onMouseLeave: (e) => e.currentTarget.style.color = "rgba(255,255,255,0.65)",
         style: { fontFamily: IT, fontSize: 15, color: "rgba(255,255,255,0.65)", textDecoration: "none",
-          transition: "color 0.2s" } }, l))
+          transition: "color 0.2s", cursor: "pointer" } }, l))
     );
 
     return h("footer", { ref: (el) => this._footerEl = el, style: {
       background: "#0E0E0E", color: "#FCFCFC", padding: "110px 50px 40px",
       position: "relative", zIndex: 2, borderTop: "1px solid rgba(255,255,255,0.08)" } },
       h("div", { style: { maxWidth: 1180, margin: "0 auto" } },
-        // CTA
-        h("div", { style: { textAlign: "center", marginBottom: 96 } },
+        // CTA & Secret Admin Gatekeeper Form
+        h("div", { style: { textAlign: "center", marginBottom: 96, maxWidth: 680, margin: "0 auto 96px" } },
           h("h2", { style: { fontFamily: "'Instrument Serif', serif", fontSize: "clamp(44px, 6.5vw, 96px)",
             fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1.0, margin: 0 } },
             "Let's out-gen ", h("em", null, "the noise.")),
-          h("p", { style: { fontFamily: IT, fontSize: 18, color: "rgba(255,255,255,0.55)",
-            maxWidth: 480, margin: "24px auto 0", lineHeight: 1.5 } },
-            "Tell us your product and your CPA target. We'll send back three angles inside 48 hours."),
-          h("a", { href: "mailto:hello@adgenzlabs.com",
-            onMouseEnter: (e) => e.currentTarget.style.background = "#E5B96A",
-            onMouseLeave: (e) => e.currentTarget.style.background = "#F2D338",
-            style: { display: "inline-flex", alignItems: "center", gap: 10, marginTop: 36,
-              padding: "16px 30px", borderRadius: 999, background: "#F2D338", color: "#111114",
-              fontFamily: IT, fontSize: 16, fontWeight: 600, textDecoration: "none", transition: "background 0.2s" } },
-            "hello@adgenzlabs.com")
+          h("p", { style: { fontFamily: IT, fontSize: 18, color: "rgba(255,255,255,0.6)",
+            margin: "20px auto 36px", lineHeight: 1.5 } },
+            "Tell us your product and target CPA. We'll send back three angles inside 48 hours."),
+
+          this.state.footerFormSubmitted ? (
+            h("div", { style: { background: "#161618", border: "1px solid rgba(242, 211, 56, 0.3)", borderRadius: 20, padding: "32px 24px", color: "#FFF", animation: "modalFade 0.3s ease" } },
+              h("div", { style: { width: 50, height: 50, borderRadius: "50%", background: "#F2D338", color: "#111", fontSize: 24, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" } }, "✓"),
+              h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 28, margin: "0 0 10px" } }, "Inquiry Received"),
+              h("p", { style: { fontSize: 15, color: "rgba(255,255,255,0.75)", lineHeight: 1.5, margin: 0 } }, this.state.footerSuccessMsg),
+              h("button", { onClick: () => this.setState({ footerFormSubmitted: false }), style: { marginTop: 20, background: "transparent", border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.7)", borderRadius: 999, padding: "8px 20px", fontSize: 13, cursor: "pointer", fontFamily: IT } }, "Send Another Brief")
+            )
+          ) : (
+            h("form", { onSubmit: this.handleFooterFormSubmit, style: { background: "#141416", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 24, padding: "28px 28px 24px", display: "flex", flexDirection: "column", gap: 14, boxShadow: "0 30px 80px rgba(0,0,0,0.6)" } },
+              h("div", { style: { display: "grid", gridTemplateColumns: vp.w < 640 ? "1fr" : "1fr 1fr", gap: 14 } },
+                h("input", { required: true, className: "input-field", placeholder: "Your Name",
+                  value: this.state.footerFormName, onChange: (e) => this.setState({ footerFormName: e.target.value }) }),
+                h("input", { required: true, type: "email", className: "input-field", placeholder: "Work Email",
+                  value: this.state.footerFormEmail, onChange: (e) => this.setState({ footerFormEmail: e.target.value }) })
+              ),
+              h("input", { className: "input-field", placeholder: "Product / Target CPA / Creative Goals (Optional)",
+                value: this.state.footerFormMsg, onChange: (e) => this.setState({ footerFormMsg: e.target.value }) }),
+              h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 6, flexWrap: "wrap", gap: 12 } },
+                h("button", { type: "button", onClick: this.copyEmail, style: { color: "rgba(255,255,255,0.45)", fontSize: 13, background: "none", border: "none", cursor: "pointer", padding: "4px 0", fontFamily: IT } }, "or click to copy hello@adgenzlabs.com 📋"),
+                h("button", { type: "submit", style: { padding: "14px 28px", borderRadius: 999, background: "#F2D338", color: "#111114", border: "none", fontFamily: IT, fontSize: 15, fontWeight: 700, cursor: "pointer", transition: "transform 0.15s ease" } }, "Request 3 Concept Angles ↗")
+              )
+            )
+          )
         ),
         // Columns
         h("div", { style: { display: "flex", flexWrap: "wrap", gap: 48, justifyContent: "space-between",
           paddingBottom: 60, borderBottom: "1px solid rgba(255,255,255,0.08)" } },
           h("div", { style: { maxWidth: 300 } },
-            h("div", { style: { display: "flex", alignItems: "center", gap: 14, marginBottom: 18 } },
+            h("div", { onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }), style: { cursor: "pointer", display: "flex", alignItems: "center", gap: 14, marginBottom: 18 } },
               h(StarLogo),
               h("span", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 26,
                 letterSpacing: "-0.72px", color: "#FCFCFC" } }, "ADGENZ LAB", h("em", null, "S"))),
@@ -1025,10 +1546,13 @@ class Component extends DCLogic {
           alignItems: "center", paddingTop: 32, fontFamily: IT, fontSize: 13.5, color: "rgba(255,255,255,0.4)" } },
           h("span", null, "© 2026 AdgenZ Labs. All rights reserved."),
           h("div", { style: { display: "flex", gap: 24 } },
-            h("a", { href: "#", onClick: (e) => e.preventDefault(), style: { color: "rgba(255,255,255,0.4)", textDecoration: "none" } }, "Privacy"),
-            h("a", { href: "#", onClick: (e) => e.preventDefault(), style: { color: "rgba(255,255,255,0.4)", textDecoration: "none" } }, "Terms"))
+            h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("privacy"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Privacy Policy"),
+            h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("terms"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Terms of Service"))
         )
-      )
+      ),
+      this.state.toastMsg && h("div", { className: "toast-notification" }, this.state.toastMsg),
+      this.renderLegalModal(),
+      this.renderAdminModal()
     );
   }
 
@@ -1251,14 +1775,682 @@ class Component extends DCLogic {
     );
   }
 
+  
+  showToast = (msg) => {
+    this.setState({ toastMsg: msg });
+    clearTimeout(this._toastT);
+    this._toastT = setTimeout(() => this.setState({ toastMsg: null }), 3200);
+  };
+
+  openBooking = (tier = "Growth") => {
+    this.setState({ bookingModalOpen: true, bookingTier: tier, bookingSubmitted: false });
+  };
+
+  closeBooking = () => {
+    this.setState({ bookingModalOpen: false });
+  };
+
+  handleBookingSubmit = (e) => {
+    e.preventDefault();
+    if (!this.state.bookingEmail || !this.state.bookingEmail.includes("@")) {
+      this.showToast("Please enter a valid email address.");
+      return;
+    }
+    this.setState({ bookingSubmitted: true });
+    try {
+      const leads = this.getLeads();
+      leads.unshift({
+        id: Date.now(),
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+        brand: this.state.bookingBrand,
+        email: this.state.bookingEmail,
+        msg: "Plan Subscription Request",
+        spend: this.state.bookingSpend,
+        tier: this.state.bookingTier,
+        status: "New"
+      });
+      localStorage.setItem("adgenz_leads", JSON.stringify(leads));
+    } catch(err) {}
+    this.showToast("Creative Brief received! We'll reply within 24h.");
+    setTimeout(() => {
+      this.closeBooking();
+      this.setState({ bookingSubmitted: false, bookingBrand: "", bookingEmail: "" });
+    }, 2200);
+  };
+
+  copyEmail = (e) => {
+    e.preventDefault();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText("hello@adgenzlabs.com");
+      this.showToast("Copied hello@adgenzlabs.com to clipboard! 📋");
+    } else {
+      window.location.href = "mailto:hello@adgenzlabs.com";
+    }
+  };
+
+  
+  openLegal = (tab = "privacy") => {
+    this.setState({ legalModalTab: tab });
+  };
+  closeLegal = () => {
+    this.setState({ legalModalTab: null });
+  };
+
+  renderLegalModal() {
+    const tab = this.state.legalModalTab;
+    if (!tab) return null;
+    const IT = "'Inter Tight', sans-serif";
+
+    return h("div", { className: "legal-modal-overlay", onClick: this.closeLegal },
+      h("div", { className: "legal-modal-card", onClick: (e) => e.stopPropagation() },
+        // Header
+        h("div", { className: "legal-modal-header" },
+          h("div", { style: { display: "flex", gap: 10 } },
+            h("button", { type: "button", onClick: () => this.setState({ legalModalTab: "privacy" }),
+              className: `legal-tab-btn ${tab === "privacy" ? "active" : "inactive"}` }, "Privacy Policy"),
+            h("button", { type: "button", onClick: () => this.setState({ legalModalTab: "terms" }),
+              className: `legal-tab-btn ${tab === "terms" ? "active" : "inactive"}` }, "Terms of Service")
+          ),
+          h("button", { onClick: this.closeLegal, "aria-label": "Close",
+            style: { width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "none", color: "#FFF", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "✕")
+        ),
+        // Body
+        h("div", { className: "legal-modal-body" },
+          tab === "privacy" ? (
+            h("div", null,
+              h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, fontWeight: 400, margin: "0 0 8px", color: "#FFF" } }, "AdgenZ Labs Privacy Policy"),
+              h("div", { style: { fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 24 } }, "Effective Date: August 2026"),
+              
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "1. Information We Collect & Use"),
+              h("p", null, "AdgenZ Labs collects project brief parameters, brand guidelines, and contact information exclusively to direct, produce, and deliver custom ad creative pipelines. We never sell, rent, or trade client data to third parties."),
+              
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "2. Intellectual Property & Confidentiality"),
+              h("p", null, "All brand assets, product samples, proprietary campaign metrics, and generated creative concepts are treated under strict NDA confidentiality. Upon completed payment, 100% of worldwide commercial rights and copyright to delivered assets are unconditionally transferred to the client."),
+              
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "3. AI Model Governance & Data Integrity"),
+              h("p", null, "We use commercial-grade generative neural pipelines under enterprise licensing. Client brand assets and proprietary photography are never fed back into public model training pools."),
+              
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "4. Security & Retention"),
+              h("p", null, "All high-resolution production assets are securely archived in encrypted private cloud storage, accessible only by your designated creative team."),
+
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "5. Contact Privacy Officer"),
+              h("p", null, "For data deletion requests or inquiries, reach out directly to ", h("span", { style: { color: "#F2D338", fontWeight: 600 } }, "hello@adgenzlabs.com"), ".")
+            )
+          ) : (
+            h("div", null,
+              h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, fontWeight: 400, margin: "0 0 8px", color: "#FFF" } }, "AdgenZ Labs Terms of Service"),
+              h("div", { style: { fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 24 } }, "Effective Date: August 2026"),
+              
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "1. Scope of Creative Pipeline"),
+              h("p", null, "AdgenZ Labs delivers static Meta creative, AI UGC stills, hook variations, and testing roadmaps according to your selected tier (Static Pack, Growth, or Full Retainer). Production begins within 48 hours of brief submission."),
+              
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "2. Flat Retainer & No Hidden Fees"),
+              h("p", null, "Pricing is billed as a flat monthly or quarterly rate with zero per-asset royalties or unexpected production fees. Retainers may be paused or cancelled at any time with 14 days notice prior to the next billing cycle."),
+              
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "3. Deliverables & Commercial Rights"),
+              h("p", null, "All final delivered graphics, copy claims, and video stills are 100% client-owned upon delivery with unrestricted commercial advertising usage rights across Meta, TikTok, Google, and programmatic display."),
+
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "4. Ad Platform Compliance"),
+              h("p", null, "All creatives are designed to comply with Meta Advertising Standards and FTC disclosure guidelines for DTC performance advertising.")
+            )
+          )
+        ),
+        // Footer
+        h("div", { style: { padding: "16px 32px", borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", justifyContent: "flex-end" } },
+          h("button", { onClick: this.closeLegal, style: { padding: "10px 24px", borderRadius: 999, background: "#F2D338", color: "#111", border: "none", fontFamily: IT, fontSize: 14, fontWeight: 600, cursor: "pointer" } }, "I Understand")
+        )
+      )
+    );
+  }
+
+  
+  getStoredPass() {
+    try { return localStorage.getItem("adgenz_admin_pass") || "admin123"; } catch (e) { return "admin123"; }
+  }
+  setStoredPass(pass) {
+    try { localStorage.setItem("adgenz_admin_pass", pass); } catch (e) {}
+  }
+  getGalleryImages() {
+    if (this.state.customImages) return this.state.customImages;
+    try {
+      const saved = localStorage.getItem("adgenz_custom_gallery");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {}
+    return USER_IMAGES.filter(Boolean);
+  }
+  saveGalleryImages(list) {
+    this.setState({ customImages: list });
+    try { localStorage.setItem("adgenz_custom_gallery", JSON.stringify(list)); } catch (e) {}
+    this.showToast("Gallery updated successfully! ✨");
+  }
+
+  getPricingTiers() {
+    if (this.state.customPricing) return this.state.customPricing;
+    try {
+      const saved = localStorage.getItem("adgenz_custom_pricing");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {}
+    return [
+      { name: "Static Pack", price: "$2.4k", priceQ: "$1.9k", unit: "/mo", tagline: "For lean teams testing the waters.",
+        features: ["40 static Meta concepts", "Hooks, claims & comparisons", "Launch-ready, named files", "48-hour first batch"], featured: false },
+      { name: "Growth", price: "$5.8k", priceQ: "$4.6k", unit: "/mo", tagline: "Static + motion, directed by a designer.",
+        features: ["120 concepts a month", "AI UGC & video creative", "Creative strategy calls", "Weekly testing roadmap", "Slack channel access"], featured: true },
+      { name: "Full Retainer", price: "Custom", priceQ: "Custom", unit: "", tagline: "We own your creative pipeline.",
+        features: ["300+ concepts a month", "Dedicated creative director", "Angles, not variations", "Landing-page creative", "Priority turnaround"], featured: false },
+    ];
+  }
+  savePricingTiers(tiers) {
+    this.setState({ customPricing: tiers });
+    try { localStorage.setItem("adgenz_custom_pricing", JSON.stringify(tiers)); } catch (e) {}
+    this.showToast("Pricing tiers updated! 💰");
+  }
+
+  getLeads() {
+    try {
+      const saved = localStorage.getItem("adgenz_leads");
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) { return []; }
+  }
+
+  openAdmin = () => {
+    this.setState({ adminOpen: true, adminError: null });
+  };
+  closeAdmin = () => {
+    this.setState({ adminOpen: false, adminEditIndex: null });
+  };
+
+  handleAdminLogin = (e) => {
+    e.preventDefault();
+    const now = Date.now();
+    if (this.state.adminLockUntil > now) {
+      const remaining = Math.ceil((this.state.adminLockUntil - now) / 1000);
+      this.setState({ adminError: `Security Lock: Too many attempts. Try again in ${remaining}s.` });
+      return;
+    }
+    const correctPass = this.getStoredPass();
+    if (this.state.adminPassInput === correctPass) {
+      this.setState({ adminAuthed: true, adminError: null, adminAttempts: 0, adminPassInput: "" });
+      this.showToast("Welcome to AdgenZ Admin Control 🛡️");
+    } else {
+      const attempts = this.state.adminAttempts + 1;
+      if (attempts >= 5) {
+        this.setState({ adminLockUntil: now + 60000, adminAttempts: 0, adminError: "Too many failed attempts. Locked for 60 seconds." });
+      } else {
+        this.setState({ adminAttempts: attempts, adminError: `Invalid Password. (${5 - attempts} attempts remaining)` });
+      }
+    }
+  };
+
+  handleAdminLogout = () => {
+    this.setState({ adminAuthed: false, adminOpen: false });
+    this.showToast("Admin session ended securely.");
+  };
+
+  handleFileUpload = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      this.setState({ adminNewImgSrc: evt.target.result });
+      this.showToast("Image loaded into upload buffer! 🖼️");
+    };
+    reader.readAsDataURL(file);
+  };
+
+  handleAddGalleryImage = (e) => {
+    e.preventDefault();
+    const src = this.state.adminNewImgSrc.trim();
+    if (!src) {
+      this.showToast("Please select a file or enter an image URL.");
+      return;
+    }
+    const list = [...this.getGalleryImages()];
+    if (this.state.adminEditIndex !== null) {
+      list[this.state.adminEditIndex] = src;
+      this.setState({ adminEditIndex: null });
+    } else {
+      list.unshift(src);
+    }
+    this.saveGalleryImages(list);
+    this.setState({ adminNewImgSrc: "", adminNewImgTitle: "" });
+  };
+
+  handleDeleteGalleryImage = (index) => {
+    if (!confirm("Are you sure you want to remove this creative from the gallery?")) return;
+    const list = this.getGalleryImages().filter((_, i) => i !== index);
+    this.saveGalleryImages(list);
+  };
+
+  handleUpdateTierPrice = (index, field, value) => {
+    const tiers = [...this.getPricingTiers()];
+    tiers[index] = { ...tiers[index], [field]: value };
+    this.savePricingTiers(tiers);
+  };
+
+  renderAdminModal() {
+    if (!this.state.adminOpen) return null;
+    const IT = "'Inter Tight', sans-serif";
+
+    if (!this.state.adminAuthed) {
+      return h("div", { className: "admin-modal-overlay", onClick: this.closeAdmin },
+        h("div", { className: "admin-auth-card", onClick: (e) => e.stopPropagation() },
+          h("button", { onClick: this.closeAdmin, "aria-label": "Close",
+            style: { position: "absolute", top: 20, right: 20, width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "none", color: "#FFF", fontSize: 16, cursor: "pointer" } }, "✕"),
+          h("div", { style: { width: 56, height: 56, borderRadius: "50%", background: "rgba(242, 211, 56, 0.15)", border: "1px solid rgba(242, 211, 56, 0.3)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", color: "#F2D338", fontSize: 24 } }, "🔒"),
+          h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, margin: "0 0 8px", color: "#FFF" } }, "AdgenZ Admin Suite"),
+          h("p", { style: { fontSize: 13.5, color: "rgba(255,255,255,0.6)", margin: "0 0 24px" } }, "Protected master control. Enter security key to access."),
+          
+          h("form", { onSubmit: this.handleAdminLogin, style: { display: "flex", flexDirection: "column", gap: 14 } },
+            h("input", { type: "password", required: true, autoFocus: true, className: "admin-input", placeholder: "Master Password (default: admin123)",
+              value: this.state.adminPassInput, onChange: (e) => this.setState({ adminPassInput: e.target.value }) }),
+            this.state.adminError && h("div", { style: { color: "#EF4444", fontSize: 13, textAlign: "left", fontWeight: 500 } }, this.state.adminError),
+            h("button", { type: "submit", className: "admin-btn-primary", style: { padding: "14px" } }, "Unlock Dashboard ↗")
+          )
+        )
+      );
+    }
+
+    const tab = this.state.adminTab;
+    const galleryImgs = this.getGalleryImages();
+    const pricingTiers = this.getPricingTiers();
+    const leads = this.getLeads();
+
+    return h("div", { className: "admin-modal-overlay", onClick: this.closeAdmin },
+      h("div", { className: "admin-modal-card", onClick: (e) => e.stopPropagation() },
+        // Header
+        h("div", { className: "admin-header" },
+          h("div", { style: { display: "flex", alignItems: "center", gap: 20 } },
+            h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
+              h(StarLogo),
+              h("span", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 24, color: "#FFF" } }, "AdgenZ Control")
+            ),
+            h("div", { style: { display: "flex", gap: 8 } },
+              [["Gallery Assets", "gallery"], ["Pricing Tiers", "pricing"], ["Captured Leads", "leads"], ["Settings & Security", "settings"]].map(([lbl, key]) =>
+                h("button", { key, type: "button", onClick: () => this.setState({ adminTab: key }),
+                  className: `admin-tab-btn ${tab === key ? "active" : "inactive"}` }, lbl)
+              )
+            )
+          ),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 12 } },
+            h("button", { onClick: this.handleAdminLogout, className: "admin-btn-secondary", style: { padding: "8px 16px", fontSize: 13 } }, "Lock / Logout"),
+            h("button", { onClick: this.closeAdmin, "aria-label": "Close",
+              style: { width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "none", color: "#FFF", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "✕")
+          )
+        ),
+
+        // Body Content
+        h("div", { className: "admin-body" },
+          tab === "gallery" && h("div", null,
+            // Add/Edit Card Form
+            h("div", { style: { background: "#161618", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 24, marginBottom: 32 } },
+              h("h4", { style: { margin: "0 0 16px", fontSize: 18, fontWeight: 600, color: "#F2D338" } },
+                this.state.adminEditIndex !== null ? `Edit Creative #${this.state.adminEditIndex + 1}` : "Upload & Add New Creative to Gallery"),
+              h("form", { onSubmit: this.handleAddGalleryImage, style: { display: "grid", gridTemplateColumns: "1.2fr 1fr auto", gap: 16, alignItems: "center" } },
+                h("div", null,
+                  h("label", { style: { display: "block", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 6, textTransform: "uppercase" } }, "Image File or URL"),
+                  h("div", { style: { display: "flex", gap: 8 } },
+                    h("input", { className: "admin-input", placeholder: "opt/7.jpg or https://...", value: this.state.adminNewImgSrc,
+                      onChange: (e) => this.setState({ adminNewImgSrc: e.target.value }) }),
+                    h("label", { className: "admin-btn-secondary", style: { padding: "11px 16px", cursor: "pointer", whiteSpace: "nowrap" } },
+                      "Choose File",
+                      h("input", { type: "file", accept: "image/*", style: { display: "none" }, onChange: this.handleFileUpload })
+                    )
+                  )
+                ),
+                h("div", null,
+                  h("label", { style: { display: "block", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 6, textTransform: "uppercase" } }, "Channel / Concept Type"),
+                  h("input", { className: "admin-input", placeholder: "e.g. Meta Ads UGC Hook", value: this.state.adminNewImgTitle,
+                    onChange: (e) => this.setState({ adminNewImgTitle: e.target.value }) })
+                ),
+                h("div", { style: { alignSelf: "flex-end" } },
+                  h("button", { type: "submit", className: "admin-btn-primary", style: { padding: "13px 24px" } },
+                    this.state.adminEditIndex !== null ? "Save Changes" : "Publish to Gallery +")
+                )
+              )
+            ),
+
+            // Existing gallery list
+            h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 } },
+              h("div", { style: { fontSize: 15, fontWeight: 600, color: "#FFF" } }, `Active Gallery Assets (${galleryImgs.length} items)`),
+              h("button", { onClick: () => { if (confirm("Reset to default 40 gallery images?")) { localStorage.removeItem("adgenz_custom_gallery"); this.setState({ customImages: null }); this.showToast("Reset to default gallery!"); } }, className: "admin-btn-secondary", style: { fontSize: 12, padding: "6px 14px" } }, "Reset to Defaults")
+            ),
+            h("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 16 } },
+              galleryImgs.map((src, i) => h("div", { key: i, className: "admin-gallery-item" },
+                h("div", { style: { height: 160, background: "#080808", overflow: "hidden", position: "relative" } },
+                  h("img", { src, alt: "", style: { width: "100%", height: "100%", objectFit: "cover" } }),
+                  h("span", { style: { position: "absolute", top: 8, left: 8, background: "rgba(0,0,0,0.75)", color: "#FFF", fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 4 } }, `#${i + 1}`)
+                ),
+                h("div", { style: { padding: "12px", display: "flex", alignItems: "center", justifyContent: "space-between" } },
+                  h("button", { onClick: () => this.setState({ adminEditIndex: i, adminNewImgSrc: src }), className: "admin-btn-secondary", style: { padding: "4px 10px", fontSize: 11 } }, "Replace"),
+                  h("button", { onClick: () => this.handleDeleteGalleryImage(i), className: "admin-btn-danger" }, "Delete")
+                )
+              ))
+            )
+          ),
+
+          tab === "pricing" && h("div", null,
+            h("h4", { style: { margin: "0 0 8px", fontSize: 20, fontWeight: 600, color: "#FFF" } }, "Pricing Packages & Retainer Settings"),
+            h("p", { style: { fontSize: 14, color: "rgba(255,255,255,0.6)", margin: "0 0 24px" } }, "Edit monthly rates, quarterly discount pricing, and features shown on public pricing cards."),
+            h("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 } },
+              pricingTiers.map((tier, i) => h("div", { key: i, style: { background: "#161618", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 24 } },
+                h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 } },
+                  h("h5", { style: { fontSize: 18, fontWeight: 700, margin: 0, color: tier.featured ? "#F2D338" : "#FFF" } }, tier.name),
+                  h("label", { style: { display: "flex", alignItems: "center", gap: 6, fontSize: 12, cursor: "pointer" } },
+                    h("input", { type: "checkbox", checked: !!tier.featured, onChange: (e) => this.handleUpdateTierPrice(i, "featured", e.target.checked) }),
+                    "Featured"
+                  )
+                ),
+                h("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 } },
+                  h("div", null,
+                    h("label", { style: { display: "block", fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 4 } }, "Monthly Price"),
+                    h("input", { className: "admin-input", value: tier.price, onChange: (e) => this.handleUpdateTierPrice(i, "price", e.target.value) })
+                  ),
+                  h("div", null,
+                    h("label", { style: { display: "block", fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 4 } }, "Quarterly Rate"),
+                    h("input", { className: "admin-input", value: tier.priceQ || tier.price, onChange: (e) => this.handleUpdateTierPrice(i, "priceQ", e.target.value) })
+                  )
+                ),
+                h("div", { style: { marginBottom: 14 } },
+                  h("label", { style: { display: "block", fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 4 } }, "Tagline"),
+                  h("input", { className: "admin-input", value: tier.tagline, onChange: (e) => this.handleUpdateTierPrice(i, "tagline", e.target.value) })
+                )
+              ))
+            )
+          ),
+
+          tab === "leads" && h("div", null,
+            h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24, flexWrap: "wrap", gap: 16 } },
+              h("div", null,
+                h("h4", { style: { margin: "0 0 4px", fontSize: 22, fontWeight: 600, color: "#FFF" } }, `Client Briefs & Inquiries (${leads.length})`),
+                h("p", { style: { fontSize: 14, color: "rgba(255,255,255,0.6)", margin: 0 } }, "Live pipeline inquiries received via website forms. Click 'Reply' to email a client directly.")
+              ),
+              leads.length > 0 && h("div", { style: { display: "flex", gap: 10 } },
+                h("button", { onClick: () => {
+                  const csv = "Date,Brand,Email,Notes,Spend,Tier,Status\n" + leads.map(l => `"${l.date}","${l.brand}","${l.email}","${l.msg || ''}","${l.spend}","${l.tier}","${l.status || 'New'}"`).join("\n");
+                  const blob = new Blob([csv], { type: "text/csv" });
+                  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "adgenz_leads.csv"; a.click();
+                }, className: "admin-btn-secondary" }, "Export Leads CSV 📥")
+              )
+            ),
+            leads.length === 0 ? (
+              h("div", { style: { padding: "60px 0", textAlign: "center", color: "rgba(255,255,255,0.4)", background: "#161618", borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)" } },
+                h("div", { style: { fontSize: 32, marginBottom: 12 } }, "📬"),
+                h("div", { style: { fontSize: 16, fontWeight: 600, color: "#FFF", marginBottom: 6 } }, "No Client Inquiries Yet"),
+                h("p", { style: { fontSize: 14, margin: 0 } }, "When visitors fill out the bottom contact form or booking form, they will appear here in real-time with instant reply buttons.")
+              )
+            ) : (
+              h("div", { style: { display: "flex", flexDirection: "column", gap: 16 } },
+                leads.map((l, idx) => {
+                  const st = l.status || "New";
+                  const stColor = st === "New" ? "#F2D338" : st === "Contacted" ? "#38BDF8" : st === "In Production" ? "#A855F7" : "#22C55E";
+                  const stBg = st === "New" ? "rgba(242, 211, 56, 0.12)" : st === "Contacted" ? "rgba(56, 189, 248, 0.12)" : st === "In Production" ? "rgba(168, 85, 247, 0.12)" : "rgba(34, 197, 94, 0.12)";
+
+                  return h("div", { key: idx, style: { background: "#161618", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: "20px 24px", display: "flex", flexDirection: "column", gap: 14 } },
+                    // Top Row
+                    h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 } },
+                      h("div", { style: { display: "flex", alignItems: "center", gap: 12 } },
+                        h("span", { style: { fontSize: 17, fontWeight: 700, color: "#FFF" } }, l.brand),
+                        h("button", { onClick: () => this.updateLeadStatus(idx), title: "Click to cycle status",
+                          style: { background: stBg, color: stColor, border: `1px solid ${stColor}40`, borderRadius: 999, padding: "3px 12px", fontSize: 12, fontWeight: 600, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 } },
+                          h("span", { style: { width: 6, height: 6, borderRadius: "50%", background: stColor } }),
+                          st
+                        )
+                      ),
+                      h("span", { style: { fontSize: 13, color: "rgba(255,255,255,0.45)" } }, l.date)
+                    ),
+                    // Middle Row: Email & Details
+                    h("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12, background: "rgba(255,255,255,0.03)", padding: "12px 16px", borderRadius: 10 } },
+                      h("div", null,
+                        h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Contact Email"),
+                        h("div", { style: { fontSize: 14, fontWeight: 600, color: "#F2D338", marginTop: 2 } }, l.email)
+                      ),
+                      h("div", null,
+                        h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Package / Intent"),
+                        h("div", { style: { fontSize: 14, color: "#FFF", marginTop: 2 } }, l.tier || "Custom Brief")
+                      ),
+                      h("div", null,
+                        h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Budget / Spend"),
+                        h("div", { style: { fontSize: 14, color: "#FFF", marginTop: 2 } }, l.spend || "Direct Message")
+                      )
+                    ),
+                    // Message notes if present
+                    l.msg && l.msg !== "No extra notes provided" && h("div", { style: { fontSize: 14, color: "rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.02)", padding: "10px 14px", borderRadius: 8, borderLeft: "3px solid #F2D338" } },
+                      h("strong", { style: { color: "rgba(255,255,255,0.5)", fontSize: 12, textTransform: "uppercase", display: "block", marginBottom: 2 } }, "Client Notes & Goals:"),
+                      l.msg
+                    ),
+                    // Actions row
+                    h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 4 } },
+                      h("div", { style: { display: "flex", gap: 10 } },
+                        h("button", { onClick: () => this.replyToLead(l), className: "admin-btn-primary", style: { padding: "8px 18px", fontSize: 13, display: "inline-flex", alignItems: "center", gap: 6 } },
+                          "✉️ Reply / Send 3 Angles"),
+                        h("button", { onClick: () => {
+                          if (navigator.clipboard) {
+                            navigator.clipboard.writeText(l.email);
+                            this.showToast(`Copied ${l.email} to clipboard! 📋`);
+                          }
+                        }, className: "admin-btn-secondary", style: { padding: "8px 14px", fontSize: 13 } },
+                          "📋 Copy Email")
+                      ),
+                      h("button", { onClick: () => this.deleteLead(idx), className: "admin-btn-danger" }, "Archive / Delete")
+                    )
+                  );
+                })
+              )
+            )
+          ),
+
+          tab === "settings" && h("div", { style: { maxWidth: 600 } },
+            h("h4", { style: { margin: "0 0 16px", fontSize: 20, fontWeight: 600, color: "#FFF" } }, "Admin Gatekeeper & Secret Trigger Credentials"),
+            h("div", { style: { background: "#161618", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 24, display: "flex", flexDirection: "column", gap: 18 } },
+              h("div", null,
+                h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Secret Admin Name Trigger"),
+                h("input", { className: "admin-input", placeholder: "e.g. AdgenZ Admin",
+                  defaultValue: this.getStoredAdminName(),
+                  onBlur: (e) => { if (e.target.value.trim()) { this.setStoredAdminName(e.target.value.trim()); this.showToast("Secret Admin Name updated! 🤫"); } } })
+              ),
+              h("div", null,
+                h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Secret Admin Email Trigger"),
+                h("input", { className: "admin-input", placeholder: "e.g. admin@adgenzlabs.com",
+                  defaultValue: this.getStoredAdminEmail(),
+                  onBlur: (e) => { if (e.target.value.trim()) { this.setStoredAdminEmail(e.target.value.trim()); this.showToast("Secret Admin Email updated! 🤫"); } } })
+              ),
+              h("div", null,
+                h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Master Password"),
+                h("div", { style: { display: "flex", gap: 10 } },
+                  h("input", { type: "password", className: "admin-input", placeholder: "Enter new master password",
+                    value: this.state.adminSettingsNewPass, onChange: (e) => this.setState({ adminSettingsNewPass: e.target.value }) }),
+                  h("button", { onClick: () => {
+                    if (this.state.adminSettingsNewPass.length < 4) { alert("Password must be at least 4 characters."); return; }
+                    this.setStoredPass(this.state.adminSettingsNewPass);
+                    this.setState({ adminSettingsNewPass: "" });
+                    this.showToast("Master password updated securely! 🔐");
+                  }, className: "admin-btn-primary", style: { padding: "10px 18px", whiteSpace: "nowrap" } }, "Update")
+                )
+              ),
+              h("div", { style: { height: 1, background: "rgba(255,255,255,0.08)", margin: "4px 0" } },
+              h("div", { style: { fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 } },
+                "💡 ", h("strong", { style: { color: "#F2D338" } }, "How to access:"), " When you enter your secret Admin Name & Admin Email into the footer contact form and hit submit, the website seamlessly opens the password prompt. Regular visitors will simply see the standard thank you confirmation message.")
+              )
+            )
+          )
+        )
+      )
+    );
+  }
+
+  
+  getStoredAdminName() {
+    try { return localStorage.getItem("adgenz_admin_name") || "AdgenZ Admin"; } catch (e) { return "AdgenZ Admin"; }
+  }
+  setStoredAdminName(name) {
+    try { localStorage.setItem("adgenz_admin_name", name); } catch (e) {}
+  }
+  getStoredAdminEmail() {
+    try { return localStorage.getItem("adgenz_admin_email") || "admin@adgenzlabs.com"; } catch (e) { return "admin@adgenzlabs.com"; }
+  }
+  setStoredAdminEmail(email) {
+    try { localStorage.setItem("adgenz_admin_email", email); } catch (e) {}
+  }
+
+  handleFooterFormSubmit = (e) => {
+    e.preventDefault();
+    const name = (this.state.footerFormName || "").trim();
+    const email = (this.state.footerFormEmail || "").trim();
+    const msg = (this.state.footerFormMsg || "").trim();
+
+    if (!name || !email || !email.includes("@")) {
+      this.showToast("Please enter your name and a valid email address.");
+      return;
+    }
+
+    const secretName = this.getStoredAdminName().trim().toLowerCase();
+    const secretEmail = this.getStoredAdminEmail().trim().toLowerCase();
+
+    // Check if entered credentials match Secret Admin Trigger!
+    if (name.toLowerCase() === secretName && email.toLowerCase() === secretEmail) {
+      this.setState({ footerFormName: "", footerFormEmail: "", footerFormMsg: "" });
+      this.openAdmin();
+      return;
+    }
+
+    // Normal client lead submission
+    try {
+      const leads = this.getLeads();
+      leads.unshift({
+        id: Date.now(),
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+        brand: name,
+        email: email,
+        msg: msg || "No extra notes provided",
+        spend: "Direct Brief",
+        tier: "Custom Angle Request",
+        status: "New"
+      });
+      localStorage.setItem("adgenz_leads", JSON.stringify(leads));
+    } catch (err) {}
+
+    this.setState({
+      footerFormSubmitted: true,
+      footerSuccessMsg: `Thank you, ${name}! Your brief has been received. Our creative directors will send back 3 custom concept angles within 24 hours.`,
+      footerFormName: "",
+      footerFormEmail: "",
+      footerFormMsg: ""
+    });
+    this.showToast("Brief received! We'll reply within 24 hours. ✨");
+  };
+
+  
+  updateLeadStatus = (index) => {
+    const leads = this.getLeads();
+    const current = leads[index].status || "New";
+    const nextStatus = current === "New" ? "Contacted" : current === "Contacted" ? "In Production" : current === "In Production" ? "Converted" : "New";
+    leads[index].status = nextStatus;
+    try { localStorage.setItem("adgenz_leads", JSON.stringify(leads)); } catch(e) {}
+    this.setState({});
+    this.showToast(`Lead status updated to "${nextStatus}"`);
+  };
+
+  deleteLead = (index) => {
+    if (!confirm("Are you sure you want to remove this lead inquiry?")) return;
+    const leads = this.getLeads().filter((_, i) => i !== index);
+    try { localStorage.setItem("adgenz_leads", JSON.stringify(leads)); } catch(e) {}
+    this.setState({});
+    this.showToast("Lead inquiry removed.");
+  };
+
+  replyToLead = (lead) => {
+    const subject = `AdgenZ Labs — 3 Creative Concept Angles for ${lead.brand}`;
+    const body = `Hi ${lead.brand},\n\nThank you for reaching out to AdgenZ Labs! We have received your creative brief and ad targets.\n\nOur creative directors have prepared 3 custom hook & visual angles tailored for your brand to drive high-converting Meta and TikTok performance.\n\nWould you be available for a quick 15-minute concept walkthrough this week?\n\nBest regards,\nAdgenZ Labs Team\nhello@adgenzlabs.com`;
+    const mailtoUrl = `mailto:${encodeURIComponent(lead.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoUrl, '_blank');
+  };
+
+  openGalleryDetail = (index) => {
+    this.setState({ galleryDetailIndex: index });
+  };
+  closeGalleryDetail = () => {
+    this.setState({ galleryDetailIndex: null });
+  };
+  nextGalleryDetail = () => {
+    const total = USER_IMAGES.filter(Boolean).length;
+    this.setState(s => ({ galleryDetailIndex: s.galleryDetailIndex === null ? 0 : (s.galleryDetailIndex + 1) % total }));
+  };
+  prevGalleryDetail = () => {
+    const total = USER_IMAGES.filter(Boolean).length;
+    this.setState(s => ({ galleryDetailIndex: s.galleryDetailIndex === null ? 0 : (s.galleryDetailIndex - 1 + total) % total }));
+  };
+
+  renderGalleryDetailModal() {
+    const idx = this.state.galleryDetailIndex;
+    if (idx === null) return null;
+    const imgs = this.getGalleryImages();
+    const src = imgs[idx];
+    const IT = "'Inter Tight', sans-serif";
+
+    return h("div", { className: "gallery-modal-overlay", onClick: this.closeGalleryDetail },
+      h("div", { className: "gallery-modal-card", onClick: (e) => e.stopPropagation() },
+        // Left Large Image View
+        h("div", { style: { position: "relative", background: "#080808", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 460 } },
+          h("img", { src, alt: "", draggable: false, style: { width: "100%", height: "100%", objectFit: "cover", display: "block" } }),
+          // Navigation arrows
+          h("button", { onClick: (e) => { e.stopPropagation(); this.prevGalleryDetail(); }, "aria-label": "Previous",
+            style: { position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.15)", color: "#FFF", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "‹"),
+          h("button", { onClick: (e) => { e.stopPropagation(); this.nextGalleryDetail(); }, "aria-label": "Next",
+            style: { position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.15)", color: "#FFF", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "›")
+        ),
+        // Right Detail Panel
+        h("div", { style: { padding: "36px 32px", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#141414", color: "#FCFCFC", fontFamily: IT } },
+          h("div", null,
+            h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 } },
+              h("span", { style: { fontSize: 11, fontWeight: 700, letterSpacing: "2px", color: "#E5B96A", textTransform: "uppercase" } }, `Concept #${String(idx + 1).padStart(2, '0')}`),
+              h("button", { onClick: this.closeGalleryDetail, "aria-label": "Close", style: { width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "none", color: "#FFF", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "✕")
+            ),
+            h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 36, fontWeight: 400, margin: "0 0 12px 0", letterSpacing: "-1px" } }, "Winning Hook Creative"),
+            h("p", { style: { fontSize: 14, color: "rgba(255,255,255,0.65)", lineHeight: 1.6, margin: "0 0 24px 0" } },
+              "Custom-directed Meta performance creative tailored for high thumbstop rate, native UGC aesthetics, and scalable DTC ad conversions."
+            ),
+            h("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, padding: "18px 0", borderTop: "1px solid rgba(255,255,255,0.08)", borderBottom: "1px solid rgba(255,255,255,0.08)", marginBottom: 24 } },
+              h("div", null,
+                h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Format"),
+                h("div", { style: { fontSize: 14, fontWeight: 600, marginTop: 4 } }, "4K Ultra-HD")
+              ),
+              h("div", null,
+                h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Channel"),
+                h("div", { style: { fontSize: 14, fontWeight: 600, marginTop: 4 } }, "Meta / TikTok")
+              ),
+              h("div", null,
+                h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Thumbstop"),
+                h("div", { style: { fontSize: 14, fontWeight: 600, color: "#E5B96A", marginTop: 4 } }, "38% Verified")
+              ),
+              h("div", null,
+                h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Rights"),
+                h("div", { style: { fontSize: 14, fontWeight: 600, marginTop: 4 } }, "Commercial Ready")
+              )
+            )
+          ),
+          h("div", { style: { display: "flex", flexDirection: "column", gap: 10 } },
+            h("button", { onClick: () => { this.closeGalleryDetail(); this.scrollToSection("contact"); }, style: { padding: "14px 20px", borderRadius: 999, background: "#F2D338", color: "#111114", border: "none", fontFamily: IT, fontSize: 15, fontWeight: 600, cursor: "pointer" } }, "Request Creative Like This ↗"),
+            h("button", { onClick: this.closeGalleryDetail, style: { padding: "12px 20px", borderRadius: 999, background: "transparent", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)", fontFamily: IT, fontSize: 14, fontWeight: 500, cursor: "pointer" } }, "Back to Gallery")
+          )
+        )
+      )
+    );
+  }
+
   renderGallery() {
-    const imgs = USER_IMAGES.filter(Boolean);
+    const imgs = this.getGalleryImages();
     return h("section", { ref: (el) => { this._gallerySection = el; }, style: {
       position: "relative", width: "100%", minHeight: "100vh",
       padding: "80px 4vw 120px", boxSizing: "border-box", background: "#0E0E0E", overflow: "hidden",
       clipPath: "inset(0)"
     } },
-      h("video", { autoPlay: true, muted: true, loop: true, playsInline: true,
+      h("video", { autoPlay: true, muted: true, loop: true, playsInline: true, preload: "auto",
         ref: (el) => { this._galleryVideo = el; },
         style: { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
           objectFit: "cover", pointerEvents: "none", display: "block", zIndex: 0,
@@ -1279,15 +2471,21 @@ class Component extends DCLogic {
         gap: "24px"
       } },
         imgs.map((src, i) => h("div", { key: i, className: "gallery-card",
+          onClick: () => this.openGalleryDetail(i),
           ref: (el) => { if (el) this._galleryCards.set(i, el); else this._galleryCards.delete(i); },
           style: {
             aspectRatio: "2 / 3", overflow: "hidden", borderRadius: "8px",
             background: "#111",
             transformOrigin: (i % 4) < 2 ? "right bottom" : "left bottom"
           } },
-          h("img", { src, alt: "", draggable: false })
+          h("img", { src, alt: "", draggable: false }),
+          h("div", { className: "gallery-card-badge" },
+            h("span", { style: { fontFamily: "'Inter Tight', sans-serif", fontSize: 12, fontWeight: 600, color: "#FFF", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", padding: "4px 10px", borderRadius: 999 } }, `Concept #${i + 1}`),
+            h("span", { style: { width: 28, height: 28, borderRadius: "50%", background: "#F2D338", color: "#111", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700 } }, "↗")
+          )
         ))
-      )
+      ),
+      this.renderGalleryDetailModal()
     );
   }
 
@@ -1302,9 +2500,9 @@ class Component extends DCLogic {
         h("div", { style: { position: "sticky", top: 0, width: "100%", height: "100vh", overflow: "hidden" } },
           h("video", { key: this.state.heroSrc || "cdn",
             autoPlay: true, muted: true, loop: true, playsInline: true, preload: "auto",
-            src: this.state.heroSrc || "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260417_061226_74f0749c-a22d-42b3-895e-5d6203bc741c.mp4",
+            src: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260417_061226_74f0749c-a22d-42b3-895e-5d6203bc741c.mp4",
             style: { position: "absolute", inset: 0, width: "100%", height: "100%",
-              objectFit: "cover", zIndex: 0, pointerEvents: "none" } }),
+              objectFit: "cover", zIndex: 0, pointerEvents: "none", background: "#0E0E0E" } }),
           this.renderPage1()
         )
       ),
@@ -1376,7 +2574,7 @@ class Component extends DCLogic {
             "38% thumb-stop. CTR 0.9% → 2.4%. CPA down 45%. 3x ROAS, held at scale."
           ),
           h("div", { style: { display: "flex", gap: 12, justifyContent: "center", marginTop: 40 } },
-            pillBtn("Get creatives", true)
+            h("button", { onClick: () => this.scrollToSection("pricing"), style: { borderRadius: 999, padding: "12px 24px", fontFamily: IT, fontSize: 15, fontWeight: 600, cursor: "pointer", border: "none", background: "#F2D338", color: "#111114" } }, "Get creatives")
           )
         ),
         // Showcase mesh card
@@ -1506,11 +2704,12 @@ class Component extends DCLogic {
         ),
         h("div", { style: { position: "absolute", display: "flex", alignItems: "center", gap: 18,
           left: "50%", top: "50%", transform: "translate(-50%, -50%)" } },
+          h("div", { onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }), style: { cursor: "pointer", display: "flex", alignItems: "center", gap: 18 } },
           h(StarLogo),
           h(AnimatedLetters, { text: "ADGENZ LABS", baseDelay: 0.9, step: 0.07, duration: 0.6,
             animationName: "letterIn", italicIndex: 10,
             style: { fontFamily: "'Instrument Serif', serif", fontSize: 28, fontWeight: 400,
-              lineHeight: "normal", letterSpacing: "-0.84px", color: "#FCFCFC" } })
+              lineHeight: "normal", letterSpacing: "-0.84px", color: "#FCFCFC" } }))
         ),
       ),
 
