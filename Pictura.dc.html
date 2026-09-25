@@ -40,10 +40,53 @@
           overflow-x: hidden;
         }
 
+        .asset-card-wrap {
+          position: relative;
+          background: #141416;
+          overflow: hidden;
+        }
+
+        .asset-card-wrap::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+          background-size: 200% 100%;
+          animation: cardShimmer 1.8s ease-in-out infinite;
+          pointer-events: none;
+          z-index: 1;
+          transition: opacity 0.4s ease;
+        }
+
+        .asset-card-wrap.loaded::before {
+          opacity: 0;
+          animation: none;
+        }
+
+        @keyframes cardShimmer {
+          0% {
+            background-position: 200% 0;
+          }
+          100% {
+            background-position: -200% 0;
+          }
+        }
+
+        .smooth-img {
+          opacity: 0;
+          transition: opacity 0.35s ease;
+        }
+
+        .smooth-img.is-loaded {
+          opacity: 1;
+        }
+
         .gallery-card {
           will-change: transform;
           transform: scale(0);
           transition: transform 0.15s linear;
+          background: #141416;
+          position: relative;
         }
 
         .gallery-card img {
@@ -51,6 +94,12 @@
           height: 100%;
           object-fit: cover;
           display: block;
+          opacity: 0;
+          transition: opacity 0.35s ease;
+        }
+
+        .gallery-card img.is-loaded {
+          opacity: 1;
         }
 
         @keyframes logoDraw {
@@ -857,15 +906,16 @@ const USER_IMAGES = [
   "opt/6_3.jpg",
   "opt/11_2.jpg",
 ];
-const PERSON_IMAGES = (() => {
+const PERSON_ITEMS = (() => {
   const out = [];
   for (let i = 1; i <= 44; i++) {
     if (i === 8) continue;
     const userSrc = USER_IMAGES[out.length % USER_IMAGES.length] || "opt/1.jpg";
-    out.push(`${userSrc}?tag=person${i}.png`);
+    out.push({ img: userSrc, tag: `person${i}.png` });
   }
   return out;
 })();
+const PERSON_IMAGES = PERSON_ITEMS.map(p => p.img);
 
 const SMALL_HEART_ROWS = [6, 11, 13, 13, 13, 11, 9, 7, 5, 3, 1];
 const SMALL_CELL = 5.067;
@@ -945,10 +995,12 @@ function buildCells() {
       const rand = (n) => { const v = Math.sin(seed + n) * 43758.5453; return v - Math.floor(v); };
       const angle = rand(1) * Math.PI * 2;
       const dist = 420 + rand(2) * 400;
+      const pItem = PERSON_ITEMS[id % PERSON_ITEMS.length];
       cells.push({
         id, row: r, col: c, rowCount: row.count, x, y, w, h: ch,
         scatterX: Math.cos(angle) * dist, scatterY: Math.sin(angle) * dist * 0.7,
-        img: PERSON_IMAGES[id % PERSON_IMAGES.length],
+        img: pItem.img,
+        tag: pItem.tag,
       });
       id++;
       x += w + (row.gaps?.[c] ?? H_GAP);
@@ -1199,7 +1251,7 @@ class Component extends DCLogic {
     super(props);
     const built = buildCells();
     this.cells = built.cells;
-    if (this.cells[40]) this.cells[40].img = "opt/green-ad.png";
+    if (this.cells[40]) this.cells[40].img = "opt/green-ad.jpg";
     this.heartWidth = built.heartWidth;
     this.heartHeight = built.heartHeight;
     this.state = {
@@ -1256,18 +1308,6 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
-    // ---- Persistent Cache Storage Layer (Instant loads on revisit) ----
-    if (typeof window !== "undefined" && "caches" in window) {
-      caches.open("adgenz-media-cache-v2").then(cache => {
-        const mediaUrls = USER_IMAGES.concat([
-          "opt/green-ad.png",
-          "favicon.svg",
-          "https://qclay.design/lovable/pictura/frame.svg",
-          "https://qclay.design/lovable/nixole/nurse-video.mp4"
-        ]);
-        cache.addAll(mediaUrls).catch(() => {});
-      }).catch(() => {});
-    }
     document.title = "AdgenZ Labs — The Creative I Build To Out Gen the Noise";
     let link = document.querySelector("link[rel~='icon']");
     if (!link) { link = document.createElement("link"); link.rel = "icon"; document.head.appendChild(link); }
@@ -1276,7 +1316,6 @@ class Component extends DCLogic {
     this._onResize = () => { this.setState({ vp: { w: window.innerWidth, h: window.innerHeight } }); if (this._palletInit) this._measurePallet(); };
     window.addEventListener("resize", this._onResize);
 
-    // ---- Fast & Optimized Splash: preload assets & stream video immediately ----
     window.__adgenzScroll = (key) => this.scrollToSection(key);
     
     // Anti-download protection
@@ -1288,50 +1327,73 @@ class Component extends DCLogic {
     window.addEventListener('contextmenu', this._preventDownload);
     window.addEventListener('dragstart', this._preventDownload);
 
+    // =========================================================================
+    // PHASE 1: HERO PRIORITY LOADING (Hero Video & All Unique Hero Images)
+    // =========================================================================
     const HERO_VID_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260417_061226_74f0749c-a22d-42b3-895e-5d6203bc741c.mp4";
-    const assets = USER_IMAGES.filter(Boolean).slice(0, 12);
-    const total = assets.length + 1;
-    let loaded = 0, finished = false;
-    const startT = Date.now();
-    const MIN_SPLASH = 700, MAX_SPLASH = 2000;
+    const isHeroWarm = typeof sessionStorage !== "undefined" && sessionStorage.getItem("adgenz_hero_warm") === "1";
 
-    const finish = () => {
-      if (finished) return;
-      finished = true;
+    const heroImageSet = new Set(this.cells.map(c => c.img).filter(Boolean));
+    Object.values(SMALL_IMAGES).forEach(src => src && heroImageSet.add(src));
+    Object.values(SMALL_IMAGES_EXPAND).forEach(src => src && heroImageSet.add(src));
+    const tier1Images = Array.from(heroImageSet);
+
+    const totalTier1 = tier1Images.length + 1;
+    let loadedTier1 = 0;
+    let finishedTier1 = false;
+    const startT = Date.now();
+    const MIN_SPLASH = isHeroWarm ? 280 : 650;
+    const MAX_SPLASH = 2800;
+
+    const finishTier1 = () => {
+      if (finishedTier1) return;
+      finishedTier1 = true;
       clearTimeout(this._splashMaxT);
+      try { if (typeof sessionStorage !== "undefined") sessionStorage.setItem("adgenz_hero_warm", "1"); } catch(e) {}
+
       const wait = Math.max(0, MIN_SPLASH - (Date.now() - startT));
       this._splashT1 = setTimeout(() => {
         this.setState({ loadProgress: 1, appVisible: true, splashFading: true });
-        this._linesT = setTimeout(() => this.setState({ linesLoaded: true }), 900);
-        this._splashT2 = setTimeout(() => this.setState({ splashGone: true }), 500);
+        this._linesT = setTimeout(() => this.setState({ linesLoaded: true }), 700);
+        this._splashT2 = setTimeout(() => this.setState({ splashGone: true }), 450);
+
+        // Phase 2: Start background loading Section 2 immediately as hero reveals
+        this._startPhase2Loading();
       }, wait);
     };
 
-    const onItemDone = () => {
-      loaded++;
-      this.setState({ loadProgress: Math.min(1, loaded / total) });
-      if (loaded >= total) finish();
+    const onTier1ItemDone = () => {
+      loadedTier1++;
+      this.setState({ loadProgress: Math.min(1, loadedTier1 / totalTier1) });
+      if (loadedTier1 >= totalTier1) finishTier1();
     };
 
-    // Preload video buffer so it's moving the instant splash fades out
+    // Preload Hero Video buffer
     const vidPreload = document.createElement("video");
     vidPreload.src = HERO_VID_URL;
     vidPreload.preload = "auto";
     vidPreload.muted = true;
     vidPreload.playsInline = true;
-    vidPreload.addEventListener("loadeddata", onItemDone, { once: true });
-    vidPreload.addEventListener("canplay", onItemDone, { once: true });
-    vidPreload.addEventListener("error", onItemDone, { once: true });
+    vidPreload.addEventListener("loadeddata", onTier1ItemDone, { once: true });
+    vidPreload.addEventListener("canplay", onTier1ItemDone, { once: true });
+    vidPreload.addEventListener("error", onTier1ItemDone, { once: true });
     vidPreload.load();
 
-    assets.forEach(src => {
+    // Preload all Tier 1 Hero Images and store in persistent cache
+    this._preloadImgs = tier1Images.map(src => {
       const im = new Image();
-      im.onload = onItemDone;
-      im.onerror = onItemDone;
+      im.onload = () => {
+        onTier1ItemDone();
+        if (typeof window !== "undefined" && "caches" in window) {
+          caches.open("adgenz-media-cache-v2").then(c => c.add(src).catch(() => {})).catch(() => {});
+        }
+      };
+      im.onerror = onTier1ItemDone;
       im.src = src;
+      return im;
     });
 
-    this._splashMaxT = setTimeout(finish, MAX_SPLASH);
+    this._splashMaxT = setTimeout(finishTier1, MAX_SPLASH);
 
     // scroll-driven heart dispersal (sticky hero scrubbed by scroll position)
     const MAX = 600;
@@ -1427,7 +1489,50 @@ class Component extends DCLogic {
     if (this._palletRO) this._palletRO.disconnect();
     if (this._bannerInterval) clearInterval(this._bannerInterval);
     if (this._palletPoll) clearInterval(this._palletPoll);
+    if (this._phase2Timer) clearTimeout(this._phase2Timer);
+    if (this._phase3Timer) clearTimeout(this._phase3Timer);
   }
+
+  _startPhase2Loading = () => {
+    // Phase 2: Preload Section 2 (The Pallet cards & banners)
+    const palletAssets = [...new Set([...PALLET_CARDS, ...PALLET_BANNERS])];
+    const idleRunner = typeof requestIdleCallback !== "undefined" ? requestIdleCallback : (cb) => setTimeout(cb, 100);
+
+    idleRunner(() => {
+      palletAssets.forEach(src => {
+        const im = new Image();
+        im.src = src;
+        if (typeof window !== "undefined" && "caches" in window) {
+          caches.open("adgenz-media-cache-v2").then(c => c.add(src).catch(() => {})).catch(() => {});
+        }
+      });
+      this._phase3Timer = setTimeout(this._startPhase3Loading, 600);
+    });
+  };
+
+  _startPhase3Loading = () => {
+    // Phase 3: Gallery portfolio images (in manageable batches)
+    const galleryAssets = this.getGalleryImages();
+    const idleRunner = typeof requestIdleCallback !== "undefined" ? requestIdleCallback : (cb) => setTimeout(cb, 200);
+
+    idleRunner(() => {
+      let idx = 0;
+      const loadNextBatch = () => {
+        const batch = galleryAssets.slice(idx, idx + 6);
+        if (!batch.length) return;
+        batch.forEach(src => {
+          const im = new Image();
+          im.src = src;
+          if (typeof window !== "undefined" && "caches" in window) {
+            caches.open("adgenz-media-cache-v2").then(c => c.add(src).catch(() => {})).catch(() => {});
+          }
+        });
+        idx += 6;
+        if (idx < galleryAssets.length) setTimeout(loadNextBatch, 300);
+      };
+      loadNextBatch();
+    });
+  };
 
   _initPallet() {
     if (this._palletInit || !this._palletEl) return;
@@ -1501,13 +1606,14 @@ class Component extends DCLogic {
         return h("div", { key: "pc" + i,
           onMouseEnter: () => this.setState({ palletHover: i }),
           onMouseLeave: () => this.setState({ palletHover: null }),
+          className: "asset-card-wrap",
           style: { position: "absolute", top: 0, left: 0, width: 220, height: 220, borderRadius: 18, overflow: "hidden",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.20)", background: "#111",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.20)", background: "#141416",
             transform: `translate(${cx}px, ${cy}px) translate(-50%, -50%) rotate(${rot}deg) scale(${sc})`,
             transformOrigin: "center", zIndex: hovered ? 30 : cas.z, opacity: 0,
             animation: "palletCardIn 0.6s ease-out forwards", animationDelay: `${0.3 + i * 0.08}s`,
             pointerEvents: "auto", cursor: "pointer" } },
-          h("img", { src: PALLET_CARDS[i], alt: "", draggable: false, style: { width: "100%", height: "100%", objectFit: "cover", display: "block" } })
+          h("img", { src: PALLET_CARDS[i], alt: "", draggable: false, decoding: "async", className: "smooth-img is-loaded", style: { width: "100%", height: "100%", objectFit: "cover", display: "block" } })
         );
       })
     );
@@ -1901,7 +2007,7 @@ class Component extends DCLogic {
   }
 
   get visibleCells() {
-    return this.cells.filter(c => TARGETS[(c.img.match(/person\d+\.png/) || [""])[0]]);
+    return this.cells.filter(c => TARGETS[c.tag || (c.img.match(/person\d+\.png/) || [""])[0]]);
   }
 
   openSlider = (id, el) => {
@@ -1924,7 +2030,7 @@ class Component extends DCLogic {
     const heartOriginX = (vp.w - this.heartWidth) / 2;
     const heartOriginY = HEART_TOP;
     const initX = heartOriginX + cell.x, initY = heartOriginY + cell.y;
-    const filename = (cell.img.match(/person\d+\.png/) || [""])[0];
+    const filename = cell.tag || (cell.img.match(/person\d+\.png/) || [""])[0];
     const target = TARGETS[filename];
     let finalX, finalY, finalW, finalH, useTransform = false;
     if (target?.transform) {
@@ -1970,12 +2076,20 @@ class Component extends DCLogic {
           animation: "cellReveal 0.8s cubic-bezier(0.22,1,0.36,1) forwards",
           animationDelay: `${revealDelay}s` } },
           h("button", { onClick: (e) => this.openSlider(cell.id, e.currentTarget),
+            className: "asset-card-wrap",
             style: { position: "absolute", inset: 0, overflow: "hidden",
-              cursor: scattered ? "pointer" : "default", background: "#111", border: 0, padding: 0 } },
-            cell.img && !cell.img.startsWith("?") && h("img", { src: cell.img, alt: "", draggable: false, style: {
-              width: "100%", height: "100%",
-              objectFit: filename === "person9.png" ? "fill" : "cover", display: "block"
-            } })
+              cursor: scattered ? "pointer" : "default", background: "#141416", border: 0, padding: 0 } },
+            cell.img && !cell.img.startsWith("?") && h("img", {
+              src: cell.img,
+              alt: "",
+              draggable: false,
+              decoding: "async",
+              className: "smooth-img is-loaded",
+              style: {
+                width: "100%", height: "100%",
+                objectFit: filename === "person9.png" ? "fill" : "cover", display: "block"
+              }
+            })
           )
         )
       )
@@ -2725,15 +2839,27 @@ class Component extends DCLogic {
         gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
         gap: "24px"
       } },
-        imgs.map((src, i) => h("div", { key: i, className: "gallery-card",
+        imgs.map((src, i) => h("div", { key: i, className: "gallery-card asset-card-wrap",
           onClick: () => this.openGalleryDetail(i),
           ref: (el) => { if (el) this._galleryCards.set(i, el); else this._galleryCards.delete(i); },
           style: {
             aspectRatio: "2 / 3", overflow: "hidden", borderRadius: "8px",
-            background: "#111",
+            background: "#141416",
             transformOrigin: (i % 4) < 2 ? "right bottom" : "left bottom"
           } },
-          h("img", { src, alt: "", draggable: false }),
+          h("img", {
+            src,
+            alt: "",
+            draggable: false,
+            loading: "lazy",
+            decoding: "async",
+            className: "smooth-img",
+            onLoad: (e) => {
+              e.currentTarget.classList.add("is-loaded");
+              const p = e.currentTarget.closest(".asset-card-wrap");
+              if (p) p.classList.add("loaded");
+            }
+          }),
           h("div", { className: "gallery-card-badge" },
             h("span", { style: { fontFamily: "'Inter Tight', sans-serif", fontSize: 12, fontWeight: 600, color: "#FFF", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", padding: "4px 10px", borderRadius: 999 } }, `Concept #${i + 1}`),
             h("span", { style: { width: 28, height: 28, borderRadius: "50%", background: "#F2D338", color: "#111", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700 } }, "↗")
@@ -2767,7 +2893,7 @@ class Component extends DCLogic {
       this.renderCoreFeatures(),
       this.renderFooter(),
       this.renderInquiryModal(),
-      !splashGone && h(SplashScreen, { progress: 1, fading: splashFading })
+      !splashGone && h(SplashScreen, { progress: this.state.loadProgress, fading: splashFading })
     );
   }
 
