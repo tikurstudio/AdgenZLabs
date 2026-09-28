@@ -697,7 +697,163 @@
           animation: modalFade 0.3s ease-out forwards;
         }
 
-        .gallery-modal-card {
+        
+          /* 11-Campaign Group Gallery Rows */
+          .campaign-chips-bar {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 8px 4px 28px;
+            margin-bottom: 40px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+          }
+          .campaign-chips-bar::-webkit-scrollbar {
+            display: none;
+          }
+          .campaign-chip {
+            padding: 9px 20px;
+            border-radius: 999px;
+            font-family: 'Inter Tight', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+          }
+          .campaign-chip:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #FFF;
+            border-color: rgba(255, 255, 255, 0.25);
+          }
+          .campaign-chip.active {
+            background: #F2D338;
+            color: #111114;
+            border-color: #F2D338;
+            font-weight: 700;
+          }
+          .campaign-group-row {
+            margin-bottom: 72px;
+            position: relative;
+          }
+          .campaign-row-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 4px 24px;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+          }
+          .campaign-row-track::-webkit-scrollbar {
+            display: none;
+          }
+          .campaign-card {
+            flex: 0 0 clamp(240px, 24vw, 290px);
+            aspect-ratio: 4 / 5;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #141416;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+          }
+          .campaign-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(242, 211, 56, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(242, 211, 56, 0.15);
+          }
+          .campaign-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+          .campaign-card:hover img {
+            transform: scale(1.05);
+          }
+          .campaign-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 40%, rgba(14, 14, 16, 0.95) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 14px 16px;
+            pointer-events: none;
+          }
+          .campaign-card-badge {
+            align-self: flex-start;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #FFF;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+          }
+          .row-scroll-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          }
+          .row-scroll-btn:hover {
+            background: #F2D338;
+            color: #111;
+            border-color: #F2D338;
+            transform: scale(1.08);
+          }
+          .admin-group-tab-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+          }
+          .admin-group-tab-btn.active {
+            background: rgba(242, 211, 56, 0.15);
+            border-color: #F2D338;
+            color: #F2D338;
+            font-weight: 700;
+          }
+          .admin-creative-edit-card {
+            background: #19191C;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 140px 1fr auto;
+            gap: 16px;
+            align-items: start;
+          }
+          @media (max-width: 768px) {
+            .admin-creative-edit-card {
+              grid-template-columns: 1fr;
+            }
+          }
+
+          .gallery-modal-card {
           position: relative;
           max-width: 1040px;
           width: 100%;
@@ -864,48 +1020,623 @@
   <script type="text/x-dc" data-dc-script>
 const h = React.createElement;
 
-const USER_IMAGES = [
-  "opt/7.jpg",
-  "opt/1.jpg",
-  "opt/5.jpg",
-  "opt/1-bec85ce6.jpg",
-  "opt/10.jpg",
-  "opt/9-2607026b.jpg",
-  "opt/2.jpg",
-  "opt/14.jpg",
-  "opt/9.jpg",
-  "opt/15.jpg",
-  "opt/11.jpg",
-  "opt/6.jpg",
-  "opt/fixed.jpg",
-  "opt/12.jpg",
-  "opt/10_3.jpg",
-  "opt/7_6.jpg",
-  "opt/3_3.jpg",
-  "opt/11_3.jpg",
-  "opt/14_2.jpg",
-  "opt/15_2.jpg",
-  "opt/9_6.jpg",
-  "opt/13_5.jpg",
-  "opt/7_5.jpg",
-  "opt/6_5.jpg",
-  "opt/9_5.jpg",
-  "opt/15_1.jpg",
-  "opt/13_4.jpg",
-  "opt/12_4.jpg",
-  "opt/9_4.jpg",
-  "opt/6_4.jpg",
-  "opt/13_3.jpg",
-  "opt/7_4.jpg",
-  "opt/7_3.jpg",
-  "opt/13_2.jpg",
-  "opt/14_1.jpg",
-  "opt/5_4.jpg",
-  "opt/12_3.jpg",
-  "opt/4_5.jpg",
-  "opt/6_3.jpg",
-  "opt/11_2.jpg",
+const DEFAULT_GALLERY_GROUPS = [
+  {
+    id: "bee-venom-slim-patch",
+    folder: "bee venom slim picth",
+    title: "Bee Venom Slim Patch",
+    category: "DTC Transdermal & Slimming",
+    description: "High-converting transdermal ad creatives targeting stubborn visceral fat, active melittin peptide release, and frictionless overnight slimming.",
+    items: [
+      {
+        id: "bv-1",
+        src: "bee venom slim picth/12 (14).jpg",
+        title: "Transdermal Bio-Delivery Mechanism",
+        angle: "Mechanism of Action",
+        hook: "Why swallowing pills loses 80% potency before reaching your fat cells.",
+        desc: "Direct visual breakdown showing active peptide diffusion bypassing digestive acids. Engineered with high-contrast claims for thumbstop retention on Meta Reels.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & TikTok",
+        testedCtr: "3.9% CTR • 42% Thumbstop"
+      },
+      {
+        id: "bv-2",
+        src: "bee venom slim picth/14 (11).jpg",
+        title: "Overnight Target Zone Contour",
+        angle: "Problem-Agitate-Solve",
+        hook: "Apply before bed. Wake up with a tighter waistline contour.",
+        desc: "Split-shot visual proving convenience and localized metabolic activation. Converts cold traffic looking for low-friction slimming solutions.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed & TikTok",
+        testedCtr: "3.4% CTR • 39% Thumbstop"
+      },
+      {
+        id: "bv-3",
+        src: "bee venom slim picth/6 (16).jpg",
+        title: "Clinical Peptide Bio-Active Proof",
+        angle: "Clinical Credibility",
+        hook: "The South Korean bee venom peptide protocol going viral.",
+        desc: "Elevated scientific aesthetic featuring clean laboratory callouts, organic certification badges, and third-party testing credentials.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Ads & Programmatic",
+        testedCtr: "3.1% CTR • 36% Thumbstop"
+      },
+      {
+        id: "bv-4",
+        src: "bee venom slim picth/9 (17).jpg",
+        title: "UGC Habit & Routine Stacking",
+        angle: "UGC Native Routine",
+        hook: "My 30-day nightly routine update (Unfiltered belly check).",
+        desc: "Authentic, raw lifestyle capture showing application onto the navel area. Drives high engagement and lowers CPA on broad lookalike audiences.",
+        format: "4K Vertical 4:5",
+        platform: "TikTok & IG Stories",
+        testedCtr: "4.2% CTR • 45% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "botox-elixir",
+    folder: "botox elixr",
+    title: "Botox Elixir Serum",
+    category: "Anti-Aging & Peptides",
+    description: "Needle-free anti-aging performance ads focusing on instant expression line relaxation, acetyl hexapeptide-8 lifting, and 60-second micro-smoothing.",
+    items: [
+      {
+        id: "bx-1",
+        src: "botox elixr/1 (52).jpg",
+        title: "60-Second Instant Lift Proof",
+        angle: "Instant Demonstration",
+        hook: "Watch forehead lines fade in under 60 seconds (No needles required).",
+        desc: "Ultra-high-definition split-screen capture demonstrating instant textural relaxation. Stops scrolls with unmistakable visual contrast.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Ads & TikTok",
+        testedCtr: "4.1% CTR • 46% Thumbstop"
+      },
+      {
+        id: "bx-2",
+        src: "botox elixr/12 (13).jpg",
+        title: "Dermatologist Protocol Angle",
+        angle: "Authority & Social Proof",
+        hook: "What cosmetic dermatologists recommend when patients want to avoid neurotoxin injections.",
+        desc: "Clean aesthetic credentialing medical-grade peptide complexes. Overcomes skepticism for women 35-65.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed & Reels",
+        testedCtr: "3.6% CTR • 40% Thumbstop"
+      },
+      {
+        id: "bx-3",
+        src: "botox elixr/3 (22).jpg",
+        title: "Active Peptide Molecule Breakdown",
+        angle: "Mechanism of Action",
+        hook: "Argireline vs. Botox: The topical peptide that relaxes facial tension.",
+        desc: "High-end 3D molecular visualization illustrating neuromuscular transmitter interruption. Perfect for educational, high-ticket DTC scaling.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Advantage+",
+        testedCtr: "3.5% CTR • 38% Thumbstop"
+      },
+      {
+        id: "bx-4",
+        src: "botox elixr/9 (16).jpg",
+        title: "Crow's Feet & Marionette Focus",
+        angle: "Targeted Solution",
+        hook: "The 3 trouble zones this peptide serum completely revitalizes in 14 days.",
+        desc: "Macro zoom on delicate orbital and perioral zones, reassuring sensitive skin buyers of zero irritation.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & Stories",
+        testedCtr: "3.7% CTR • 41% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "cinnamon-blood-sugar",
+    folder: "cinnamon blood sugar",
+    title: "Cinnamon Blood Sugar Balance",
+    category: "Metabolic & Glucose Balance",
+    description: "Metabolic performance creatives addressing post-meal lethargy, insulin sensitivity, and glucose spikes with natural Ceylon cinnamon extracts.",
+    items: [
+      {
+        id: "cbs-1",
+        src: "cinnamon blood sugar/12 (14).jpg",
+        title: "Post-Meal Glucose Spike Suppression",
+        angle: "Problem-Agitate-Solve",
+        hook: "Why you crash at 3 PM after lunch (and how 2 capsules block the glucose cliff).",
+        desc: "Continuous glucose monitor graph overlaid onto everyday meals, creating immediate personal identification.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Ads & TikTok",
+        testedCtr: "4.4% CTR • 48% Thumbstop"
+      },
+      {
+        id: "cbs-2",
+        src: "cinnamon blood sugar/4 (18).jpg",
+        title: "Ceylon vs. Cassia Cinnamon Purity",
+        angle: "Ingredient Superiority",
+        hook: "Stop taking supermarket cinnamon: The liver toxin 90% of brands hide.",
+        desc: "Direct educational comparison establishing trust and justifying premium supplement pricing.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed & YouTube Shorts",
+        testedCtr: "3.8% CTR • 43% Thumbstop"
+      },
+      {
+        id: "cbs-3",
+        src: "cinnamon blood sugar/5 (13).jpg",
+        title: "Sugar Craving Interception Routine",
+        angle: "UGC Habit Stacking",
+        hook: "How I killed late-night sweet cravings in 7 days without willpower.",
+        desc: "Relatable home setting focusing on appetite regulation and steady metabolic energy.",
+        format: "4K Vertical 4:5",
+        platform: "TikTok & Meta Reels",
+        testedCtr: "4.0% CTR • 44% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "eyelid-lift",
+    folder: "eyelid",
+    title: "Upper Eyelid Lift Cream",
+    category: "Eye Contour & Firming",
+    description: "High-intent eye contour ads tackling hooded lids, loose orbital skin, and morning fluid retention without surgical blepharoplasty.",
+    items: [
+      {
+        id: "el-1",
+        src: "eyelid/10 (11).jpg",
+        title: "Hooded Lid Mechanical Tension Proof",
+        angle: "Visible Transformation",
+        hook: "Heavy hooded eyelids making you look exhausted? Try this topical lift first.",
+        desc: "Side-by-side macro photography proving eyelid crease elevation and wide-awake gaze recovery.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed & Reels",
+        testedCtr: "4.5% CTR • 49% Thumbstop"
+      },
+      {
+        id: "el-2",
+        src: "eyelid/12 (12).jpg",
+        title: "Non-Surgical Blepharoplasty Alternative",
+        angle: "Price & Danger Anchor",
+        hook: "Before you spend $4,500 on lid surgery, test this clinical firming complex.",
+        desc: "High-contrast price anchoring comparing risky surgical downtime with gentle topical firmness.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Ads",
+        testedCtr: "3.9% CTR • 42% Thumbstop"
+      },
+      {
+        id: "el-3",
+        src: "eyelid/8 (10).jpg",
+        title: "Collagen Elastin Matrix Activation",
+        angle: "Mechanism of Action",
+        hook: "The eyelid skin is 10x thinner than your cheeks — here's how to firm it.",
+        desc: "Dermatological cross-section visualization explaining dermal thinning and firming peptide re-densification.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & Stories",
+        testedCtr: "3.6% CTR • 39% Thumbstop"
+      },
+      {
+        id: "el-4",
+        src: "eyelid/9 (16).jpg",
+        title: "Morning Routine Applicator Glide",
+        angle: "Sensory & Routine",
+        hook: "The 30-second morning swipe that opens up tired, sagging lids.",
+        desc: "Sensory close-up of cooling applicator gliding across brow bone and crease.",
+        format: "4K Vertical 4:5",
+        platform: "TikTok & Reels",
+        testedCtr: "4.1% CTR • 45% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "hair-growth-shampoo",
+    folder: "hair growth shampoo",
+    title: "Hair Growth Shampoo",
+    category: "Follicle Density & Scalp Care",
+    description: "Clinical hair restoration creatives showcasing follicle revival, DHT blocking botanicals, and reduced shower shedding for thinning hair.",
+    items: [
+      {
+        id: "hg-1",
+        src: "hair growth shampoo/12 (12).jpg",
+        title: "Shower Shedding Reduction Angle",
+        angle: "Emotional Trigger",
+        hook: "Tired of pulling clumps of hair from the shower drain every single morning?",
+        desc: "Emotional, high-resonance hook highlighting the visceral dread of hair loss, pivoting immediately to clean follicle nourishment.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & TikTok",
+        testedCtr: "4.6% CTR • 51% Thumbstop"
+      },
+      {
+        id: "hg-2",
+        src: "hair growth shampoo/2 (35).jpg",
+        title: "DHT Follicle Suffocation Mechanism",
+        angle: "Mechanism of Action",
+        hook: "Why standard shampoos clog roots with silicones while DHT miniaturizes follicles.",
+        desc: "Medical-grade scalp magnification showing unblocked follicles and active micro-circulation.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Ads & Feed",
+        testedCtr: "3.8% CTR • 41% Thumbstop"
+      },
+      {
+        id: "hg-3",
+        src: "hair growth shampoo/6 (15).jpg",
+        title: "Part-Line Widening Before & After",
+        angle: "Visual Transformation",
+        hook: "90 Days of Scalp Density Shampoo: Look at my part-line gap fill in.",
+        desc: "Unedited timeline progression proving new baby hair regrowth along crown and temple areas.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Advantage+",
+        testedCtr: "4.3% CTR • 47% Thumbstop"
+      },
+      {
+        id: "hg-4",
+        src: "hair growth shampoo/8 (10).jpg",
+        title: "Rosemary Caffeine Peptide Formula",
+        angle: "Clean Botanical Science",
+        hook: "The clinical rosemary study that matched 2% Minoxidil without the scalp itch.",
+        desc: "Grounds efficacy in published clinical literature to capture discerning, chemical-conscious consumers.",
+        format: "4K Vertical 4:5",
+        platform: "Meta & YouTube Shorts",
+        testedCtr: "3.9% CTR • 43% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "intima-care",
+    folder: "intima care",
+    title: "Intima Care Wellness",
+    category: "Microbiome & Feminine Care",
+    description: "Empowering, aesthetic feminine wellness creatives de-stigmatizing intimate pH balance, probiotic defense, and odor prevention.",
+    items: [
+      {
+        id: "ic-1",
+        src: "intima care/1 (53).jpg",
+        title: "Microbiome pH Harmony Angle",
+        angle: "Clinical Reassurance",
+        hook: "Why regular soap strips your intimate barrier and triggers recurring imbalance.",
+        desc: "Gentle, elevated pastel art direction emphasizing pH 3.8-4.2 balance without harsh sulfates.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & IG Feed",
+        testedCtr: "3.7% CTR • 40% Thumbstop"
+      },
+      {
+        id: "ic-2",
+        src: "intima care/13 (14).jpg",
+        title: "Lactobacillus Prebiotic Defense",
+        angle: "Mechanism of Action",
+        hook: "The probiotic shield that keeps bad bacteria from taking over.",
+        desc: "Clean botanical ingredients paired with microflora barrier diagrams.",
+        format: "4K Vertical 4:5",
+        platform: "TikTok & Meta Ads",
+        testedCtr: "3.9% CTR • 42% Thumbstop"
+      },
+      {
+        id: "ic-3",
+        src: "intima care/4 (19).jpg",
+        title: "All-Day Freshness Confidence",
+        angle: "Lifestyle Freedom",
+        hook: "Post-workout freshness you don't have to second-guess all day long.",
+        desc: "Relatable active lifestyle setting speaking to confidence, gym routines, and breathable hygiene.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed & Stories",
+        testedCtr: "4.1% CTR • 44% Thumbstop"
+      },
+      {
+        id: "ic-4",
+        src: "intima care/5 (11).jpg",
+        title: "Gynecologist Formulated Proof",
+        angle: "Medical Authority",
+        hook: "What OB-GYNs wish women knew before using scented department store washes.",
+        desc: "High-trust clinical backing removing hesitation and driving immediate subscriptions.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Advantage+",
+        testedCtr: "3.8% CTR • 41% Thumbstop"
+      },
+      {
+        id: "ic-5",
+        src: "intima care/8 (10).jpg",
+        title: "Pure Plant Botanical Infusion",
+        angle: "Ingredient Transparency",
+        hook: "Chamomile, Aloe, and Lactic Acid: Zero parabens, zero synthetic fragrance.",
+        desc: "Minimalist ingredient laydown reassuring ultra-sensitive buyers.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels",
+        testedCtr: "3.5% CTR • 38% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "mood-support",
+    folder: "mood support",
+    title: "Mood Support Complex",
+    category: "Adaptogenic Calm & Stress",
+    description: "Mental wellness performance creatives highlighting cortisol reduction, adaptogenic resilience, and breaking the 'tired-but-wired' cycle.",
+    items: [
+      {
+        id: "ms-1",
+        src: "mood support/13 (13).jpg",
+        title: "Cortisol Loop Disruption",
+        angle: "Problem-Agitate-Solve",
+        hook: "Tired all day, but brain won't turn off at 11 PM? That's cortisol overdrive.",
+        desc: "High-contrast day-vs-night energy graphic illustrating the broken circadian rhythm of modern professionals.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & TikTok",
+        testedCtr: "4.4% CTR • 48% Thumbstop"
+      },
+      {
+        id: "ms-2",
+        src: "mood support/1790150765-UricBalance00.webp",
+        title: "Metabolic Cleanse & Internal Calm",
+        angle: "Biological Equilibrium",
+        hook: "Flush systemic stress metabolites and restore deep restful balance.",
+        desc: "Botanical tincture aesthetic showcasing clean herbal detoxifiers and nervous system tonics.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Ads",
+        testedCtr: "3.6% CTR • 39% Thumbstop"
+      },
+      {
+        id: "ms-3",
+        src: "mood support/2 (36).jpg",
+        title: "KSM-66 Ashwagandha + L-Theanine",
+        angle: "Clinically Studied Actives",
+        hook: "The adaptogen ratio proven to drop stress hormones by 27% in 30 days.",
+        desc: "Clinical trial citation overlay reinforcing high efficacy over generic calming teas.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed & Stories",
+        testedCtr: "3.9% CTR • 43% Thumbstop"
+      },
+      {
+        id: "ms-4",
+        src: "mood support/3 (24).jpg",
+        title: "Overwhelm to Calm Transition",
+        angle: "Emotional Storytelling",
+        hook: "I stopped snapping at little things: How my nervous system finally softened.",
+        desc: "Subtle, authentic creator testimonial focusing on emotional capacity and patience.",
+        format: "4K Vertical 4:5",
+        platform: "TikTok & Reels",
+        testedCtr: "4.2% CTR • 46% Thumbstop"
+      },
+      {
+        id: "ms-5",
+        src: "mood support/6 (14).jpg",
+        title: "Afternoon Anxiety Prevention",
+        angle: "Routine Integration",
+        hook: "Take 1 dropper before your first meeting. Notice the calm clarity.",
+        desc: "Desk-side lifestyle staging demonstrating seamless daily habit adoption.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Advantage+",
+        testedCtr: "3.7% CTR • 41% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "probiotic-eye-balm",
+    folder: "probiotic eye balm",
+    title: "Probiotic Eye Balm",
+    category: "De-Puff & Microbiome Defense",
+    description: "Fast-acting under-eye creatives highlighting dark circle fading, lymphatic fluid draining, and cooling metal applicator relief.",
+    items: [
+      {
+        id: "peb-1",
+        src: "probiotic eye balm/10 (11).jpg",
+        title: "Lymphatic Drainage Thermal Cooling",
+        angle: "Instant Sensation",
+        hook: "Waking up looking like you haven't slept in 3 days? Try the cold ceramic glide.",
+        desc: "Thermal camera imagery proving localized cooling and instant capillary constriction under the eyes.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & TikTok",
+        testedCtr: "4.7% CTR • 53% Thumbstop"
+      },
+      {
+        id: "peb-2",
+        src: "probiotic eye balm/5 (11).jpg",
+        title: "Dark Circle Vascular Pigment Fade",
+        angle: "Mechanism of Action",
+        hook: "Why concealer makes dark circles cake: Treat the pooling blood underneath.",
+        desc: "Medical anatomy diagram showing thin orbital skin and micro-circulation stagnation.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed",
+        testedCtr: "4.0% CTR • 44% Thumbstop"
+      },
+      {
+        id: "peb-3",
+        src: "probiotic eye balm/6 (14).jpg",
+        title: "Microbiome Barrier Strengthening",
+        angle: "Ingredient Science",
+        hook: "Fermented bifida lysate + Caffeine: Plumps hollow tear troughs naturally.",
+        desc: "Clean editorial presentation targeting women seeking preventative anti-fatigue eye care.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Advantage+",
+        testedCtr: "3.8% CTR • 42% Thumbstop"
+      },
+      {
+        id: "peb-4",
+        src: "probiotic eye balm/9 (16).jpg",
+        title: "No-Makeup Morning Eye Routine",
+        angle: "UGC Demonstration",
+        hook: "I threw away my color corrector: Here's my 15-second morning eye balm.",
+        desc: "Raw bathroom mirror application highlighting instantaneous luminous sheen and de-puffing.",
+        format: "4K Vertical 4:5",
+        platform: "TikTok & IG Stories",
+        testedCtr: "4.5% CTR • 49% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "taning-drops",
+    folder: "taning drops",
+    title: "Self-Tanning Drops",
+    category: "Custom Sunless Bronzing",
+    description: "Customizable sunless tanning ads showing streak-free facial glow, skincare-infused hyaluronic hydration, and zero orange residue.",
+    items: [
+      {
+        id: "td-1",
+        src: "taning drops/12 (15).jpg",
+        title: "Drop-by-Drop Custom Bronze",
+        angle: "Customizable Benefit",
+        hook: "2 drops = subtle glow. 4 drops = golden bronze. 6 drops = just back from Bali.",
+        desc: "Visual shade chart showing gradual shade progression mixed directly into daily moisturizer.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & TikTok",
+        testedCtr: "4.8% CTR • 54% Thumbstop"
+      },
+      {
+        id: "td-2",
+        src: "taning drops/13 (13).jpg",
+        title: "Zero Streaks Zero Orange Undertone",
+        angle: "Objection Crusher",
+        hook: "The only tanning drops that don't stain your white pillows or turn you orange.",
+        desc: "Direct side-by-side contrast against conventional DHA mousse tans.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed & Stories",
+        testedCtr: "4.2% CTR • 46% Thumbstop"
+      },
+      {
+        id: "td-3",
+        src: "taning drops/4 (17).jpg",
+        title: "Hyaluronic Skincare Hybrid",
+        angle: "Clean Ingredient Synergy",
+        hook: "Self-tanner that actually hydrates and plumps skin instead of drying it out.",
+        desc: "Dewy moisture droplets on glowing skin communicating dual skincare + tanning benefits.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Advantage+",
+        testedCtr: "3.9% CTR • 43% Thumbstop"
+      },
+      {
+        id: "td-4",
+        src: "taning drops/5 (12).jpg",
+        title: "Morning Skincare Cocktail",
+        angle: "Routine Aesthetic",
+        hook: "Add 3 drops into your moisturizer: Never wear foundation all summer.",
+        desc: "Satisfying skincare dropper aesthetic driving impulsive purchases and high AOV bundle orders.",
+        format: "4K Vertical 4:5",
+        platform: "TikTok & Reels",
+        testedCtr: "4.6% CTR • 50% Thumbstop"
+      },
+      {
+        id: "td-5",
+        src: "taning drops/6 (14).jpg",
+        title: "Natural Golden Undertone Reveal",
+        angle: "Transformation Reveal",
+        hook: "Watch my skin develop the most realistic sun-kissed glow in 4 hours.",
+        desc: "Time-lapse glow development with zero patchiness around hairline and jawline.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Ads",
+        testedCtr: "4.3% CTR • 47% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "vit-b-complex",
+    folder: "vit b compex",
+    title: "Vitamin B Complex",
+    category: "Cellular ATP & Clean Energy",
+    description: "High-bioavailability energy ads highlighting sublingual B-complex absorption, mitochondrial ATP synthesis, and jitter-free all-day focus.",
+    items: [
+      {
+        id: "vb-1",
+        src: "vit b compex/1 (52).jpg",
+        title: "Sublingual Bloodstream Delivery",
+        angle: "Bioavailability Advantage",
+        hook: "Pill vitamins lose 90% in stomach acid. Sublingual liquid hits cells in seconds.",
+        desc: "Split absorption graphic comparing swallowed capsules with instantaneous sublingual uptake.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & TikTok",
+        testedCtr: "4.3% CTR • 47% Thumbstop"
+      },
+      {
+        id: "vb-2",
+        src: "vit b compex/13 (13).jpg",
+        title: "Clean ATP Vitality vs. Coffee Crash",
+        angle: "Direct Comparison",
+        hook: "Why 4 cups of coffee leaves you trembling, while B-complex feeds mitochondrial ATP.",
+        desc: "Energy curve comparison proving steady 8-hour stamina without heart palpitation jitters.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed & Stories",
+        testedCtr: "4.0% CTR • 45% Thumbstop"
+      },
+      {
+        id: "vb-3",
+        src: "vit b compex/2 (35).jpg",
+        title: "Active Methylated B12 + Folate",
+        angle: "Clinical Bio-Identical",
+        hook: "Have the MTHFR gene mutation? Why you must use Methylcobalamin, not Cyanocobalamin.",
+        desc: "High-intent biohacker angle targeting educated supplement buyers who pay for quality.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Ads",
+        testedCtr: "3.7% CTR • 42% Thumbstop"
+      },
+      {
+        id: "vb-4",
+        src: "vit b compex/4 (17).jpg",
+        title: "Brain Fog Eraser Protocol",
+        angle: "Cognitive Focus",
+        hook: "How to clear midday brain fog in 1 dropper without energy drinks.",
+        desc: "Workplace desk lifestyle aesthetic appealing to busy remote founders and operators.",
+        format: "4K Vertical 4:5",
+        platform: "TikTok & Reels",
+        testedCtr: "4.1% CTR • 44% Thumbstop"
+      }
+    ]
+  },
+  {
+    id: "weight-loss",
+    folder: "weight loss",
+    title: "Weight Loss Formula",
+    category: "Thermogenic Burner & Appetite",
+    description: "Thermogenic metabolic booster ads emphasizing clean caloric expenditure, visceral fat oxidation, and sustained appetite satiety.",
+    items: [
+      {
+        id: "wl-1",
+        src: "weight loss/1 (52).jpg",
+        title: "Thermogenic Calorie Burn Accelerator",
+        angle: "Mechanism of Action",
+        hook: "Activate brown adipose tissue to burn up to 300 extra calories at rest.",
+        desc: "Thermal visualization illustrating resting metabolic rate elevation with capsaicin and green tea EGCG.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Reels & TikTok",
+        testedCtr: "4.5% CTR • 50% Thumbstop"
+      },
+      {
+        id: "wl-2",
+        src: "weight loss/13 (13).jpg",
+        title: "Curb Emotional Evening Snacking",
+        angle: "Appetite & Satiety",
+        hook: "How to tell your brain you're full before raiding the pantry at 9 PM.",
+        desc: "Relatable late-night kitchen scene contrasting willpower struggle with natural satiety signaling.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Feed",
+        testedCtr: "4.2% CTR • 46% Thumbstop"
+      },
+      {
+        id: "wl-3",
+        src: "weight loss/3 (22).jpg",
+        title: "Waistline Transformation Timeline",
+        angle: "Visual Social Proof",
+        hook: "Week 2 vs. Week 8: The difference active thermogenesis makes on stubborn waist fat.",
+        desc: "Consistent lighting, same gym attire progress photos demonstrating real visceral fat reduction.",
+        format: "4K Vertical 4:5",
+        platform: "Meta Advantage+",
+        testedCtr: "4.6% CTR • 52% Thumbstop"
+      },
+      {
+        id: "wl-4",
+        src: "weight loss/4 (17).jpg",
+        title: "Clean Jitter-Free Energy Boost",
+        angle: "Ingredient Safety",
+        hook: "Fat burners that make your heart race are dangerous. Here's clean metabolic acceleration.",
+        desc: "Addresses major consumer fear of palpitations and jitters, winning trust and high-volume sales.",
+        format: "4K Vertical 4:5",
+        platform: "TikTok & Reels",
+        testedCtr: "3.9% CTR • 43% Thumbstop"
+      }
+    ]
+  }
 ];
+
+const USER_IMAGES = (() => {
+  const all = [];
+  DEFAULT_GALLERY_GROUPS.forEach(g => {
+    (g.items || []).forEach(it => {
+      if (it && it.src) all.push(it.src);
+    });
+  });
+  return all;
+})();
 const PERSON_ITEMS = (() => {
   const out = [];
   for (let i = 1; i <= 44; i++) {
@@ -1069,8 +1800,20 @@ const FAN_SLOTS = [
   { x: 480,  y: 18, rotate: 20,  scale: 0.88, z: 1 },
 ];
 const CASCADE = Array.from({ length: 7 }, (_, i) => ({ top: 300 + i * 70, left: 20 + i * 150, rotate: -3 + i * 3, z: 7 - i }));
-const PALLET_CARDS = USER_IMAGES.slice(0, 7);
-const PALLET_BANNERS = USER_IMAGES.slice(7, 10);
+const PALLET_CARDS = [
+  "bee venom slim picth/12 (14).jpg",
+  "botox elixr/1 (52).jpg",
+  "cinnamon blood sugar/12 (14).jpg",
+  "eyelid/10 (11).jpg",
+  "hair growth shampoo/12 (12).jpg",
+  "taning drops/12 (15).jpg",
+  "weight loss/1 (52).jpg"
+];
+const PALLET_BANNERS = [
+  "mood support/13 (13).jpg",
+  "probiotic eye balm/10 (11).jpg",
+  "vit b compex/1 (52).jpg"
+];
 function interp(x, xs, ys) {
   if (x <= xs[0]) return ys[0];
   for (let i = 1; i < xs.length; i++) {
@@ -1262,6 +2005,8 @@ class Component extends DCLogic {
       heroSrc: null,
       palletProgress: 0, palletHeroSeen: false, sec2Seen: false, sec3Seen: false,
       palletInView: false, palletSlide: 0, palletHover: null, galleryDetailIndex: null,
+      galleryGroups: null, activeGroupIdx: null, activeItemIdx: null, adminActiveGroupIdx: 0,
+      adminNewGroupTitle: "", adminNewGroupCat: "", campaignFilter: "all",
       billingQuarterly: false, legalModalTab: null,
       adminOpen: false,
       adminAuthed: false,
@@ -1415,9 +2160,9 @@ class Component extends DCLogic {
     // keys
     this._onKey = (e) => {
       if (this.state.sliderIndex === null) return;
-      if (e.key === "Escape") { this.closeSlider(); this.setState({ galleryDetailIndex: null }); }
-      if (e.key === "ArrowRight") { if (this.state.galleryDetailIndex !== null) this.nextGalleryDetail(); else this.nextSlide(); }
-      if (e.key === "ArrowLeft") { if (this.state.galleryDetailIndex !== null) this.prevGalleryDetail(); else this.prevSlide(); }
+      if (e.key === "Escape") { this.closeSlider(); this.closeGalleryDetail(); }
+      if (e.key === "ArrowRight") { if (this.state.activeGroupIdx !== null || this.state.galleryDetailIndex !== null) this.nextGalleryDetail(); else this.nextSlide(); }
+      if (e.key === "ArrowLeft") { if (this.state.activeGroupIdx !== null || this.state.galleryDetailIndex !== null) this.prevGalleryDetail(); else this.prevSlide(); }
     };
     window.addEventListener("keydown", this._onKey);
 
@@ -2338,98 +3083,136 @@ class Component extends DCLogic {
   setStoredPass(pass) {
     try { localStorage.setItem("adgenz_admin_pass", pass); } catch (e) {}
   }
-  getGalleryImages() {
-    if (this.state.customImages) return this.state.customImages;
+  getGalleryGroups() {
+    if (this.state && this.state.galleryGroups) return this.state.galleryGroups;
     try {
-      const saved = localStorage.getItem("adgenz_custom_gallery");
+      const saved = localStorage.getItem("adgenz_gallery_groups");
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) return parsed;
       }
     } catch (e) {}
-    return USER_IMAGES.filter(Boolean);
-  }
-  saveGalleryImages(list) {
-    this.setState({ customImages: list });
-    try { localStorage.setItem("adgenz_custom_gallery", JSON.stringify(list)); } catch (e) {}
-    this.showToast("Gallery updated successfully! ✨");
+    return DEFAULT_GALLERY_GROUPS;
   }
 
-
-  getLeads() {
+  saveGalleryGroups(groups) {
+    this.setState({ galleryGroups: groups });
     try {
-      const saved = localStorage.getItem("adgenz_leads");
-      return saved ? JSON.parse(saved) : [];
-    } catch (e) { return []; }
+      localStorage.setItem("adgenz_gallery_groups", JSON.stringify(groups));
+    } catch (e) {}
+    this.showToast("Campaign Groups & Descriptions saved! ✨");
   }
 
-  openAdmin = () => {
-    this.setState({ adminOpen: true, adminError: null });
-  };
-  closeAdmin = () => {
-    this.setState({ adminOpen: false, adminEditIndex: null });
+  getGalleryImages() {
+    const groups = this.getGalleryGroups();
+    const imgs = [];
+    groups.forEach(g => {
+      (g.items || []).forEach(it => {
+        if (it && it.src) imgs.push(it.src);
+      });
+    });
+    return imgs.length > 0 ? imgs : USER_IMAGES;
+  }
+
+  // Admin handlers for Groups & Image Descriptions
+  handleAdminUpdateGroup = (gIdx, field, val) => {
+    const groups = JSON.parse(JSON.stringify(this.getGalleryGroups()));
+    if (!groups[gIdx]) return;
+    groups[gIdx][field] = val;
+    this.saveGalleryGroups(groups);
   };
 
-  handleAdminLogin = (e) => {
-    e.preventDefault();
-    const now = Date.now();
-    if (this.state.adminLockUntil > now) {
-      const remaining = Math.ceil((this.state.adminLockUntil - now) / 1000);
-      this.setState({ adminError: `Security Lock: Too many attempts. Try again in ${remaining}s.` });
-      return;
-    }
-    const correctPass = this.getStoredPass();
-    if (this.state.adminPassInput === correctPass) {
-      this.setState({ adminAuthed: true, adminError: null, adminAttempts: 0, adminPassInput: "" });
-      this.showToast("Welcome to AdgenZ Admin Control 🛡️");
-    } else {
-      const attempts = this.state.adminAttempts + 1;
-      if (attempts >= 5) {
-        this.setState({ adminLockUntil: now + 60000, adminAttempts: 0, adminError: "Too many failed attempts. Locked for 60 seconds." });
-      } else {
-        this.setState({ adminAttempts: attempts, adminError: `Invalid Password. (${5 - attempts} attempts remaining)` });
-      }
-    }
+  handleAdminDeleteGroup = (gIdx) => {
+    const groups = JSON.parse(JSON.stringify(this.getGalleryGroups()));
+    if (!confirm(`Delete group "${groups[gIdx].title}" and all its creative concepts?`)) return;
+    groups.splice(gIdx, 1);
+    const nextIdx = Math.max(0, Math.min(this.state.adminActiveGroupIdx, groups.length - 1));
+    this.setState({ adminActiveGroupIdx: nextIdx });
+    this.saveGalleryGroups(groups);
   };
 
-  handleAdminLogout = () => {
-    this.setState({ adminAuthed: false, adminOpen: false });
-    this.showToast("Admin session ended securely.");
+  handleAdminAddGroup = () => {
+    const title = (this.state.adminNewGroupTitle || "").trim() || "New Campaign Group";
+    const cat = (this.state.adminNewGroupCat || "").trim() || "DTC Performance";
+    const groups = JSON.parse(JSON.stringify(this.getGalleryGroups()));
+    const newG = {
+      id: "group-" + Date.now(),
+      folder: title.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+      title,
+      category: cat,
+      description: "Direct-to-consumer performance creative suite engineered for high conversion rates.",
+      items: []
+    };
+    groups.push(newG);
+    this.setState({ adminNewGroupTitle: "", adminNewGroupCat: "", adminActiveGroupIdx: groups.length - 1 });
+    this.saveGalleryGroups(groups);
+    this.showToast("New campaign group added! 📁");
   };
 
-  handleFileUpload = (e) => {
+  handleAdminUpdateItem = (gIdx, iIdx, field, val) => {
+    const groups = JSON.parse(JSON.stringify(this.getGalleryGroups()));
+    if (!groups[gIdx] || !groups[gIdx].items[iIdx]) return;
+    groups[gIdx].items[iIdx][field] = val;
+    this.saveGalleryGroups(groups);
+  };
+
+  handleAdminDeleteItem = (gIdx, iIdx) => {
+    const groups = JSON.parse(JSON.stringify(this.getGalleryGroups()));
+    if (!confirm("Are you sure you want to remove this creative concept?")) return;
+    groups[gIdx].items.splice(iIdx, 1);
+    this.saveGalleryGroups(groups);
+  };
+
+  handleAdminMoveItem = (gIdx, iIdx, direction) => {
+    const groups = JSON.parse(JSON.stringify(this.getGalleryGroups()));
+    const items = groups[gIdx].items;
+    const targetIdx = iIdx + direction;
+    if (targetIdx < 0 || targetIdx >= items.length) return;
+    const temp = items[iIdx];
+    items[iIdx] = items[targetIdx];
+    items[targetIdx] = temp;
+    this.saveGalleryGroups(groups);
+  };
+
+  handleAdminAddItem = (gIdx) => {
+    const groups = JSON.parse(JSON.stringify(this.getGalleryGroups()));
+    const curGroup = groups[gIdx];
+    if (!curGroup) return;
+    const newItem = {
+      id: "item-" + Date.now(),
+      src: "bee venom slim picth/12 (14).jpg",
+      title: "New Creative Angle",
+      angle: "Hook Angle",
+      hook: "Add your thumbstopping headline claim here...",
+      desc: "Describe the psychological trigger, target persona, and conversion rationale for this creative.",
+      format: "4K Vertical 4:5",
+      platform: "Meta Reels & TikTok",
+      testedCtr: "3.5% CTR"
+    };
+    curGroup.items.push(newItem);
+    this.saveGalleryGroups(groups);
+    this.showToast("New creative added to group! ✨");
+  };
+
+  handleFileUploadForCreative = (gIdx, iIdx, e) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
     reader.onload = (evt) => {
-      this.setState({ adminNewImgSrc: evt.target.result });
-      this.showToast("Image loaded into upload buffer! 🖼️");
+      this.handleAdminUpdateItem(gIdx, iIdx, "src", evt.target.result);
+      this.showToast("Creative image updated! 🖼️");
     };
     reader.readAsDataURL(file);
   };
 
-  handleAddGalleryImage = (e) => {
-    e.preventDefault();
-    const src = this.state.adminNewImgSrc.trim();
-    if (!src) {
-      this.showToast("Please select a file or enter an image URL.");
-      return;
-    }
-    const list = [...this.getGalleryImages()];
-    if (this.state.adminEditIndex !== null) {
-      list[this.state.adminEditIndex] = src;
-      this.setState({ adminEditIndex: null });
-    } else {
-      list.unshift(src);
-    }
-    this.saveGalleryImages(list);
-    this.setState({ adminNewImgSrc: "", adminNewImgTitle: "" });
-  };
-
-  handleDeleteGalleryImage = (index) => {
-    if (!confirm("Are you sure you want to remove this creative from the gallery?")) return;
-    const list = this.getGalleryImages().filter((_, i) => i !== index);
-    this.saveGalleryImages(list);
+  handleResetToDefaults = () => {
+    if (!confirm("Reset all 11 campaign groups and descriptions back to factory defaults? Any custom edits will be reverted.")) return;
+    try {
+      localStorage.removeItem("adgenz_gallery_groups");
+      localStorage.removeItem("adgenz_custom_gallery");
+    } catch(e) {}
+    this.setState({ galleryGroups: null, adminActiveGroupIdx: 0 });
+    this.showToast("Reset to default 11 groups and descriptions! ↺");
   };
 
 
@@ -2486,51 +3269,156 @@ class Component extends DCLogic {
         // Body Content
         h("div", { className: "admin-body" },
           tab === "gallery" && h("div", null,
-            // Add/Edit Card Form
-            h("div", { style: { background: "#161618", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 24, marginBottom: 32 } },
-              h("h4", { style: { margin: "0 0 16px", fontSize: 18, fontWeight: 600, color: "#F2D338" } },
-                this.state.adminEditIndex !== null ? `Edit Creative #${this.state.adminEditIndex + 1}` : "Upload & Add New Creative to Gallery"),
-              h("form", { onSubmit: this.handleAddGalleryImage, style: { display: "grid", gridTemplateColumns: "1.2fr 1fr auto", gap: 16, alignItems: "center" } },
-                h("div", null,
-                  h("label", { style: { display: "block", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 6, textTransform: "uppercase" } }, "Image File or URL"),
-                  h("div", { style: { display: "flex", gap: 8 } },
-                    h("input", { className: "admin-input", placeholder: "opt/7.jpg or https://...", value: this.state.adminNewImgSrc,
-                      onChange: (e) => this.setState({ adminNewImgSrc: e.target.value }) }),
-                    h("label", { className: "admin-btn-secondary", style: { padding: "11px 16px", cursor: "pointer", whiteSpace: "nowrap" } },
-                      "Choose File",
-                      h("input", { type: "file", accept: "image/*", style: { display: "none" }, onChange: this.handleFileUpload })
-                    )
-                  )
-                ),
-                h("div", null,
-                  h("label", { style: { display: "block", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 6, textTransform: "uppercase" } }, "Channel / Concept Type"),
-                  h("input", { className: "admin-input", placeholder: "e.g. Meta Ads UGC Hook", value: this.state.adminNewImgTitle,
-                    onChange: (e) => this.setState({ adminNewImgTitle: e.target.value }) })
-                ),
-                h("div", { style: { alignSelf: "flex-end" } },
-                  h("button", { type: "submit", className: "admin-btn-primary", style: { padding: "13px 24px" } },
-                    this.state.adminEditIndex !== null ? "Save Changes" : "Publish to Gallery +")
-                )
+            // Top Toolbar: Overview & Global Actions
+            h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", background: "#161618", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: "18px 24px", marginBottom: 28, flexWrap: "wrap", gap: 14 } },
+              h("div", null,
+                h("h4", { style: { margin: "0 0 4px", fontSize: 18, fontWeight: 600, color: "#F2D338" } },
+                  `Campaign Vault Editor (${this.getGalleryGroups().length} Groups • ${this.getGalleryImages().length} Creatives)`),
+                h("p", { style: { margin: 0, fontSize: 13, color: "rgba(255,255,255,0.6)" } },
+                  "Edit folder groups, titles, claims, and creative descriptions. All changes persist automatically to live portfolio.")
+              ),
+              h("div", { style: { display: "flex", gap: 10, flexWrap: "wrap" } },
+                h("button", { onClick: () => {
+                  this.saveGalleryGroups(this.getGalleryGroups());
+                  this.showToast("All changes saved to storage! 💾");
+                }, className: "admin-btn-primary", style: { padding: "10px 18px", fontSize: 13 } }, "Save All Changes 💾"),
+                h("button", { onClick: this.handleResetToDefaults, className: "admin-btn-secondary", style: { padding: "10px 18px", fontSize: 13 } }, "Reset to 11 Default Groups ↺")
               )
             ),
 
-            // Existing gallery list
-            h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 } },
-              h("div", { style: { fontSize: 15, fontWeight: 600, color: "#FFF" } }, `Active Gallery Assets (${galleryImgs.length} items)`),
-              h("button", { onClick: () => { if (confirm("Reset to default 40 gallery images?")) { localStorage.removeItem("adgenz_custom_gallery"); this.setState({ customImages: null }); this.showToast("Reset to default gallery!"); } }, className: "admin-btn-secondary", style: { fontSize: 12, padding: "6px 14px" } }, "Reset to Defaults")
+            // Group Switcher Tabs
+            h("div", { style: { marginBottom: 24 } },
+              h("div", { style: { fontSize: 11, fontWeight: 700, letterSpacing: "1.5px", color: "rgba(255,255,255,0.5)", textTransform: "uppercase", marginBottom: 10 } }, "Select Campaign Group to Edit:"),
+              h("div", { style: { display: "flex", gap: 8, overflowX: "auto", paddingBottom: 8, scrollbarWidth: "none" } },
+                this.getGalleryGroups().map((g, gIdx) => h("button", { key: g.id || gIdx, onClick: () => this.setState({ adminActiveGroupIdx: gIdx }),
+                  className: `admin-group-tab-btn ${this.state.adminActiveGroupIdx === gIdx ? "active" : ""}` },
+                  `${String(gIdx + 1).padStart(2, '0')}. ${g.title} (${(g.items || []).length})`)),
+                h("button", { onClick: this.handleAdminAddGroup, className: "admin-group-tab-btn", style: { background: "rgba(242, 211, 56, 0.1)", color: "#F2D338", border: "1px dashed rgba(242, 211, 56, 0.4)" } }, "+ Add New Group")
+              )
             ),
-            h("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 16 } },
-              galleryImgs.map((src, i) => h("div", { key: i, className: "admin-gallery-item" },
-                h("div", { style: { height: 160, background: "#080808", overflow: "hidden", position: "relative" } },
-                  h("img", { src, alt: "", style: { width: "100%", height: "100%", objectFit: "cover" } }),
-                  h("span", { style: { position: "absolute", top: 8, left: 8, background: "rgba(0,0,0,0.75)", color: "#FFF", fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 4 } }, `#${i + 1}`)
+
+            // Active Group Detailed Editor
+            (() => {
+              const groups = this.getGalleryGroups();
+              const gIdx = Math.max(0, Math.min(this.state.adminActiveGroupIdx || 0, groups.length - 1));
+              const curGroup = groups[gIdx];
+              if (!curGroup) return null;
+              const items = curGroup.items || [];
+
+              return h("div", { style: { background: "#161618", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 18, padding: 24 } },
+                // Group Metadata Section
+                h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18, borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: 16, flexWrap: "wrap", gap: 12 } },
+                  h("div", null,
+                    h("span", { style: { fontSize: 12, fontWeight: 700, color: "#F2D338", textTransform: "uppercase" } }, `Group #${gIdx + 1} Settings`),
+                    h("h3", { style: { margin: "2px 0 0", fontSize: 24, fontWeight: 600, color: "#FFF" } }, curGroup.title)
+                  ),
+                  h("div", { style: { display: "flex", gap: 10 } },
+                    h("button", { onClick: () => this.handleAdminAddItem(gIdx), className: "admin-btn-primary", style: { padding: "8px 16px", fontSize: 12 } }, "+ Add Creative to this Group"),
+                    h("button", { onClick: () => this.handleAdminDeleteGroup(gIdx), className: "admin-btn-danger", style: { padding: "8px 16px", fontSize: 12 } }, "Delete Group")
+                  )
                 ),
-                h("div", { style: { padding: "12px", display: "flex", alignItems: "center", justifyContent: "space-between" } },
-                  h("button", { onClick: () => this.setState({ adminEditIndex: i, adminNewImgSrc: src }), className: "admin-btn-secondary", style: { padding: "4px 10px", fontSize: 11 } }, "Replace"),
-                  h("button", { onClick: () => this.handleDeleteGalleryImage(i), className: "admin-btn-danger" }, "Delete")
+
+                // Group inputs
+                h("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 } },
+                  h("div", null,
+                    h("label", { style: { display: "block", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 6, textTransform: "uppercase" } }, "Group / Folder Title"),
+                    h("input", { className: "admin-input", value: curGroup.title || "",
+                      onChange: (e) => this.handleAdminUpdateGroup(gIdx, "title", e.target.value) })
+                  ),
+                  h("div", null,
+                    h("label", { style: { display: "block", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 6, textTransform: "uppercase" } }, "Category / Subtitle"),
+                    h("input", { className: "admin-input", value: curGroup.category || "",
+                      onChange: (e) => this.handleAdminUpdateGroup(gIdx, "category", e.target.value) })
+                  )
+                ),
+                h("div", { style: { marginBottom: 24 } },
+                  h("label", { style: { display: "block", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 6, textTransform: "uppercase" } }, "Group Summary Description"),
+                  h("textarea", { className: "admin-input", style: { height: 60, resize: "vertical", fontFamily: IT, lineHeight: 1.4 }, value: curGroup.description || "",
+                    onChange: (e) => this.handleAdminUpdateGroup(gIdx, "description", e.target.value) })
+                ),
+
+                // Creatives List in this Group
+                h("div", { style: { borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 20 } },
+                  h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 } },
+                    h("div", { style: { fontSize: 16, fontWeight: 600, color: "#FFF" } }, `Creatives inside this group (${items.length} items)`),
+                    h("span", { style: { fontSize: 12, color: "rgba(255,255,255,0.4)" } }, "You can edit title, angle, hook, and full description for each creative below:")
+                  ),
+
+                  items.length === 0 ? (
+                    h("div", { style: { textAlign: "center", padding: "40px 0", color: "rgba(255,255,255,0.4)", background: "#111", borderRadius: 12 } },
+                      "No creatives in this group yet. Click '+ Add Creative to this Group' above.")
+                  ) : (
+                    h("div", { style: { display: "flex", flexDirection: "column", gap: 18 } },
+                      items.map((it, iIdx) => h("div", { key: it.id || iIdx, className: "admin-creative-edit-card" },
+                        // Column 1: Image Thumbnail & Upload
+                        h("div", { style: { display: "flex", flexDirection: "column", gap: 8 } },
+                          h("div", { style: { width: "100%", height: 160, background: "#0A0A0A", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", position: "relative" } },
+                            h("img", { src: it.src, alt: "", style: { width: "100%", height: "100%", objectFit: "cover" } }),
+                            h("span", { style: { position: "absolute", top: 6, left: 6, background: "rgba(0,0,0,0.75)", color: "#FFF", fontSize: 10, fontWeight: 700, padding: "2px 6px", borderRadius: 4 } },
+                              `#${iIdx + 1}`)
+                          ),
+                          h("label", { className: "admin-btn-secondary", style: { padding: "6px 10px", fontSize: 11, cursor: "pointer", textAlign: "center" } },
+                            "Replace Image",
+                            h("input", { type: "file", accept: "image/*", style: { display: "none" },
+                              onChange: (e) => this.handleFileUploadForCreative(gIdx, iIdx, e) })
+                          ),
+                          h("input", { className: "admin-input", style: { fontSize: 11, padding: "6px" }, placeholder: "Image URL",
+                            value: it.src || "", onChange: (e) => this.handleAdminUpdateItem(gIdx, iIdx, "src", e.target.value) })
+                        ),
+
+                        // Column 2: Creative Metadata & Description Editor
+                        h("div", { style: { display: "flex", flexDirection: "column", gap: 10 } },
+                          h("div", { style: { display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 10 } },
+                            h("div", null,
+                              h("label", { style: { display: "block", fontSize: 10.5, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 4, textTransform: "uppercase" } }, "Creative Title"),
+                              h("input", { className: "admin-input", style: { fontSize: 13 }, value: it.title || "",
+                                onChange: (e) => this.handleAdminUpdateItem(gIdx, iIdx, "title", e.target.value) })
+                            ),
+                            h("div", null,
+                              h("label", { style: { display: "block", fontSize: 10.5, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 4, textTransform: "uppercase" } }, "Strategic Angle"),
+                              h("input", { className: "admin-input", style: { fontSize: 13 }, value: it.angle || "",
+                                onChange: (e) => this.handleAdminUpdateItem(gIdx, iIdx, "angle", e.target.value) })
+                            )
+                          ),
+                          h("div", null,
+                            h("label", { style: { display: "block", fontSize: 10.5, fontWeight: 600, color: "#F2D338", marginBottom: 4, textTransform: "uppercase" } }, "Hook Claim Quote"),
+                            h("input", { className: "admin-input", style: { fontSize: 13, color: "#F2D338" }, value: it.hook || "",
+                              onChange: (e) => this.handleAdminUpdateItem(gIdx, iIdx, "hook", e.target.value) })
+                          ),
+                          h("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 } },
+                            h("div", null,
+                              h("label", { style: { display: "block", fontSize: 10.5, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 4, textTransform: "uppercase" } }, "Target Channel"),
+                              h("input", { className: "admin-input", style: { fontSize: 12 }, value: it.platform || "",
+                                onChange: (e) => this.handleAdminUpdateItem(gIdx, iIdx, "platform", e.target.value) })
+                            ),
+                            h("div", null,
+                              h("label", { style: { display: "block", fontSize: 10.5, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 4, textTransform: "uppercase" } }, "Verified Metric / CTR"),
+                              h("input", { className: "admin-input", style: { fontSize: 12 }, value: it.testedCtr || "",
+                                onChange: (e) => this.handleAdminUpdateItem(gIdx, iIdx, "testedCtr", e.target.value) })
+                            )
+                          ),
+                          h("div", null,
+                            h("label", { style: { display: "block", fontSize: 10.5, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 4, textTransform: "uppercase" } }, "Marketing Strategy & Creative Description"),
+                            h("textarea", { className: "admin-input", style: { height: 70, resize: "vertical", fontSize: 12.5, lineHeight: 1.45, fontFamily: IT }, value: it.desc || "",
+                              onChange: (e) => this.handleAdminUpdateItem(gIdx, iIdx, "desc", e.target.value) })
+                          )
+                        ),
+
+                        // Column 3: Reorder & Delete Actions
+                        h("div", { style: { display: "flex", flexDirection: "column", gap: 6 } },
+                          h("button", { onClick: () => this.handleAdminMoveItem(gIdx, iIdx, -1), disabled: iIdx === 0,
+                            className: "admin-btn-secondary", style: { padding: "6px 10px", fontSize: 11, opacity: iIdx === 0 ? 0.3 : 1 } }, "▲ Up"),
+                          h("button", { onClick: () => this.handleAdminMoveItem(gIdx, iIdx, 1), disabled: iIdx === items.length - 1,
+                            className: "admin-btn-secondary", style: { padding: "6px 10px", fontSize: 11, opacity: iIdx === items.length - 1 ? 0.3 : 1 } }, "▼ Down"),
+                          h("button", { onClick: () => this.handleAdminDeleteItem(gIdx, iIdx),
+                            className: "admin-btn-danger", style: { padding: "6px 10px", fontSize: 11, marginTop: 12 } }, "Delete")
+                        )
+                      ))
+                    )
+                  )
                 )
-              ))
-            )
+              );
+            })()
           ),
 
           tab === "leads" && h("div", null,
@@ -2740,72 +3628,116 @@ class Component extends DCLogic {
     window.open(mailtoUrl, '_blank');
   };
 
+  openGroupDetail = (gIdx, iIdx) => {
+    this.setState({ activeGroupIdx: gIdx, activeItemIdx: iIdx, galleryDetailIndex: null });
+  };
   openGalleryDetail = (index) => {
-    this.setState({ galleryDetailIndex: index });
+    // backward compat if invoked by index
+    const groups = this.getGalleryGroups();
+    let count = 0;
+    for (let g = 0; g < groups.length; g++) {
+      for (let i = 0; i < (groups[g].items || []).length; i++) {
+        if (count === index) {
+          this.openGroupDetail(g, i);
+          return;
+        }
+        count++;
+      }
+    }
+    this.openGroupDetail(0, 0);
   };
   closeGalleryDetail = () => {
-    this.setState({ galleryDetailIndex: null });
+    this.setState({ activeGroupIdx: null, activeItemIdx: null, galleryDetailIndex: null });
   };
   nextGalleryDetail = () => {
-    const total = USER_IMAGES.filter(Boolean).length;
-    this.setState(s => ({ galleryDetailIndex: s.galleryDetailIndex === null ? 0 : (s.galleryDetailIndex + 1) % total }));
+    const groups = this.getGalleryGroups();
+    let gIdx = this.state.activeGroupIdx;
+    let iIdx = this.state.activeItemIdx;
+    if (gIdx === null || iIdx === null) return;
+    const curGroup = groups[gIdx];
+    if (iIdx + 1 < (curGroup.items || []).length) {
+      this.setState({ activeItemIdx: iIdx + 1 });
+    } else {
+      const nextG = (gIdx + 1) % groups.length;
+      this.setState({ activeGroupIdx: nextG, activeItemIdx: 0 });
+    }
   };
   prevGalleryDetail = () => {
-    const total = USER_IMAGES.filter(Boolean).length;
-    this.setState(s => ({ galleryDetailIndex: s.galleryDetailIndex === null ? 0 : (s.galleryDetailIndex - 1 + total) % total }));
+    const groups = this.getGalleryGroups();
+    let gIdx = this.state.activeGroupIdx;
+    let iIdx = this.state.activeItemIdx;
+    if (gIdx === null || iIdx === null) return;
+    if (iIdx - 1 >= 0) {
+      this.setState({ activeItemIdx: iIdx - 1 });
+    } else {
+      const prevG = (gIdx - 1 + groups.length) % groups.length;
+      const prevItems = groups[prevG].items || [];
+      this.setState({ activeGroupIdx: prevG, activeItemIdx: Math.max(0, prevItems.length - 1) });
+    }
   };
 
   renderGalleryDetailModal() {
-    const idx = this.state.galleryDetailIndex;
-    if (idx === null) return null;
-    const imgs = this.getGalleryImages();
-    const src = imgs[idx];
+    const gIdx = this.state.activeGroupIdx;
+    const iIdx = this.state.activeItemIdx;
+    if (gIdx === null || iIdx === null) return null;
+    const groups = this.getGalleryGroups();
+    const group = groups[gIdx];
+    if (!group) return null;
+    const item = (group.items || [])[iIdx];
+    if (!item) return null;
+
     const IT = "'Inter Tight', sans-serif";
 
     return h("div", { className: "gallery-modal-overlay", onClick: this.closeGalleryDetail },
       h("div", { className: "gallery-modal-card", onClick: (e) => e.stopPropagation() },
         // Left Large Image View
-        h("div", { style: { position: "relative", background: "#080808", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 460 } },
-          h("img", { src, alt: "", draggable: false, style: { width: "100%", height: "100%", objectFit: "cover", display: "block" } }),
+        h("div", { style: { position: "relative", background: "#080808", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 520, overflow: "hidden" } },
+          h("img", { src: item.src, alt: item.title || group.title, draggable: false, style: { width: "100%", height: "100%", maxHeight: "80vh", objectFit: "contain", display: "block" } }),
           // Navigation arrows
-          h("button", { onClick: (e) => { e.stopPropagation(); this.prevGalleryDetail(); }, "aria-label": "Previous",
-            style: { position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.15)", color: "#FFF", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "‹"),
-          h("button", { onClick: (e) => { e.stopPropagation(); this.nextGalleryDetail(); }, "aria-label": "Next",
-            style: { position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.15)", color: "#FFF", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "›")
+          h("button", { onClick: (e) => { e.stopPropagation(); this.prevGalleryDetail(); }, "aria-label": "Previous creative",
+            style: { position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: "rgba(0,0,0,0.65)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.15)", color: "#FFF", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" } }, "‹"),
+          h("button", { onClick: (e) => { e.stopPropagation(); this.nextGalleryDetail(); }, "aria-label": "Next creative",
+            style: { position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", width: 44, height: 44, borderRadius: "50%", background: "rgba(0,0,0,0.65)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.15)", color: "#FFF", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" } }, "›"),
+          // Bottom Counter Pill
+          h("div", { style: { position: "absolute", bottom: 16, left: "50%", transform: "translateX(-50%)", background: "rgba(0,0,0,0.75)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.15)", padding: "4px 12px", borderRadius: 999, fontSize: 11, color: "rgba(255,255,255,0.8)", whiteSpace: "nowrap" } },
+            `${group.title} • Concept ${iIdx + 1} of ${group.items.length}`)
         ),
         // Right Detail Panel
-        h("div", { style: { padding: "36px 32px", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#141414", color: "#FCFCFC", fontFamily: IT } },
+        h("div", { style: { padding: "36px 32px", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#141414", color: "#FCFCFC", fontFamily: IT, overflowY: "auto", maxHeight: "80vh" } },
           h("div", null,
-            h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 } },
-              h("span", { style: { fontSize: 11, fontWeight: 700, letterSpacing: "2px", color: "#E5B96A", textTransform: "uppercase" } }, `Concept #${String(idx + 1).padStart(2, '0')}`),
-              h("button", { onClick: this.closeGalleryDetail, "aria-label": "Close", style: { width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "none", color: "#FFF", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "✕")
+            h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 } },
+              h("span", { style: { fontSize: 11, fontWeight: 700, letterSpacing: "1.5px", color: "#F2D338", textTransform: "uppercase" } },
+                `${group.category} • ANGLE #${String(iIdx + 1).padStart(2, '0')}`),
+              h("button", { onClick: this.closeGalleryDetail, "aria-label": "Close", style: { width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "none", color: "#FFF", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.2s" } }, "✕")
             ),
-            h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 36, fontWeight: 400, margin: "0 0 12px 0", letterSpacing: "-1px" } }, "Winning Hook Creative"),
-            h("p", { style: { fontSize: 14, color: "rgba(255,255,255,0.65)", lineHeight: 1.6, margin: "0 0 24px 0" } },
-              "Custom-directed Meta performance creative tailored for high thumbstop rate, native UGC aesthetics, and scalable DTC ad conversions."
+            h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, fontWeight: 400, margin: "0 0 12px 0", letterSpacing: "-0.5px", lineHeight: 1.15 } }, item.title || group.title),
+            item.hook && h("div", { style: { fontStyle: "italic", color: "#F2D338", fontSize: 14, margin: "0 0 16px", padding: "10px 14px", background: "rgba(242, 211, 56, 0.08)", borderLeft: "3px solid #F2D338", borderRadius: "0 8px 8px 0", lineHeight: 1.45 } },
+              `“${item.hook}”`),
+            h("p", { style: { fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, margin: "0 0 20px 0" } },
+              item.desc || group.description || "Custom-directed Meta performance creative tailored for high thumbstop rate, native UGC aesthetics, and scalable DTC ad conversions."
             ),
-            h("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, padding: "18px 0", borderTop: "1px solid rgba(255,255,255,0.08)", borderBottom: "1px solid rgba(255,255,255,0.08)", marginBottom: 24 } },
+            h("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, padding: "16px 0", borderTop: "1px solid rgba(255,255,255,0.08)", borderBottom: "1px solid rgba(255,255,255,0.08)", marginBottom: 24 } },
               h("div", null,
-                h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Format"),
-                h("div", { style: { fontSize: 14, fontWeight: 600, marginTop: 4 } }, "4K Ultra-HD")
+                h("div", { style: { fontSize: 10.5, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Creative Angle"),
+                h("div", { style: { fontSize: 13.5, fontWeight: 600, color: "#FFF", marginTop: 3 } }, item.angle || "Mechanism Hook")
               ),
               h("div", null,
-                h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Channel"),
-                h("div", { style: { fontSize: 14, fontWeight: 600, marginTop: 4 } }, "Meta / TikTok")
+                h("div", { style: { fontSize: 10.5, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Target Channel"),
+                h("div", { style: { fontSize: 13.5, fontWeight: 600, color: "#FFF", marginTop: 3 } }, item.platform || "Meta Reels & TikTok")
               ),
               h("div", null,
-                h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Thumbstop"),
-                h("div", { style: { fontSize: 14, fontWeight: 600, color: "#E5B96A", marginTop: 4 } }, "38% Verified")
+                h("div", { style: { fontSize: 10.5, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Verified Metric"),
+                h("div", { style: { fontSize: 13.5, fontWeight: 600, color: "#F2D338", marginTop: 3 } }, item.testedCtr || "3.8% Verified CTR")
               ),
               h("div", null,
-                h("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Rights"),
-                h("div", { style: { fontSize: 14, fontWeight: 600, marginTop: 4 } }, "Commercial Ready")
+                h("div", { style: { fontSize: 10.5, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" } }, "Deliverable"),
+                h("div", { style: { fontSize: 13.5, fontWeight: 600, color: "#FFF", marginTop: 3 } }, item.format || "4K Vertical 4:5")
               )
             )
           ),
           h("div", { style: { display: "flex", flexDirection: "column", gap: 10 } },
-            h("button", { onClick: () => { this.closeGalleryDetail(); this.scrollToSection("contact"); }, style: { padding: "14px 20px", borderRadius: 999, background: "#F2D338", color: "#111114", border: "none", fontFamily: IT, fontSize: 15, fontWeight: 600, cursor: "pointer" } }, "Request Creative Like This ↗"),
-            h("button", { onClick: this.closeGalleryDetail, style: { padding: "12px 20px", borderRadius: 999, background: "transparent", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)", fontFamily: IT, fontSize: 14, fontWeight: 500, cursor: "pointer" } }, "Back to Gallery")
+            h("button", { onClick: () => { this.closeGalleryDetail(); this.openBooking(`${group.title} (${item.title})`); }, style: { padding: "14px 20px", borderRadius: 999, background: "#F2D338", color: "#111114", border: "none", fontFamily: IT, fontSize: 15, fontWeight: 700, cursor: "pointer", transition: "transform 0.15s" } }, "Request Creative Like This ↗"),
+            h("button", { onClick: this.closeGalleryDetail, style: { padding: "12px 20px", borderRadius: 999, background: "transparent", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)", fontFamily: IT, fontSize: 14, fontWeight: 500, cursor: "pointer" } }, "Back to Campaign")
           )
         )
       )
@@ -2813,8 +3745,12 @@ class Component extends DCLogic {
   }
 
   renderGallery() {
-    const imgs = this.getGalleryImages();
-    return h("section", { ref: (el) => { this._gallerySection = el; }, style: {
+    const groups = this.getGalleryGroups();
+    const filter = this.state.campaignFilter || "all";
+    const displayedGroups = filter === "all" ? groups : groups.filter(g => g.id === filter);
+    const IT = "'Inter Tight', sans-serif";
+
+    return h("section", { ref: (el) => { this._gallerySection = el; }, id: "work", style: {
       position: "relative", width: "100%", minHeight: "100vh",
       padding: "80px 4vw 120px", boxSizing: "border-box", background: "#0E0E0E", overflow: "hidden",
       clipPath: "inset(0)"
@@ -2827,45 +3763,102 @@ class Component extends DCLogic {
         h("source", { src: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260611_183632_c311af08-e4b7-458f-81e7-79847a49b3d3.mp4", type: "video/mp4" })
       ),
       h("div", { style: { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
-        background: "rgba(0,0,0,0.35)", pointerEvents: "none", zIndex: 0 } }),
-      h("h2", { style: {
-        position: "relative", zIndex: 2,
-        fontFamily: "'Instrument Serif', serif", fontSize: "clamp(48px, 8vw, 120px)",
-        color: "#FCFCFC", margin: "0 0 60px", letterSpacing: "-0.03em", lineHeight: "0.95"
-      } }, "Selected ", h("em", null, "work")),
-      h("div", { className: "gallery-grid", style: {
-        position: "relative", zIndex: 2,
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-        gap: "24px"
-      } },
-        imgs.map((src, i) => h("div", { key: i, className: "gallery-card asset-card-wrap",
-          onClick: () => this.openGalleryDetail(i),
-          ref: (el) => { if (el) this._galleryCards.set(i, el); else this._galleryCards.delete(i); },
-          style: {
-            aspectRatio: "2 / 3", overflow: "hidden", borderRadius: "8px",
-            background: "#141416",
-            transformOrigin: (i % 4) < 2 ? "right bottom" : "left bottom"
-          } },
-          h("img", {
-            src,
-            alt: "",
-            draggable: false,
-            loading: "lazy",
-            decoding: "async",
-            className: "smooth-img",
-            onLoad: (e) => {
-              e.currentTarget.classList.add("is-loaded");
-              const p = e.currentTarget.closest(".asset-card-wrap");
-              if (p) p.classList.add("loaded");
-            }
-          }),
-          h("div", { className: "gallery-card-badge" },
-            h("span", { style: { fontFamily: "'Inter Tight', sans-serif", fontSize: 12, fontWeight: 600, color: "#FFF", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", padding: "4px 10px", borderRadius: 999 } }, `Concept #${i + 1}`),
-            h("span", { style: { width: 28, height: 28, borderRadius: "50%", background: "#F2D338", color: "#111", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700 } }, "↗")
-          )
-        ))
+        background: "rgba(0,0,0,0.5)", pointerEvents: "none", zIndex: 0 } }),
+      
+      // Header Section
+      h("div", { style: { position: "relative", zIndex: 2, marginBottom: 40 } },
+        h("div", { style: { fontSize: 12, fontWeight: 700, letterSpacing: "2px", color: "#F2D338", textTransform: "uppercase", marginBottom: 12, fontFamily: IT } },
+          "Campaign Vault • 11 DTC Product Categories"),
+        h("h2", { style: {
+          fontFamily: "'Instrument Serif', serif", fontSize: "clamp(44px, 7vw, 100px)",
+          color: "#FCFCFC", margin: "0 0 16px", letterSpacing: "-0.03em", lineHeight: "0.95"
+        } }, "Selected ", h("em", null, "campaigns")),
+        h("p", { style: { fontFamily: IT, fontSize: 16, color: "rgba(255,255,255,0.65)", maxWidth: 640, margin: 0, lineHeight: 1.55 } },
+          "Battle-tested direct-to-consumer Meta and TikTok creative sprints. 1 dedicated row per product folder — click any angle for strategy, metrics, and hooks.")
       ),
+
+      // Campaign Filter Bar
+      h("div", { className: "campaign-chips-bar", style: { position: "relative", zIndex: 2 } },
+        h("button", { onClick: () => this.setState({ campaignFilter: "all" }),
+          className: `campaign-chip ${filter === "all" ? "active" : ""}` }, `All Campaigns (${groups.length})`),
+        groups.map((g) => h("button", { key: g.id, onClick: () => {
+          this.setState({ campaignFilter: g.id });
+          const rowEl = document.getElementById("group-" + g.id);
+          if (rowEl) rowEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }, className: `campaign-chip ${filter === g.id ? "active" : ""}` }, g.title))
+      ),
+
+      // 11 Campaign Rows (1 row per folder / group)
+      h("div", { style: { position: "relative", zIndex: 2 } },
+        displayedGroups.map((g, gIdx) => {
+          const items = g.items || [];
+          return h("div", { key: g.id, id: "group-" + g.id, className: "campaign-group-row" },
+            // Row Header
+            h("div", { style: { display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 16, flexWrap: "wrap", gap: 14 } },
+              h("div", null,
+                h("div", { style: { display: "flex", alignItems: "center", gap: 12, marginBottom: 6 } },
+                  h("span", { style: { fontFamily: IT, fontSize: 13, fontWeight: 700, color: "#F2D338" } },
+                    String(gIdx + 1).padStart(2, '0')),
+                  h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: "clamp(26px, 3.5vw, 36px)", color: "#FFF", margin: 0, letterSpacing: "-0.5px" } },
+                    g.title),
+                  h("span", { style: { fontFamily: IT, fontSize: 11, fontWeight: 600, padding: "3px 10px", borderRadius: 999, background: "rgba(242, 211, 56, 0.12)", color: "#F2D338", border: "1px solid rgba(242, 211, 56, 0.25)" } },
+                    g.category),
+                  h("span", { style: { fontFamily: IT, fontSize: 12, color: "rgba(255,255,255,0.4)" } },
+                    `${items.length} Angles`)
+                ),
+                h("p", { style: { fontFamily: IT, fontSize: 13.5, color: "rgba(255,255,255,0.6)", margin: 0, maxWidth: 680, lineHeight: 1.5 } },
+                  g.description)
+              ),
+              // Scroll Arrows for row track
+              items.length > 2 && h("div", { style: { display: "flex", gap: 8 } },
+                h("button", { onClick: () => {
+                  const track = document.getElementById("track-" + g.id);
+                  if (track) track.scrollBy({ left: -320, behavior: "smooth" });
+                }, className: "row-scroll-btn", "aria-label": "Scroll left" }, "‹"),
+                h("button", { onClick: () => {
+                  const track = document.getElementById("track-" + g.id);
+                  if (track) track.scrollBy({ left: 320, behavior: "smooth" });
+                }, className: "row-scroll-btn", "aria-label": "Scroll right" }, "›")
+              )
+            ),
+
+            // Horizontal Row of Cards
+            h("div", { id: "track-" + g.id, className: "campaign-row-track" },
+              items.map((item, iIdx) => h("div", { key: item.id || iIdx, className: "campaign-card asset-card-wrap",
+                onClick: () => this.openGroupDetail(gIdx, iIdx) },
+                h("img", {
+                  src: item.src,
+                  alt: item.title || g.title,
+                  draggable: false,
+                  loading: "lazy",
+                  decoding: "async",
+                  className: "smooth-img",
+                  onLoad: (e) => {
+                    e.currentTarget.classList.add("is-loaded");
+                    const p = e.currentTarget.closest(".asset-card-wrap");
+                    if (p) p.classList.add("loaded");
+                  }
+                }),
+                // Floating Overlays
+                h("div", { className: "campaign-card-overlay" },
+                  h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" } },
+                    h("span", { className: "campaign-card-badge" }, item.angle || `Angle #${iIdx + 1}`),
+                    h("span", { style: { width: 28, height: 28, borderRadius: "50%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.2)", color: "#F2D338", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700 } }, "↗")
+                  ),
+                  h("div", null,
+                    h("div", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 20, color: "#FFF", lineHeight: 1.2, marginBottom: 4 } }, item.title || `Concept #${iIdx + 1}`),
+                    h("div", { style: { fontFamily: IT, fontSize: 11, color: "rgba(255,255,255,0.6)", display: "flex", justifyContent: "space-between" } },
+                      h("span", null, item.platform || "Meta & TikTok"),
+                      h("span", { style: { color: "#F2D338", fontWeight: 600 } }, item.testedCtr || "Verified")
+                    )
+                  )
+                )
+              ))
+            )
+          );
+        })
+      ),
+
       this.renderGalleryDetailModal()
     );
   }
