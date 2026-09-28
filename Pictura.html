@@ -1675,10 +1675,10 @@ class Component extends DCLogic {
           h("p", { style: { fontFamily: IT, fontSize: 16, fontWeight: 400, color: "rgba(0,0,0,0.85)", lineHeight: 1.6,
             maxWidth: 480, margin: "48px auto 0", opacity: 0,
             animation: s.palletHeroSeen ? "heroWordIn 0.6s ease-out forwards" : "none", animationDelay: "2.2s" } },
-            "The tools got cheap, so feeds got flooded. Same weightless, obviously-AI garbage. We're designers first. AI is just the fastest brush we've ever held."),
+            "The tools got cheap, so feeds got flooded. Same weightless, obviously-AI garbage. I'm a designer first. AI is just the fastest brush I've ever held."),
           h("div", { style: { display: "flex", gap: 16, justifyContent: "center", marginTop: 28, paddingBottom: 80, opacity: 0,
             animation: s.palletHeroSeen ? "heroWordIn 0.6s ease-out forwards" : "none", animationDelay: "2.4s" } },
-            h("button", { onClick: () => this.scrollToSection("thelab"), onMouseEnter: (e) => e.currentTarget.style.background = "#333333", onMouseLeave: (e) => e.currentTarget.style.background = "#111111", style: { background: "#111111", color: "#fff", fontFamily: IT, fontSize: 15, fontWeight: 600, padding: "14px 28px", borderRadius: 9999, border: "none", cursor: "pointer", transition: "background 0.2s" } }, "See how we work"))
+            h("button", { onClick: () => this.scrollToSection("thelab"), onMouseEnter: (e) => e.currentTarget.style.background = "#333333", onMouseLeave: (e) => e.currentTarget.style.background = "#111111", style: { background: "#111111", color: "#fff", fontFamily: IT, fontSize: 15, fontWeight: 600, padding: "14px 28px", borderRadius: 9999, border: "none", cursor: "pointer", transition: "background 0.2s" } }, "See how I work"))
         )
       ),
 
@@ -1689,7 +1689,7 @@ class Component extends DCLogic {
         h("div", { style: { width: 520, paddingTop: 32, position: "relative", zIndex: 10 } },
           h("h2", { style: { fontFamily: IT, fontSize: 60, fontWeight: 800, lineHeight: 1.05, letterSpacing: "-1.5px", margin: 0 } },
             h("span", { style: { display: "block" } }, palletWords("AI made ads", s.sec2Seen, 0, 0.06, "#111111")),
-            h("span", { style: { display: "block" } }, palletWords("cheap. We made", s.sec2Seen, 0.12, 0.06, "#C0392B")),
+            h("span", { style: { display: "block" } }, palletWords("cheap. I made", s.sec2Seen, 0.12, 0.06, "#C0392B")),
             h("span", { style: { display: "block" } }, palletWords("them good.", s.sec2Seen, 0.36, 0.06, "#111111"))
           ),
           h("p", { style: { fontFamily: IT, marginTop: 28, fontSize: 15, fontWeight: 400, color: "rgba(0,0,0,0.55)",
@@ -1726,7 +1726,7 @@ class Component extends DCLogic {
         h("h2", { style: { fontFamily: F, fontSize: titleSize, fontWeight: 500, color: "#0f172a",
           letterSpacing: "-0.02em", marginBottom: 12 } }, "Four things. Done properly."),
         h("p", { style: { fontFamily: F, fontSize: "1.125rem", color: "#64748b", lineHeight: 1.5, marginBottom: 50 } },
-          "Brief to launch-ready.", h("br"), "You buy ads — we handle the rest."),
+          "Brief to launch-ready.", h("br"), "You buy ads — I handle the rest."),
         h("div", { style: { display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 24 } },
           // Card 1
           h("div", { style: { ...cardBase,
@@ -1800,13 +1800,13 @@ class Component extends DCLogic {
           h("div", { style: { textAlign: "center", padding: "40px 0" } },
             h("div", { style: { width: 64, height: 64, borderRadius: "50%", background: "#F2D338", color: "#111", fontSize: 32, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" } }, "✓"),
             h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 36, margin: "0 0 12px", color: "#FFF" } }, "Project Inquiry Received"),
-            h("p", { style: { color: "rgba(255,255,255,0.7)", fontSize: 15, lineHeight: 1.5, maxWidth: 440, margin: "0 auto" } }, "Thank you! We've received your creative brief and will review your brand within 24 hours with concept angles.")
+            h("p", { style: { color: "rgba(255,255,255,0.7)", fontSize: 15, lineHeight: 1.5, maxWidth: 440, margin: "0 auto" } }, "Thank you! I've received your creative brief and will review your brand within 24 hours with concept angles.")
           )
         ) : (
           h("form", { onSubmit: this.handleBookingSubmit },
             h("div", { style: { fontSize: 12, fontWeight: 700, letterSpacing: "1.5px", color: "#F2D338", textTransform: "uppercase", marginBottom: 8 } }, "Start a Project"),
-            h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 34, margin: "0 0 10px", color: "#FFF", letterSpacing: "-1px" } }, "Work With Us"),
-            h("p", { style: { fontSize: 14, color: "rgba(255,255,255,0.65)", marginBottom: 24, lineHeight: 1.5 } }, "Have a project or brand ready to scale? Tell us your goals and we'll reply within 24 hours."),
+            h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 34, margin: "0 0 10px", color: "#FFF", letterSpacing: "-1px" } }, "Work With Me"),
+            h("p", { style: { fontSize: 14, color: "rgba(255,255,255,0.65)", marginBottom: 24, lineHeight: 1.5 } }, "Have a project or brand ready to scale? Tell me your goals and I'll reply within 24 hours."),
             
             h("div", { style: { display: "flex", flexDirection: "column", gap: 16 } },
               h("div", null,
@@ -1845,7 +1845,7 @@ class Component extends DCLogic {
               ),
               h("div", null,
                 h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Project Details / Vision (Optional)"),
-                h("input", { className: "input-field", placeholder: "Briefly tell us what you're looking to create...",
+                h("input", { className: "input-field", placeholder: "Briefly tell me what you're looking to create...",
                   value: this.state.bookingMsg || "", onChange: (e) => this.setState({ bookingMsg: e.target.value }) })
               ),
               h("button", { type: "submit",
@@ -1919,7 +1919,7 @@ class Component extends DCLogic {
             "Let's out-gen ", h("em", null, "the noise.")),
           h("p", { style: { fontFamily: IT, fontSize: 18, color: "rgba(255,255,255,0.6)",
             margin: "20px auto 36px", lineHeight: 1.5 } },
-            "Tell us your product and target CPA. We'll send back three angles inside 48 hours."),
+            "Tell me your product and target CPA. I'll send back three angles inside 48 hours."),
 
           this.state.footerFormSubmitted ? (
             h("div", { style: { background: "#161618", border: "1px solid rgba(242, 211, 56, 0.3)", borderRadius: 20, padding: "32px 24px", color: "#FFF", animation: "modalFade 0.3s ease" } },
@@ -2239,7 +2239,7 @@ class Component extends DCLogic {
       });
       localStorage.setItem("adgenz_leads", JSON.stringify(leads));
     } catch(err) {}
-    this.showToast("Project Brief received! We'll reply within 24h. ✨");
+    this.showToast("Project Brief received! I'll reply within 24h. ✨");
     setTimeout(() => {
       this.closeBooking();
       this.setState({ bookingSubmitted: false, bookingBrand: "", bookingEmail: "", bookingMsg: "" });
@@ -2289,17 +2289,17 @@ class Component extends DCLogic {
               h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, fontWeight: 400, margin: "0 0 8px", color: "#FFF" } }, "AdgenZ Labs Privacy Policy"),
               h("div", { style: { fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 24 } }, "Effective Date: August 2026"),
               
-              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "1. Information We Collect & Use"),
-              h("p", null, "AdgenZ Labs collects project brief parameters, brand guidelines, and contact information exclusively to direct, produce, and deliver custom ad creative pipelines. We never sell, rent, or trade client data to third parties."),
+              h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "1. Information I Collect & Use"),
+              h("p", null, "AdgenZ Labs collects project brief parameters, brand guidelines, and contact information exclusively to direct, produce, and deliver custom ad creative pipelines. I never sell, rent, or trade client data to third parties."),
               
               h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "2. Intellectual Property & Confidentiality"),
               h("p", null, "All brand assets, product samples, proprietary campaign metrics, and generated creative concepts are treated under strict NDA confidentiality. Upon completed payment, 100% of worldwide commercial rights and copyright to delivered assets are unconditionally transferred to the client."),
               
               h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "3. AI Model Governance & Data Integrity"),
-              h("p", null, "We use commercial-grade generative neural pipelines under enterprise licensing. Client brand assets and proprietary photography are never fed back into public model training pools."),
+              h("p", null, "I use commercial-grade generative neural pipelines under enterprise licensing. Client brand assets and proprietary photography are never fed back into public model training pools."),
               
               h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "4. Security & Retention"),
-              h("p", null, "All high-resolution production assets are securely archived in encrypted private cloud storage, accessible only by your designated creative team."),
+              h("p", null, "All high-resolution production assets are securely archived in encrypted private cloud storage, accessible only by me as your dedicated designer."),
 
               h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "5. Contact Privacy Officer"),
               h("p", null, "For data deletion requests or inquiries, reach out directly to ", h("span", { style: { color: "#F2D338", fontWeight: 600 } }, "helloadgenzlabs@gmail.com"), ".")
@@ -2706,12 +2706,12 @@ class Component extends DCLogic {
 
     this.setState({
       footerFormSubmitted: true,
-      footerSuccessMsg: `Thank you, ${name}! Your brief has been received. Our creative directors will send back 3 custom concept angles within 24 hours.`,
+      footerSuccessMsg: `Thank you, ${name}! Your brief has been received. I will review it and send back 3 custom concept angles within 24 hours.`,
       footerFormName: "",
       footerFormEmail: "",
       footerFormMsg: ""
     });
-    this.showToast("Brief received! We'll reply within 24 hours. ✨");
+    this.showToast("Brief received! I'll reply within 24 hours. ✨");
   };
 
   
@@ -2735,7 +2735,7 @@ class Component extends DCLogic {
 
   replyToLead = (lead) => {
     const subject = `AdgenZ Labs — 3 Creative Concept Angles for ${lead.brand}`;
-    const body = `Hi ${lead.brand},\n\nThank you for reaching out to AdgenZ Labs! We have received your creative brief and ad targets.\n\nOur creative directors have prepared 3 custom hook & visual angles tailored for your brand to drive high-converting Meta and TikTok performance.\n\nWould you be available for a quick 15-minute concept walkthrough this week?\n\nBest regards,\nAdgenZ Labs Team\nhelloadgenzlabs@gmail.com`;
+    const body = `Hi ${lead.brand},\n\nThank you for reaching out to AdgenZ Labs! I have received your creative brief and ad targets.\n\nI have prepared 3 custom hook & visual angles tailored for your brand to drive high-converting Meta and TikTok performance.\n\nWould you be available for a quick 15-minute concept walkthrough this week?\n\nBest regards,\nAdgenZ Labs\nhelloadgenzlabs@gmail.com`;
     const mailtoUrl = `mailto:${encodeURIComponent(lead.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoUrl, '_blank');
   };
@@ -2940,7 +2940,7 @@ class Component extends DCLogic {
           ),
           h("h1", { style: { maxWidth: 1100, margin: "24px auto 0", fontWeight: 500,
             lineHeight: 1.05, letterSpacing: "-0.035em", fontSize: "clamp(48px, 6.5vw, 88px)" } },
-            "We ship creative that", h("br"),
+            "I ship creative that", h("br"),
             "actually ",
             h("video", { autoPlay: true, loop: true, muted: true, playsInline: true,
               src: "https://qclay.design/lovable/nixole/nurse-video.mp4",
@@ -3012,7 +3012,7 @@ class Component extends DCLogic {
               h("div", { style: { display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16 } },
                 h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
                   h("img", { src: "https://qclay.design/lovable/nixole/frame-207.svg", alt: "", style: { height: 44 } }),
-                  h("span", { style: { fontSize: 15, fontWeight: 500 } }, "What our customers say")
+                  h("span", { style: { fontSize: 15, fontWeight: 500 } }, "What my clients say")
                 ),
                 h("div", { style: { display: "flex", flexDirection: "column", gap: 4.3 } },
                   h("span", { style: { width: 4.3, height: 32.6, borderRadius: 5.4, background: "#131318" } }),
@@ -3046,7 +3046,7 @@ class Component extends DCLogic {
             gap: 24, marginTop: 28, padding: "0 4px" } },
             h("p", { style: { maxWidth: 448, fontSize: 13, lineHeight: 1.5, color: "rgba(255,255,255,0.75)", margin: 0 } },
               "Results from live DTC accounts, not launch-week spikes.", h("br"),
-              "Ask and we'll walk you through exactly how.")
+              "Ask and I'll walk you through exactly how.")
           )
         )
       )
