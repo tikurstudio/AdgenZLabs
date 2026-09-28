@@ -84,9 +84,14 @@
         .gallery-card {
           will-change: transform;
           transform: scale(0);
-          transition: transform 0.15s linear;
+          transition: transform 0.15s linear, border-color 0.3s ease, box-shadow 0.3s ease;
           background: #141416;
           position: relative;
+          cursor: pointer !important;
+        }
+        .gallery-card:hover {
+          border-color: rgba(242, 211, 56, 0.5);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(242, 211, 56, 0.15);
         }
 
         .gallery-card img {
@@ -753,17 +758,16 @@
           }
           .campaign-card {
             flex: 0 0 clamp(240px, 24vw, 290px);
-            aspect-ratio: 4 / 5;
+            aspect-ratio: 2 / 3;
             border-radius: 14px;
             overflow: hidden;
             background: #141416;
             border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
           }
           .campaign-card:hover {
-            transform: translateY(-8px);
             border-color: rgba(242, 211, 56, 0.5);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(242, 211, 56, 0.15);
           }
@@ -2224,6 +2228,7 @@ class Component extends DCLogic {
     document.removeEventListener("mouseleave", this._onLeave);
     window.removeEventListener("blur", this._onLeave);
     cancelAnimationFrame(this._raf);
+    this._galleryCards.clear();
     if (this._interval) clearInterval(this._interval);
     clearTimeout(this._linesT);
     clearTimeout(this._splashT1); clearTimeout(this._splashT2); clearTimeout(this._splashMaxT);
@@ -3824,36 +3829,50 @@ class Component extends DCLogic {
 
             // Horizontal Row of Cards
             h("div", { id: "track-" + g.id, className: "campaign-row-track" },
-              items.map((item, iIdx) => h("div", { key: item.id || iIdx, className: "campaign-card asset-card-wrap",
-                onClick: () => this.openGroupDetail(gIdx, iIdx) },
-                h("img", {
-                  src: item.src,
-                  alt: item.title || g.title,
-                  draggable: false,
-                  loading: "lazy",
-                  decoding: "async",
-                  className: "smooth-img",
-                  onLoad: (e) => {
-                    e.currentTarget.classList.add("is-loaded");
-                    const p = e.currentTarget.closest(".asset-card-wrap");
-                    if (p) p.classList.add("loaded");
+              items.map((item, iIdx) => {
+                const cardKey = `${g.id}_${iIdx}`;
+                return h("div", {
+                  key: item.id || iIdx,
+                  className: "gallery-card campaign-card asset-card-wrap",
+                  ref: (el) => {
+                    if (el) this._galleryCards.set(cardKey, el);
+                    else this._galleryCards.delete(cardKey);
+                  },
+                  onClick: () => this.openGroupDetail(gIdx, iIdx),
+                  style: {
+                    aspectRatio: "2 / 3",
+                    transformOrigin: (iIdx % 4) < 2 ? "right bottom" : "left bottom"
                   }
-                }),
-                // Floating Overlays
-                h("div", { className: "campaign-card-overlay" },
-                  h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" } },
-                    h("span", { className: "campaign-card-badge" }, item.angle || `Angle #${iIdx + 1}`),
-                    h("span", { style: { width: 28, height: 28, borderRadius: "50%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.2)", color: "#F2D338", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700 } }, "↗")
-                  ),
-                  h("div", null,
-                    h("div", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 20, color: "#FFF", lineHeight: 1.2, marginBottom: 4 } }, item.title || `Concept #${iIdx + 1}`),
-                    h("div", { style: { fontFamily: IT, fontSize: 11, color: "rgba(255,255,255,0.6)", display: "flex", justifyContent: "space-between" } },
-                      h("span", null, item.platform || "Meta & TikTok"),
-                      h("span", { style: { color: "#F2D338", fontWeight: 600 } }, item.testedCtr || "Verified")
+                },
+                  h("img", {
+                    src: item.src,
+                    alt: item.title || g.title,
+                    draggable: false,
+                    loading: "lazy",
+                    decoding: "async",
+                    className: "smooth-img",
+                    onLoad: (e) => {
+                      e.currentTarget.classList.add("is-loaded");
+                      const p = e.currentTarget.closest(".asset-card-wrap");
+                      if (p) p.classList.add("loaded");
+                    }
+                  }),
+                  // Floating Overlays
+                  h("div", { className: "campaign-card-overlay" },
+                    h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" } },
+                      h("span", { className: "campaign-card-badge" }, item.angle || `Angle #${iIdx + 1}`),
+                      h("span", { style: { width: 28, height: 28, borderRadius: "50%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.2)", color: "#F2D338", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700 } }, "↗")
+                    ),
+                    h("div", null,
+                      h("div", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 20, color: "#FFF", lineHeight: 1.2, marginBottom: 4 } }, item.title || `Concept #${iIdx + 1}`),
+                      h("div", { style: { fontFamily: IT, fontSize: 11, color: "rgba(255,255,255,0.6)", display: "flex", justifyContent: "space-between" } },
+                        h("span", null, item.platform || "Meta & TikTok"),
+                        h("span", { style: { color: "#F2D338", fontWeight: 600 } }, item.testedCtr || "Verified")
+                      )
                     )
                   )
-                )
-              ))
+                );
+              })
             )
           );
         })
