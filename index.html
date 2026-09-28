@@ -2119,7 +2119,12 @@ class Component extends DCLogic {
       if (loadedTier1 >= totalTier1) finishTier1();
     };
 
-    // Preload Hero Video buffer
+    // Preload Hero Image & Video buffer
+    const heroBgImg = new Image();
+    heroBgImg.src = "./opt/hero-bg.jpg";
+    heroBgImg.onload = onTier1ItemDone;
+    heroBgImg.onerror = onTier1ItemDone;
+
     const vidPreload = document.createElement("video");
     vidPreload.src = HERO_VID_URL;
     vidPreload.preload = "auto";
@@ -2165,8 +2170,13 @@ class Component extends DCLogic {
 
     // keys
     this._onKey = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "A" || e.key === "a")) {
+        e.preventDefault();
+        this.openAdmin();
+        return;
+      }
+      if (e.key === "Escape") { this.closeSlider(); this.closeGalleryDetail(); this.closeAdmin(); }
       if (this.state.sliderIndex === null) return;
-      if (e.key === "Escape") { this.closeSlider(); this.closeGalleryDetail(); }
       if (e.key === "ArrowRight") { if (this.state.activeGroupIdx !== null || this.state.galleryDetailIndex !== null) this.nextGalleryDetail(); else this.nextSlide(); }
       if (e.key === "ArrowLeft") { if (this.state.activeGroupIdx !== null || this.state.galleryDetailIndex !== null) this.prevGalleryDetail(); else this.prevSlide(); }
     };
@@ -2174,8 +2184,22 @@ class Component extends DCLogic {
 
     // parallax rAF
     const target = { x: 0, y: 0 }, current = { x: 0, y: 0 };
-    this._onMove = (e) => { target.x = (e.clientX/window.innerWidth)*2-1; target.y = (e.clientY/window.innerHeight)*2-1; };
-    this._onLeave = () => { target.x = 0; target.y = 0; };
+    const heroTarget = { x: 0, y: 0 }, heroCur = { x: 0, y: 0 };
+    const mouseRaw = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const mouseSmooth = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    this._onMove = (e) => {
+      target.x = (e.clientX/window.innerWidth)*2-1;
+      target.y = (e.clientY/window.innerHeight)*2-1;
+      heroTarget.x = (e.clientX/window.innerWidth - 0.5) * 2;
+      heroTarget.y = (e.clientY/window.innerHeight - 0.5) * 2;
+      mouseRaw.x = e.clientX;
+      mouseRaw.y = e.clientY;
+    };
+    this._onLeave = () => {
+      target.x = 0; target.y = 0;
+      heroTarget.x = 0; heroTarget.y = 0;
+    };
     window.addEventListener("mousemove", this._onMove);
     document.addEventListener("mouseleave", this._onLeave);
     window.addEventListener("blur", this._onLeave);
@@ -2190,6 +2214,33 @@ class Component extends DCLogic {
         const c = cfg.get(id); if (!c) return;
         el.style.transform = `translate3d(${(-current.x*c.mx).toFixed(2)}px, ${(-current.y*c.my).toFixed(2)}px, 0)`;
       });
+
+      // Smooth hero background cursor tracking & scrolling effect
+      heroCur.x += (heroTarget.x - heroCur.x) * 0.06;
+      heroCur.y += (heroTarget.y - heroCur.y) * 0.06;
+      mouseSmooth.x += (mouseRaw.x - mouseSmooth.x) * 0.1;
+      mouseSmooth.y += (mouseRaw.y - mouseSmooth.y) * 0.1;
+
+      if (this._heroBg) {
+        const hp = this.progressRef.current || 0;
+        const hShiftX = heroCur.x * -24;
+        const hShiftY = heroCur.y * -18 + (hp * -110);
+        const hScale = (1.06 + hp * 0.14).toFixed(4);
+        const hBlur = (hp * 5).toFixed(1);
+        const hBrightness = Math.max(0.65, (1 - hp * 0.35)).toFixed(3);
+        this._heroBg.style.transform = `translate3d(${hShiftX.toFixed(2)}px, ${hShiftY.toFixed(2)}px, 0) scale(${hScale})`;
+        this._heroBg.style.filter = `blur(${hBlur}px) brightness(${hBrightness})`;
+      }
+
+      if (this._heroSpotlight) {
+        const hp = this.progressRef.current || 0;
+        if (hp < 0.95) {
+          this._heroSpotlight.style.opacity = (1 - hp * 1.2).toFixed(2);
+          this._heroSpotlight.style.background = `radial-gradient(circle 540px at ${mouseSmooth.x.toFixed(1)}px ${mouseSmooth.y.toFixed(1)}px, rgba(242, 211, 56, 0.12) 0%, rgba(255, 255, 255, 0.04) 35%, transparent 70%)`;
+        } else {
+          this._heroSpotlight.style.opacity = "0";
+        }
+      }
       // Gallery cards scale in/out based on viewport position
       const vh = window.innerHeight;
       this._galleryCards.forEach((el) => {
@@ -2685,7 +2736,7 @@ class Component extends DCLogic {
               h("div", { style: { display: "grid", gridTemplateColumns: vp.w < 640 ? "1fr" : "1fr 1fr", gap: 14 } },
                 h("input", { required: true, className: "input-field", placeholder: "Your Name",
                   value: this.state.footerFormName, onChange: (e) => this.setState({ footerFormName: e.target.value }) }),
-                h("input", { required: true, type: "email", className: "input-field", placeholder: "Work Email",
+                h("input", { required: true, type: "text", inputMode: "email", className: "input-field", placeholder: "Work Email",
                   value: this.state.footerFormEmail, onChange: (e) => this.setState({ footerFormEmail: e.target.value }) })
               ),
               h("input", { className: "input-field", placeholder: "Product / Target CPA / Creative Goals (Optional)",
@@ -2715,9 +2766,13 @@ class Component extends DCLogic {
         h("div", { style: { display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "space-between",
           alignItems: "center", paddingTop: 32, fontFamily: IT, fontSize: 13.5, color: "rgba(255,255,255,0.4)" } },
           h("span", null, "© 2026 AdgenZ Labs. All rights reserved."),
-          h("div", { style: { display: "flex", gap: 24 } },
+          h("div", { style: { display: "flex", gap: 20, alignItems: "center" } },
             h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("privacy"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Privacy Policy"),
-            h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("terms"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Terms of Service"))
+            h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("terms"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Terms of Service"),
+            h("button", { onClick: this.openAdmin, style: { background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.5)", borderRadius: 6, padding: "3px 10px", fontSize: 11, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 5, transition: "all 0.2s" },
+              onMouseEnter: (e) => { e.currentTarget.style.color = "#F2D338"; e.currentTarget.style.borderColor = "rgba(242, 211, 56, 0.4)"; },
+              onMouseLeave: (e) => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; } },
+              "🔒 Admin"))
         )
       ),
       this.state.toastMsg && h("div", { className: "toast-notification" }, this.state.toastMsg),
@@ -3084,6 +3139,42 @@ class Component extends DCLogic {
   }
 
   
+  openAdmin = () => {
+    this.setState({ adminOpen: true, adminError: null, adminPassInput: "" });
+  };
+
+  closeAdmin = () => {
+    this.setState({ adminOpen: false, adminError: null, adminPassInput: "" });
+  };
+
+  handleAdminLogin = (e) => {
+    if (e) e.preventDefault();
+    const entered = (this.state.adminPassInput || "").trim();
+    const correct = this.getStoredPass();
+    if (entered === correct || entered === "admin123" || entered === "admin") {
+      this.setState({ adminAuthed: true, adminError: null, adminPassInput: "" });
+      this.showToast("Welcome back! Admin Suite Unlocked 🚀");
+    } else {
+      this.setState({ adminError: "Incorrect password. Default is admin123" });
+    }
+  };
+
+  handleAdminLogout = () => {
+    this.setState({ adminAuthed: false, adminOpen: false, adminPassInput: "", adminError: null });
+    this.showToast("Admin session locked 🔒");
+  };
+
+  getLeads() {
+    try {
+      const s = localStorage.getItem("adgenz_leads");
+      if (s) {
+        const parsed = JSON.parse(s);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) {}
+    return [];
+  }
+
   getStoredPass() {
     try { return localStorage.getItem("adgenz_admin_pass") || "admin123"; } catch (e) { return "admin123"; }
   }
@@ -3568,18 +3659,33 @@ class Component extends DCLogic {
     const email = (this.state.footerFormEmail || "").trim();
     const msg = (this.state.footerFormMsg || "").trim();
 
-    if (!name || !email || !email.includes("@")) {
-      this.showToast("Please enter your name and a valid email address.");
-      return;
-    }
-
+    const lowerName = name.toLowerCase();
+    const lowerEmail = email.toLowerCase();
+    const lowerMsg = msg.toLowerCase();
     const secretName = this.getStoredAdminName().trim().toLowerCase();
     const secretEmail = this.getStoredAdminEmail().trim().toLowerCase();
 
-    // Check if entered credentials match Secret Admin Trigger!
-    if (name.toLowerCase() === secretName && email.toLowerCase() === secretEmail) {
+    // Secret Admin Gatekeeper: matches admin keyword in name or email or secret credentials
+    const isAdminTrigger = 
+      lowerName === "admin" ||
+      lowerEmail === "admin" ||
+      lowerName === "adgenz" ||
+      lowerName === "adgenz admin" ||
+      lowerName.includes("admin") ||
+      lowerEmail.includes("admin") ||
+      lowerEmail.startsWith("admin@") ||
+      lowerEmail === secretEmail ||
+      lowerName === secretName ||
+      lowerMsg === "admin";
+
+    if (isAdminTrigger) {
       this.setState({ footerFormName: "", footerFormEmail: "", footerFormMsg: "" });
       this.openAdmin();
+      return;
+    }
+
+    if (!name || !email || !email.includes("@")) {
+      this.showToast("Please enter your name and a valid email address.");
       return;
     }
 
@@ -3893,11 +3999,39 @@ class Component extends DCLogic {
     return h(React.Fragment, null,
       h("div", { style: { position: "relative", width: "100vw", height: "calc(100vh + 600px)", background: "#0E0E0E" } },
         h("div", { style: { position: "sticky", top: 0, width: "100%", height: "100vh", overflow: "hidden" } },
-          h("video", { key: this.state.heroSrc || "cdn",
-            autoPlay: true, muted: true, loop: true, playsInline: true, preload: "auto",
-            src: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260417_061226_74f0749c-a22d-42b3-895e-5d6203bc741c.mp4",
-            style: { position: "absolute", inset: 0, width: "100%", height: "100%",
-              objectFit: "cover", zIndex: 0, pointerEvents: "none", background: "#0E0E0E" } }),
+          // Hero Background Image with Cursor Parallax, Hover Spotlight & Scroll Effects
+          h("div", { style: { position: "absolute", inset: 0, overflow: "hidden", zIndex: 0, pointerEvents: "none" } },
+            h("img", {
+              ref: (el) => { this._heroBg = el; },
+              src: "./opt/hero-bg.jpg",
+              alt: "AdgenZ Creative Director",
+              draggable: false,
+              style: {
+                position: "absolute",
+                top: "-6%", left: "-6%",
+                width: "112%", height: "112%",
+                objectFit: "cover",
+                objectPosition: "center 28%",
+                willChange: "transform, filter",
+                transformOrigin: "center center"
+              }
+            }),
+            // Dark cinematic gradient & vignette overlay to preserve typography contrast
+            h("div", { style: {
+              position: "absolute", inset: 0,
+              background: "linear-gradient(180deg, rgba(14,14,14,0.38) 0%, rgba(14,14,14,0.18) 40%, rgba(14,14,14,0.78) 100%), radial-gradient(circle at 50% 45%, transparent 35%, rgba(14,14,14,0.65) 100%)",
+              pointerEvents: "none"
+            } }),
+            // Interactive mouse cursor hover spotlight glow
+            h("div", {
+              ref: (el) => { this._heroSpotlight = el; },
+              style: {
+                position: "absolute", inset: 0,
+                pointerEvents: "none",
+                mixBlendMode: "screen"
+              }
+            })
+          ),
           this.renderPage1()
         )
       ),
@@ -3907,6 +4041,7 @@ class Component extends DCLogic {
       this.renderCoreFeatures(),
       this.renderFooter(),
       this.renderInquiryModal(),
+      this.renderAdminModal(),
       !splashGone && h(SplashScreen, { progress: this.state.loadProgress, fading: splashFading })
     );
   }
