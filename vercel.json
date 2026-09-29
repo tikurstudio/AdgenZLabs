@@ -1,16 +1,6 @@
 {
   "version": 2,
-  "cleanUrls": true,
   "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        }
-      ]
-    },
     {
       "source": "/opt/(.*)",
       "headers": [
@@ -21,7 +11,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(jpg|jpeg|png|webp|svg|mp4|ico|woff2|woff))",
+      "source": "/(.*).(jpg|jpeg|png|webp|svg|mp4|ico|woff2|woff)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -30,7 +20,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(js|css))",
+      "source": "/(.*).(js|css)",
       "headers": [
         {
           "key": "Cache-Control",
