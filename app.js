@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ADGENZ LABS / PICTURA - Application JavaScript Logic
+   SIFEN TEKALIGN / PICTURA - Application JavaScript Logic
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -499,7 +499,7 @@ function initContactModule() {
     }
 
     // Success response
-    showToast(`Thank you, ${name}! Your inquiry has been sent to ADGENZ Labs.`, 'success');
+    showToast(`Thank you, ${name}! Your inquiry has been sent to Sifen Tekalign.`, 'success');
     contactForm.reset();
   });
 }

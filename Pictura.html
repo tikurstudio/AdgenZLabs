@@ -4,19 +4,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdgenZ Labs — The Creative I Build To Out Gen the Noise</title>
+  <title>Sifen Tekalign — The Creative I Build To Out Gen the Noise</title>
   <meta name="description"
-    content="AdgenZ Labs builds Meta performance creatives, hooks, claims, UGC stills and AI video for brands who want AI without the slop.">
+    content="Sifen Tekalign builds Meta performance creatives, hooks, claims, UGC stills and AI video for brands who want AI without the slop.">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="shortcut icon" href="./favicon.svg">
   <link rel="apple-touch-icon" href="./favicon.svg">
+  <link rel="preload" as="image" href="./opt/hero-bg.jpg" fetchpriority="high">
   <script src="./support.js"></script>
 </head>
 
 <body>
   <x-dc>
     <helmet>
-      <title>AdgenZ Labs — The Creative I Build To Out Gen the Noise</title>
+      <title>Sifen Tekalign — The Creative I Build To Out Gen the Noise</title>
       <link rel="icon" type="image/svg+xml" href="./favicon.svg">
       <link rel="shortcut icon" href="./favicon.svg">
       <link rel="apple-touch-icon" href="./favicon.svg">
@@ -1871,7 +1872,7 @@ function AnimatedGetStarted({ variant, baseDelay, hoverable=false }) {
   const lettersStart = baseDelay + 0.55;
 
   return h("div", {
-    onClick: (e) => { e.stopPropagation(); if (window.__adgenzScroll) window.__adgenzScroll("work"); },
+    onClick: (e) => { e.stopPropagation(); if (window.__sifenScroll) window.__sifenScroll("work"); else if (window.__adgenzScroll) window.__adgenzScroll("work"); },
     className: `gs-btn ${hoverable?"gs-hoverable":""} ${isFilled?"gs-filled":"gs-outline"}`, style: { cursor: "pointer" },
     style: { position: "relative", display: "inline-flex", alignItems: "center", overflow: "hidden",
       height: 41, borderRadius: 25, border, background: bg,
@@ -1967,15 +1968,15 @@ function SplashScreen({ progress, fading }) {
   } },
     h("div", { style: { display: "flex", alignItems: "center", gap: 18 } },
       h(StarLogo),
-      h(AnimatedLetters, { text: "ADGENZ", baseDelay: 0.35, step: 0.08, duration: 0.6,
-        animationName: "letterIn", italicIndex: 5,
+      h(AnimatedLetters, { text: "SIFEN TEKALIGN", baseDelay: 0.35, step: 0.08, duration: 0.6,
+        animationName: "letterIn", italicIndex: 13,
         style: { fontFamily: "'Instrument Serif', serif", fontSize: 40, fontWeight: 400,
           letterSpacing: "-1.2px", color: "#FCFCFC" } })
     ),
     h("p", { style: { marginTop: 22, color: "rgba(255,255,255,0.45)",
       fontFamily: "'Inter Tight', sans-serif", fontSize: 14, fontWeight: 400,
       letterSpacing: "-0.42px", opacity: 0, animation: "modalFade 0.6s ease-out forwards",
-      animationDelay: "0.9s" } }, "Loading the lab\u2026"),
+      animationDelay: "0.9s" } }, "Loading portfolio\u2026"),
     // progress line
     h("div", { style: { position: "absolute", left: 0, right: 0, bottom: 0, height: 2,
       background: "rgba(255,255,255,0.08)" } },
@@ -2057,7 +2058,7 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
-    document.title = "AdgenZ Labs — The Creative I Build To Out Gen the Noise";
+    document.title = "Sifen Tekalign — The Creative I Build To Out Gen the Noise";
     let link = document.querySelector("link[rel~='icon']");
     if (!link) { link = document.createElement("link"); link.rel = "icon"; document.head.appendChild(link); }
     link.type = "image/svg+xml";
@@ -2065,7 +2066,8 @@ class Component extends DCLogic {
     this._onResize = () => { this.setState({ vp: { w: window.innerWidth, h: window.innerHeight } }); if (this._palletInit) this._measurePallet(); };
     window.addEventListener("resize", this._onResize);
 
-    window.__adgenzScroll = (key) => this.scrollToSection(key);
+    window.__sifenScroll = (key) => this.scrollToSection(key);
+    window.__adgenzScroll = window.__sifenScroll;
     
     // Anti-download protection
     this._preventDownload = (e) => {
@@ -2080,7 +2082,7 @@ class Component extends DCLogic {
     // PHASE 1: HERO PRIORITY LOADING (Hero Video & All Unique Hero Images)
     // =========================================================================
     const HERO_VID_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260417_061226_74f0749c-a22d-42b3-895e-5d6203bc741c.mp4";
-    const isHeroWarm = typeof sessionStorage !== "undefined" && sessionStorage.getItem("adgenz_hero_warm") === "1";
+    const isHeroWarm = typeof sessionStorage !== "undefined" && (sessionStorage.getItem("sifen_hero_warm") === "1" || sessionStorage.getItem("adgenz_hero_warm") === "1");
 
     const heroImageSet = new Set(this.cells.map(c => c.img).filter(Boolean));
     Object.values(SMALL_IMAGES).forEach(src => src && heroImageSet.add(src));
@@ -2098,7 +2100,7 @@ class Component extends DCLogic {
       if (finishedTier1) return;
       finishedTier1 = true;
       clearTimeout(this._splashMaxT);
-      try { if (typeof sessionStorage !== "undefined") sessionStorage.setItem("adgenz_hero_warm", "1"); } catch(e) {}
+      try { if (typeof sessionStorage !== "undefined") sessionStorage.setItem("sifen_hero_warm", "1"); } catch(e) {}
 
       const wait = Math.max(0, MIN_SPLASH - (Date.now() - startT));
       this._splashT1 = setTimeout(() => {
@@ -2139,7 +2141,7 @@ class Component extends DCLogic {
       im.onload = () => {
         onTier1ItemDone();
         if (typeof window !== "undefined" && "caches" in window) {
-          caches.open("adgenz-media-cache-v2").then(c => c.add(src).catch(() => {})).catch(() => {});
+          caches.open("sifen-media-cache-v2").then(c => c.add(encodeURI(src)).catch(() => {})).catch(() => {});
         }
       };
       im.onerror = onTier1ItemDone;
@@ -2304,7 +2306,7 @@ class Component extends DCLogic {
         const im = new Image();
         im.src = src;
         if (typeof window !== "undefined" && "caches" in window) {
-          caches.open("adgenz-media-cache-v2").then(c => c.add(src).catch(() => {})).catch(() => {});
+          caches.open("sifen-media-cache-v2").then(c => c.add(encodeURI(src)).catch(() => {})).catch(() => {});
         }
       });
       this._phase3Timer = setTimeout(this._startPhase3Loading, 600);
@@ -2325,7 +2327,7 @@ class Component extends DCLogic {
           const im = new Image();
           im.src = src;
           if (typeof window !== "undefined" && "caches" in window) {
-            caches.open("adgenz-media-cache-v2").then(c => c.add(src).catch(() => {})).catch(() => {});
+            caches.open("sifen-media-cache-v2").then(c => c.add(encodeURI(src)).catch(() => {})).catch(() => {});
           }
         });
         idx += 6;
@@ -2753,7 +2755,7 @@ class Component extends DCLogic {
             h("div", { onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }), style: { cursor: "pointer", display: "flex", alignItems: "center", gap: 14, marginBottom: 18 } },
               h(StarLogo),
               h("span", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 26,
-                letterSpacing: "-0.72px", color: "#FCFCFC" } }, "ADGENZ LAB", h("em", null, "S"))),
+                letterSpacing: "-0.72px", color: "#FCFCFC" } }, "SIFEN TEKALIG", h("em", null, "N"))),
             h("p", { style: { fontFamily: IT, fontSize: 15, lineHeight: 1.55, color: "rgba(255,255,255,0.5)", margin: 0 } },
               "The creative I build to out gen the noise. AI is the method, never the pitch.")),
           h("div", { style: { display: "flex", gap: vp.w < 600 ? 40 : 72, flexWrap: "wrap" } },
@@ -2763,7 +2765,7 @@ class Component extends DCLogic {
         ),
         h("div", { style: { display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "space-between",
           alignItems: "center", paddingTop: 32, fontFamily: IT, fontSize: 13.5, color: "rgba(255,255,255,0.4)" } },
-          h("span", null, "© 2026 AdgenZ Labs. All rights reserved."),
+          h("span", null, "© 2026 Sifen Tekalign. All rights reserved."),
           h("div", { style: { display: "flex", gap: 20, alignItems: "center" } },
             h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("privacy"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Privacy Policy"),
             h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("terms"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Terms of Service"),
@@ -2889,7 +2891,14 @@ class Component extends DCLogic {
               alt: "",
               draggable: false,
               decoding: "async",
+              loading: "eager",
               className: "smooth-img is-loaded",
+              onError: (e) => {
+                if (!e.target._failed) {
+                  e.target._failed = true;
+                  e.target.src = "opt/1.jpg";
+                }
+              },
               style: {
                 width: "100%", height: "100%",
                 objectFit: filename === "person9.png" ? "fill" : "cover", display: "block"
@@ -3042,7 +3051,7 @@ class Component extends DCLogic {
         tier: this.state.bookingTier,
         status: "New"
       });
-      localStorage.setItem("adgenz_leads", JSON.stringify(leads));
+      localStorage.setItem("sifen_leads", JSON.stringify(leads));
     } catch(err) {}
     this.showToast("Project Brief received! I'll reply within 24h. ✨");
     setTimeout(() => {
@@ -3091,11 +3100,11 @@ class Component extends DCLogic {
         h("div", { className: "legal-modal-body" },
           tab === "privacy" ? (
             h("div", null,
-              h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, fontWeight: 400, margin: "0 0 8px", color: "#FFF" } }, "AdgenZ Labs Privacy Policy"),
+              h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, fontWeight: 400, margin: "0 0 8px", color: "#FFF" } }, "Sifen Tekalign Privacy Policy"),
               h("div", { style: { fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 24 } }, "Effective Date: August 2026"),
               
               h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "1. Information I Collect & Use"),
-              h("p", null, "AdgenZ Labs collects project brief parameters, brand guidelines, and contact information exclusively to direct, produce, and deliver custom ad creative pipelines. I never sell, rent, or trade client data to third parties."),
+              h("p", null, "Sifen Tekalign collects project brief parameters, brand guidelines, and contact information exclusively to direct, produce, and deliver custom ad creative pipelines. I never sell, rent, or trade client data to third parties."),
               
               h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "2. Intellectual Property & Confidentiality"),
               h("p", null, "All brand assets, product samples, proprietary campaign metrics, and generated creative concepts are treated under strict NDA confidentiality. Upon completed payment, 100% of worldwide commercial rights and copyright to delivered assets are unconditionally transferred to the client."),
@@ -3111,11 +3120,11 @@ class Component extends DCLogic {
             )
           ) : (
             h("div", null,
-              h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, fontWeight: 400, margin: "0 0 8px", color: "#FFF" } }, "AdgenZ Labs Terms of Service"),
+              h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, fontWeight: 400, margin: "0 0 8px", color: "#FFF" } }, "Sifen Tekalign Terms of Service"),
               h("div", { style: { fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 24 } }, "Effective Date: August 2026"),
               
               h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "1. Scope of Creative Production"),
-              h("p", null, "AdgenZ Labs delivers custom static Meta creative, AI UGC stills, motion video, hook variations, and creative direction per project agreements. Production begins promptly upon brief submission."),
+              h("p", null, "Sifen Tekalign delivers custom static Meta creative, AI UGC stills, motion video, hook variations, and creative direction per project agreements. Production begins promptly upon brief submission."),
               
               h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "2. Transparent Project Engagements"),
               h("p", null, "All project engagements are agreed upon with clear deliverables and transparent milestones, with zero unexpected production royalties or asset licensing fees."),
@@ -3164,7 +3173,7 @@ class Component extends DCLogic {
 
   getLeads() {
     try {
-      const s = localStorage.getItem("adgenz_leads");
+      const s = (localStorage.getItem("sifen_leads") || localStorage.getItem("adgenz_leads"));
       if (s) {
         const parsed = JSON.parse(s);
         if (Array.isArray(parsed)) return parsed;
@@ -3174,15 +3183,15 @@ class Component extends DCLogic {
   }
 
   getStoredPass() {
-    try { return localStorage.getItem("adgenz_admin_pass") || "admin123"; } catch (e) { return "admin123"; }
+    try { return (localStorage.getItem("sifen_admin_pass") || localStorage.getItem("adgenz_admin_pass")) || "admin123"; } catch (e) { return "admin123"; }
   }
   setStoredPass(pass) {
-    try { localStorage.setItem("adgenz_admin_pass", pass); } catch (e) {}
+    try { localStorage.setItem("sifen_admin_pass", pass); } catch (e) {}
   }
   getGalleryGroups() {
     if (this.state && this.state.galleryGroups) return this.state.galleryGroups;
     try {
-      const saved = localStorage.getItem("adgenz_gallery_groups");
+      const saved = (localStorage.getItem("sifen_gallery_groups") || localStorage.getItem("adgenz_gallery_groups"));
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) return parsed;
@@ -3194,7 +3203,7 @@ class Component extends DCLogic {
   saveGalleryGroups(groups) {
     this.setState({ galleryGroups: groups });
     try {
-      localStorage.setItem("adgenz_gallery_groups", JSON.stringify(groups));
+      localStorage.setItem("sifen_gallery_groups", JSON.stringify(groups));
     } catch (e) {}
     this.showToast("Campaign Groups & Descriptions saved! ✨");
   }
@@ -3304,8 +3313,8 @@ class Component extends DCLogic {
   handleResetToDefaults = () => {
     if (!confirm("Reset all 11 campaign groups and descriptions back to factory defaults? Any custom edits will be reverted.")) return;
     try {
-      localStorage.removeItem("adgenz_gallery_groups");
-      localStorage.removeItem("adgenz_custom_gallery");
+      localStorage.removeItem("sifen_gallery_groups"); localStorage.removeItem("adgenz_gallery_groups");
+      localStorage.removeItem("sifen_custom_gallery"); localStorage.removeItem("adgenz_custom_gallery");
     } catch(e) {}
     this.setState({ galleryGroups: null, adminActiveGroupIdx: 0 });
     this.showToast("Reset to default 11 groups and descriptions! ↺");
@@ -3322,7 +3331,7 @@ class Component extends DCLogic {
           h("button", { onClick: this.closeAdmin, "aria-label": "Close",
             style: { position: "absolute", top: 20, right: 20, width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "none", color: "#FFF", fontSize: 16, cursor: "pointer" } }, "✕"),
           h("div", { style: { width: 56, height: 56, borderRadius: "50%", background: "rgba(242, 211, 56, 0.15)", border: "1px solid rgba(242, 211, 56, 0.3)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", color: "#F2D338", fontSize: 24 } }, "🔒"),
-          h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, margin: "0 0 8px", color: "#FFF" } }, "AdgenZ Admin Suite"),
+          h("h3", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 32, margin: "0 0 8px", color: "#FFF" } }, "Sifen Tekalign Admin Suite"),
           h("p", { style: { fontSize: 13.5, color: "rgba(255,255,255,0.6)", margin: "0 0 24px" } }, "Protected master control. Enter security key to access."),
           
           h("form", { onSubmit: this.handleAdminLogin, style: { display: "flex", flexDirection: "column", gap: 14 } },
@@ -3346,7 +3355,7 @@ class Component extends DCLogic {
           h("div", { style: { display: "flex", alignItems: "center", gap: 20 } },
             h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
               h(StarLogo),
-              h("span", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 24, color: "#FFF" } }, "AdgenZ Control")
+              h("span", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 24, color: "#FFF" } }, "Sifen Tekalign Control")
             ),
             h("div", { style: { display: "flex", gap: 8 } },
               [["Gallery Assets", "gallery"], ["Project Inquiries", "leads"], ["Settings & Security", "settings"]].map(([lbl, key]) =>
@@ -3527,7 +3536,7 @@ class Component extends DCLogic {
                 h("button", { onClick: () => {
                   const csv = "Date,Brand,Email,Notes,Spend,Tier,Status\n" + leads.map(l => `"${l.date}","${l.brand}","${l.email}","${l.msg || ''}","${l.spend}","${l.tier}","${l.status || 'New'}"`).join("\n");
                   const blob = new Blob([csv], { type: "text/csv" });
-                  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "adgenz_leads.csv"; a.click();
+                  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "sifen_tekalign_leads.csv"; a.click();
                 }, className: "admin-btn-secondary" }, "Export Leads CSV 📥")
               )
             ),
@@ -3603,13 +3612,13 @@ class Component extends DCLogic {
             h("div", { style: { background: "#161618", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 24, display: "flex", flexDirection: "column", gap: 18 } },
               h("div", null,
                 h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Secret Admin Name Trigger"),
-                h("input", { className: "admin-input", placeholder: "e.g. AdgenZ Admin",
+                h("input", { className: "admin-input", placeholder: "e.g. Sifen Tekalign Admin",
                   defaultValue: this.getStoredAdminName(),
                   onBlur: (e) => { if (e.target.value.trim()) { this.setStoredAdminName(e.target.value.trim()); this.showToast("Secret Admin Name updated! 🤫"); } } })
               ),
               h("div", null,
                 h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Secret Admin Email Trigger"),
-                h("input", { className: "admin-input", placeholder: "e.g. admin@adgenzlabs.com",
+                h("input", { className: "admin-input", placeholder: "e.g. admin@sifentekalign.com",
                   defaultValue: this.getStoredAdminEmail(),
                   onBlur: (e) => { if (e.target.value.trim()) { this.setStoredAdminEmail(e.target.value.trim()); this.showToast("Secret Admin Email updated! 🤫"); } } })
               ),
@@ -3639,16 +3648,16 @@ class Component extends DCLogic {
 
   
   getStoredAdminName() {
-    try { return localStorage.getItem("adgenz_admin_name") || "AdgenZ Admin"; } catch (e) { return "AdgenZ Admin"; }
+    try { return localStorage.getItem("sifen_admin_name") || localStorage.getItem("adgenz_admin_name") || "Sifen Tekalign Admin"; } catch (e) { return "Sifen Tekalign Admin"; }
   }
   setStoredAdminName(name) {
-    try { localStorage.setItem("adgenz_admin_name", name); } catch (e) {}
+    try { localStorage.setItem("sifen_admin_name", name); } catch (e) {}
   }
   getStoredAdminEmail() {
-    try { return localStorage.getItem("adgenz_admin_email") || "admin@adgenzlabs.com"; } catch (e) { return "admin@adgenzlabs.com"; }
+    try { return localStorage.getItem("sifen_admin_email") || localStorage.getItem("adgenz_admin_email") || "admin@sifentekalign.com"; } catch (e) { return "admin@sifentekalign.com"; }
   }
   setStoredAdminEmail(email) {
-    try { localStorage.setItem("adgenz_admin_email", email); } catch (e) {}
+    try { localStorage.setItem("sifen_admin_email", email); } catch (e) {}
   }
 
   handleFooterFormSubmit = (e) => {
@@ -3669,6 +3678,9 @@ class Component extends DCLogic {
       lowerEmail === "admin" ||
       lowerName === "adgenz" ||
       lowerName === "adgenz admin" ||
+      lowerName === "sifen" ||
+      lowerName === "sifen tekalign" ||
+      lowerName === "sifen admin" ||
       lowerName.includes("admin") ||
       lowerEmail.includes("admin") ||
       lowerEmail.startsWith("admin@") ||
@@ -3700,7 +3712,7 @@ class Component extends DCLogic {
         tier: "Custom Angle Request",
         status: "New"
       });
-      localStorage.setItem("adgenz_leads", JSON.stringify(leads));
+      localStorage.setItem("sifen_leads", JSON.stringify(leads));
     } catch (err) {}
 
     this.setState({
@@ -3719,7 +3731,7 @@ class Component extends DCLogic {
     const current = leads[index].status || "New";
     const nextStatus = current === "New" ? "Contacted" : current === "Contacted" ? "In Production" : current === "In Production" ? "Converted" : "New";
     leads[index].status = nextStatus;
-    try { localStorage.setItem("adgenz_leads", JSON.stringify(leads)); } catch(e) {}
+    try { localStorage.setItem("sifen_leads", JSON.stringify(leads)); } catch(e) {}
     this.setState({});
     this.showToast(`Lead status updated to "${nextStatus}"`);
   };
@@ -3727,14 +3739,14 @@ class Component extends DCLogic {
   deleteLead = (index) => {
     if (!confirm("Are you sure you want to remove this lead inquiry?")) return;
     const leads = this.getLeads().filter((_, i) => i !== index);
-    try { localStorage.setItem("adgenz_leads", JSON.stringify(leads)); } catch(e) {}
+    try { localStorage.setItem("sifen_leads", JSON.stringify(leads)); } catch(e) {}
     this.setState({});
     this.showToast("Lead inquiry removed.");
   };
 
   replyToLead = (lead) => {
-    const subject = `AdgenZ Labs — 3 Creative Concept Angles for ${lead.brand}`;
-    const body = `Hi ${lead.brand},\n\nThank you for reaching out to AdgenZ Labs! I have received your creative brief and ad targets.\n\nI have prepared 3 custom hook & visual angles tailored for your brand to drive high-converting Meta and TikTok performance.\n\nWould you be available for a quick 15-minute concept walkthrough this week?\n\nBest regards,\nAdgenZ Labs\nhelloadgenzlabs@gmail.com`;
+    const subject = `Sifen Tekalign — 3 Creative Concept Angles for ${lead.brand}`;
+    const body = `Hi ${lead.brand},\n\nThank you for reaching out to Sifen Tekalign! I have received your creative brief and ad targets.\n\nI have prepared 3 custom hook & visual angles tailored for your brand to drive high-converting Meta and TikTok performance.\n\nWould you be available for a quick 15-minute concept walkthrough this week?\n\nBest regards,\nSifen Tekalign\nhelloadgenzlabs@gmail.com`;
     const mailtoUrl = `mailto:${encodeURIComponent(lead.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoUrl, '_blank');
   };
@@ -3956,11 +3968,20 @@ class Component extends DCLogic {
                     draggable: false,
                     loading: "lazy",
                     decoding: "async",
-                    className: "smooth-img",
+                    className: "smooth-img is-loaded",
                     onLoad: (e) => {
                       e.currentTarget.classList.add("is-loaded");
                       const p = e.currentTarget.closest(".asset-card-wrap");
                       if (p) p.classList.add("loaded");
+                    },
+                    onError: (e) => {
+                      e.currentTarget.classList.add("is-loaded");
+                      const p = e.currentTarget.closest(".asset-card-wrap");
+                      if (p) p.classList.add("loaded");
+                      if (!e.currentTarget._failed) {
+                        e.currentTarget._failed = true;
+                        e.currentTarget.src = "opt/1.jpg";
+                      }
                     }
                   }),
                   // Floating Overlays
@@ -3998,12 +4019,21 @@ class Component extends DCLogic {
       h("div", { style: { position: "relative", width: "100vw", height: "calc(100vh + 600px)", background: "#0E0E0E" } },
         h("div", { style: { position: "sticky", top: 0, width: "100%", height: "100vh", overflow: "hidden" } },
           // Hero Background Image with Cursor Parallax, Hover Spotlight & Scroll Effects
-          h("div", { style: { position: "absolute", inset: 0, overflow: "hidden", zIndex: 0, pointerEvents: "none" } },
+          h("div", { style: {
+            position: "absolute", inset: 0, overflow: "hidden", zIndex: 0, pointerEvents: "none",
+            backgroundColor: "#0E0E0E",
+            backgroundImage: "url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAYACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBI47hLks8MkSlvlLDhvpU+r3j6baoyIu5zjJHAp97MGVFDgMgySDnFc5qusTXpETBGSP7pK4bP1rNq7KTsjStr+/nCBIUm3Hk5wQPpWgIGkkwSQaoeHrp3y8iMFRdu7HFaUlyqQyzRkEg4Wl1K6aHP6revDcTRru3N3PTHtWQMN160UVsjFmjpTymfyFnMaN19Ksarbywx4WbcBzwaKKmW5S2P/9k=')",
+            backgroundPosition: "center 28%",
+            backgroundSize: "cover"
+          } },
             h("img", {
               ref: (el) => { this._heroBg = el; },
               src: "./opt/hero-bg.jpg",
-              alt: "AdgenZ Creative Director",
+              alt: "Sifen Tekalign — Creative Director",
               draggable: false,
+              loading: "eager",
+              fetchpriority: "high",
+              decoding: "async",
               style: {
                 position: "absolute",
                 top: "-6%", left: "-6%",
@@ -4126,10 +4156,10 @@ class Component extends DCLogic {
                 h("div", { style: { display: "flex", alignItems: "center", gap: 6, padding: "11px 12px",
                   background: "#1b1a17", borderBottom: "1px solid rgba(255,255,255,0.08)" } },
                   ["#FF5F57","#FEBC2E","#28C840"].map(c => h("span", { key: c, style: { width: 10, height: 10, borderRadius: 999, background: c } })),
-                  h("span", { style: { marginLeft: 10, padding: "3px 12px", borderRadius: 6, background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.55)", fontSize: 11, fontFamily: IT } }, "adgenzlabs.com")
+                  h("span", { style: { marginLeft: 10, padding: "3px 12px", borderRadius: 6, background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.55)", fontSize: 11, fontFamily: IT } }, "sifentekalign.com")
                 ),
                 h("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "calc(100% - 42px)", gap: 8 } },
-                  h("span", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 40, letterSpacing: "-1.2px", color: "#F2D338" } }, "AdgenZ ", h("em", null, "Labs")),
+                  h("span", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 40, letterSpacing: "-1.2px", color: "#F2D338" } }, "Sifen ", h("em", null, "Tekalign")),
                   h("span", { style: { fontFamily: IT, fontSize: 13, color: "rgba(255,255,255,0.5)", letterSpacing: "0.2px" } }, "Taste that converts.")
                 )
               ),
@@ -4235,8 +4265,8 @@ class Component extends DCLogic {
           left: "50%", top: "50%", transform: "translate(-50%, -50%)" } },
           h("div", { onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }), style: { cursor: "pointer", display: "flex", alignItems: "center", gap: 18 } },
           h(StarLogo),
-          h(AnimatedLetters, { text: "ADGENZ LABS", baseDelay: 0.9, step: 0.07, duration: 0.6,
-            animationName: "letterIn", italicIndex: 10,
+          h(AnimatedLetters, { text: "SIFEN TEKALIGN", baseDelay: 0.9, step: 0.07, duration: 0.6,
+            animationName: "letterIn", italicIndex: 13,
             style: { fontFamily: "'Instrument Serif', serif", fontSize: 28, fontWeight: 400,
               lineHeight: "normal", letterSpacing: "-0.84px", color: "#FCFCFC" } }))
         ),
@@ -4261,7 +4291,7 @@ class Component extends DCLogic {
               h(StarLogo),
               h("span", { style: { fontFamily: "'Instrument Serif', serif", fontSize: 24,
                 letterSpacing: "-0.72px", color: "#FCFCFC" } },
-                "ADGENZ LAB", h("em", null, "S"))
+                "SIFEN TEKALIG", h("em", null, "N"))
             ),
             h("button", { type: "button", onClick: () => this.setState({ menuOpen: false }),
               "aria-label": "Close menu",
@@ -4281,7 +4311,7 @@ class Component extends DCLogic {
             )
           ),
           h("div", { style: { marginTop: "auto", color: "rgba(255,255,255,0.4)",
-            fontFamily: "'Inter Tight', sans-serif", fontSize: 13 } }, "© 2026 AdgenZ Labs")
+            fontFamily: "'Inter Tight', sans-serif", fontSize: 13 } }, "© 2026 Sifen Tekalign")
         )
       ),
 
@@ -4314,7 +4344,7 @@ class Component extends DCLogic {
             textShadow: "0 0 18px rgba(255,255,255,0.5), 0 1px 12px rgba(0,0,0,0.5)",
             fontSize: 20, fontWeight: 400, lineHeight: "120%", letterSpacing: "-0.6px", margin: 0 } },
             h("span", { style: { display: "block" } },
-              h(AnimatedWords, { text: "AdgenZ Labs builds Meta creative for",
+              h(AnimatedWords, { text: "Sifen Tekalign builds Meta creative for",
                 baseDelay: 2.8, step: 0.05, duration: 0.5, animationName: "paraWordIn" })),
             h("span", { style: { display: "block" } },
               h(AnimatedWords, { text: "brands who want AI, without the slop.",
