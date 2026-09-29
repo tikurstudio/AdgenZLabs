@@ -11,6 +11,8 @@
   <link rel="shortcut icon" href="./favicon.svg">
   <link rel="apple-touch-icon" href="./favicon.svg">
   <link rel="preload" as="image" href="./opt/hero-bg.jpg" fetchpriority="high">
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="./support.js"></script>
 </head>
 
@@ -68,6 +70,7 @@
           0% {
             background-position: 200% 0;
           }
+
           100% {
             background-position: -200% 0;
           }
@@ -90,6 +93,7 @@
           position: relative;
           cursor: pointer !important;
         }
+
         .gallery-card:hover {
           border-color: rgba(242, 211, 56, 0.5);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(242, 211, 56, 0.15);
@@ -703,162 +707,181 @@
           animation: modalFade 0.3s ease-out forwards;
         }
 
-        
-          /* 11-Campaign Group Gallery Rows */
-          .campaign-chips-bar {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding: 8px 4px 28px;
-            margin-bottom: 40px;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-          }
-          .campaign-chips-bar::-webkit-scrollbar {
-            display: none;
-          }
-          .campaign-chip {
-            padding: 9px 20px;
-            border-radius: 999px;
-            font-family: 'Inter Tight', sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            white-space: nowrap;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.04);
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.2s ease;
-          }
-          .campaign-chip:hover {
-            background: rgba(255, 255, 255, 0.12);
-            color: #FFF;
-            border-color: rgba(255, 255, 255, 0.25);
-          }
-          .campaign-chip.active {
-            background: #F2D338;
-            color: #111114;
-            border-color: #F2D338;
-            font-weight: 700;
-          }
-          .campaign-group-row {
-            margin-bottom: 72px;
-            position: relative;
-          }
-          .campaign-row-track {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding: 10px 4px 24px;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-          }
-          .campaign-row-track::-webkit-scrollbar {
-            display: none;
-          }
-          .campaign-card {
-            flex: 0 0 clamp(240px, 24vw, 290px);
-            aspect-ratio: 2 / 3;
-            border-radius: 14px;
-            overflow: hidden;
-            background: #141416;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            cursor: pointer;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-          }
-          .campaign-card:hover {
-            border-color: rgba(242, 211, 56, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(242, 211, 56, 0.15);
-          }
-          .campaign-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-          }
-          .campaign-card:hover img {
-            transform: scale(1.05);
-          }
-          .campaign-card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 40%, rgba(14, 14, 16, 0.95) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 14px 16px;
-            pointer-events: none;
-          }
-          .campaign-card-badge {
-            align-self: flex-start;
-            padding: 4px 10px;
-            border-radius: 999px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #FFF;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-          }
-          .row-scroll-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.05);
-            color: #FFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-          }
-          .row-scroll-btn:hover {
-            background: #F2D338;
-            color: #111;
-            border-color: #F2D338;
-            transform: scale(1.08);
-          }
-          .admin-group-tab-btn {
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.03);
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-          }
-          .admin-group-tab-btn.active {
-            background: rgba(242, 211, 56, 0.15);
-            border-color: #F2D338;
-            color: #F2D338;
-            font-weight: 700;
-          }
-          .admin-creative-edit-card {
-            background: #19191C;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 16px;
-            display: grid;
-            grid-template-columns: 140px 1fr auto;
-            gap: 16px;
-            align-items: start;
-          }
-          @media (max-width: 768px) {
-            .admin-creative-edit-card {
-              grid-template-columns: 1fr;
-            }
-          }
 
-          .gallery-modal-card {
+        /* 11-Campaign Group Gallery Rows */
+        .campaign-chips-bar {
+          display: flex;
+          gap: 10px;
+          overflow-x: auto;
+          padding: 8px 4px 28px;
+          margin-bottom: 40px;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .campaign-chips-bar::-webkit-scrollbar {
+          display: none;
+        }
+
+        .campaign-chip {
+          padding: 9px 20px;
+          border-radius: 999px;
+          font-family: 'Inter Tight', sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+          white-space: nowrap;
+          cursor: pointer;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(255, 255, 255, 0.04);
+          color: rgba(255, 255, 255, 0.7);
+          transition: all 0.2s ease;
+        }
+
+        .campaign-chip:hover {
+          background: rgba(255, 255, 255, 0.12);
+          color: #FFF;
+          border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .campaign-chip.active {
+          background: #F2D338;
+          color: #111114;
+          border-color: #F2D338;
+          font-weight: 700;
+        }
+
+        .campaign-group-row {
+          margin-bottom: 72px;
+          position: relative;
+        }
+
+        .campaign-row-track {
+          display: flex;
+          gap: 20px;
+          overflow-x: auto;
+          padding: 10px 4px 24px;
+          scroll-behavior: smooth;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .campaign-row-track::-webkit-scrollbar {
+          display: none;
+        }
+
+        .campaign-card {
+          flex: 0 0 clamp(240px, 24vw, 290px);
+          aspect-ratio: 2 / 3;
+          border-radius: 14px;
+          overflow: hidden;
+          background: #141416;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          position: relative;
+          cursor: pointer;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .campaign-card:hover {
+          border-color: rgba(242, 211, 56, 0.5);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(242, 211, 56, 0.15);
+        }
+
+        .campaign-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .campaign-card:hover img {
+          transform: scale(1.05);
+        }
+
+        .campaign-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, transparent 40%, rgba(14, 14, 16, 0.95) 100%);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 14px 16px;
+          pointer-events: none;
+        }
+
+        .campaign-card-badge {
+          align-self: flex-start;
+          padding: 4px 10px;
+          border-radius: 999px;
+          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          color: #FFF;
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+        }
+
+        .row-scroll-btn {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(255, 255, 255, 0.05);
+          color: #FFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .row-scroll-btn:hover {
+          background: #F2D338;
+          color: #111;
+          border-color: #F2D338;
+          transform: scale(1.08);
+        }
+
+        .admin-group-tab-btn {
+          padding: 8px 16px;
+          border-radius: 8px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(255, 255, 255, 0.03);
+          color: rgba(255, 255, 255, 0.75);
+          font-size: 13px;
+          font-weight: 500;
+          cursor: pointer;
+          white-space: nowrap;
+          transition: all 0.2s ease;
+        }
+
+        .admin-group-tab-btn.active {
+          background: rgba(242, 211, 56, 0.15);
+          border-color: #F2D338;
+          color: #F2D338;
+          font-weight: 700;
+        }
+
+        .admin-creative-edit-card {
+          background: #19191C;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          padding: 16px;
+          display: grid;
+          grid-template-columns: 140px 1fr auto;
+          gap: 16px;
+          align-items: start;
+        }
+
+        @media (max-width: 768px) {
+          .admin-creative-edit-card {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .gallery-modal-card {
           position: relative;
           max-width: 1040px;
           width: 100%;
@@ -2068,6 +2091,16 @@ class Component extends DCLogic {
 
     window.__sifenScroll = (key) => this.scrollToSection(key);
     window.__adgenzScroll = window.__sifenScroll;
+
+    // Fetch live gallery groups from Vercel backend
+    fetch("/api/gallery")
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.success && Array.isArray(data.groups) && data.groups.length > 0) {
+          this.setState({ galleryGroups: data.groups });
+        }
+      })
+      .catch(() => {});
     
     // Anti-download protection
     this._preventDownload = (e) => {
@@ -2761,7 +2794,7 @@ class Component extends DCLogic {
           h("div", { style: { display: "flex", gap: vp.w < 600 ? 40 : 72, flexWrap: "wrap" } },
             col("Studio", ["Work", "The Lab", "About", "Contact"]),
             col("Capabilities", ["Static Meta", "AI UGC & video", "Creative strategy", "Brand Identity"]),
-            col("Connect", ["Instagram", "LinkedIn", "X / Twitter", "helloadgenzlabs@gmail.com"]))
+            col("Connect", ["Instagram", "LinkedIn", "X / Twitter", "sifentekalig@gmail.com"]))
         ),
         h("div", { style: { display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "space-between",
           alignItems: "center", paddingTop: 32, fontFamily: IT, fontSize: 13.5, color: "rgba(255,255,255,0.4)" } },
@@ -3039,34 +3072,56 @@ class Component extends DCLogic {
       return;
     }
     this.setState({ bookingSubmitted: true });
+
+    // 1. Save to local cache for instant UI display
     try {
       const leads = this.getLeads();
       leads.unshift({
         id: Date.now(),
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
-        brand: this.state.bookingBrand,
+        brand: this.state.bookingBrand || "Client",
         email: this.state.bookingEmail,
         msg: this.state.bookingMsg ? `Project: ${this.state.bookingMsg}` : "Portfolio Project Inquiry",
-        spend: this.state.bookingSpend,
-        tier: this.state.bookingTier,
+        spend: this.state.bookingSpend || "Flexible",
+        tier: this.state.bookingTier || "Creative Direction",
         status: "New"
       });
       localStorage.setItem("sifen_leads", JSON.stringify(leads));
     } catch(err) {}
+
+    // 2. Dispatch to serverless endpoint (sends straight to sifentekalig@gmail.com)
+    fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: this.state.bookingBrand || "Client",
+        email: this.state.bookingEmail,
+        service: this.state.bookingTier || "Creative Direction",
+        budget: this.state.bookingSpend || "Flexible",
+        message: this.state.bookingMsg || ""
+      })
+    }).then(res => res.json()).then(data => {
+      if (data && data.delivered) {
+        this.showToast("Project Brief delivered directly to Sifen's inbox! 🚀");
+      }
+    }).catch(err => {
+      console.warn("Contact delivery notice:", err);
+    });
+
     this.showToast("Project Brief received! I'll reply within 24h. ✨");
     setTimeout(() => {
       this.closeBooking();
       this.setState({ bookingSubmitted: false, bookingBrand: "", bookingEmail: "", bookingMsg: "" });
-    }, 2200);
+    }, 2400);
   };
 
   copyEmail = (e) => {
     e.preventDefault();
     if (navigator.clipboard) {
-      navigator.clipboard.writeText("helloadgenzlabs@gmail.com");
-      this.showToast("Copied helloadgenzlabs@gmail.com to clipboard! 📋");
+      navigator.clipboard.writeText("sifentekalig@gmail.com");
+      this.showToast("Copied sifentekalig@gmail.com to clipboard! 📋");
     } else {
-      window.location.href = "mailto:helloadgenzlabs@gmail.com";
+      window.location.href = "mailto:sifentekalig@gmail.com";
     }
   };
 
@@ -3116,7 +3171,7 @@ class Component extends DCLogic {
               h("p", null, "All high-resolution production assets are securely archived in encrypted private cloud storage, accessible only by me as your dedicated designer."),
 
               h("h4", { style: { fontSize: 16, fontWeight: 600, color: "#F2D338", margin: "20px 0 8px" } }, "5. Contact Privacy Officer"),
-              h("p", null, "For data deletion requests or inquiries, reach out directly to ", h("span", { style: { color: "#F2D338", fontWeight: 600 } }, "helloadgenzlabs@gmail.com"), ".")
+              h("p", null, "For data deletion requests or inquiries, reach out directly to ", h("span", { style: { color: "#F2D338", fontWeight: 600 } }, "sifentekalig@gmail.com"), ".")
             )
           ) : (
             h("div", null,
@@ -3147,39 +3202,99 @@ class Component extends DCLogic {
 
   
   openAdmin = () => {
-    this.setState({ adminOpen: true, adminError: null, adminPassInput: "" });
+    const token = typeof sessionStorage !== "undefined" ? sessionStorage.getItem("sifen_admin_token") : null;
+    this.setState({ adminOpen: true, adminError: null, adminPassInput: "", adminToken: token, adminAuthed: !!token });
+    if (token) {
+      this.fetchServerLeads(token);
+    }
   };
 
   closeAdmin = () => {
     this.setState({ adminOpen: false, adminError: null, adminPassInput: "" });
   };
 
-  handleAdminLogin = (e) => {
+  handleAdminLogin = async (e) => {
     if (e) e.preventDefault();
     const entered = (this.state.adminPassInput || "").trim();
-    const correct = this.getStoredPass();
-    if (entered === correct || entered === "admin123" || entered === "admin") {
-      this.setState({ adminAuthed: true, adminError: null, adminPassInput: "" });
-      this.showToast("Welcome back! Admin Suite Unlocked 🚀");
-    } else {
-      this.setState({ adminError: "Incorrect password. Default is admin123" });
+    if (!entered) {
+      this.setState({ adminError: "Please enter your master password." });
+      return;
+    }
+    this.setState({ adminLoading: true, adminError: null });
+
+    try {
+      const res = await fetch("/api/admin-auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: entered })
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.success && data.token) {
+        if (typeof sessionStorage !== "undefined") {
+          sessionStorage.setItem("sifen_admin_token", data.token);
+        }
+        this.setState({
+          adminAuthed: true,
+          adminToken: data.token,
+          adminLoading: false,
+          adminError: null,
+          adminPassInput: "",
+          isDefaultPassword: data.isDefaultPassword
+        });
+        this.showToast("Welcome back! Admin Suite Unlocked 🚀");
+        if (data.isDefaultPassword) {
+          setTimeout(() => {
+            this.showToast("Notice: Set ADMIN_PASSWORD in Vercel to secure this dashboard 🔒");
+          }, 3500);
+        }
+        this.fetchServerLeads(data.token);
+      } else {
+        this.setState({
+          adminLoading: false,
+          adminError: data.error || "Incorrect master password. Check your Vercel settings."
+        });
+      }
+    } catch (err) {
+      this.setState({ adminLoading: false, adminError: "Unable to verify credentials. Please check your network." });
     }
   };
 
   handleAdminLogout = () => {
-    this.setState({ adminAuthed: false, adminOpen: false, adminPassInput: "", adminError: null });
+    if (typeof sessionStorage !== "undefined") {
+      sessionStorage.removeItem("sifen_admin_token");
+    }
+    this.setState({ adminAuthed: false, adminToken: null, adminOpen: false, adminPassInput: "", adminError: null });
     this.showToast("Admin session locked 🔒");
   };
 
+  fetchServerLeads = async (token) => {
+    if (!token) return;
+    try {
+      const res = await fetch("/api/contact", {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (data && data.success && Array.isArray(data.leads)) {
+        this.setState({ serverLeads: data.leads });
+      }
+    } catch (e) {}
+  };
+
   getLeads() {
+    const server = this.state && this.state.serverLeads ? this.state.serverLeads : [];
     try {
       const s = (localStorage.getItem("sifen_leads") || localStorage.getItem("adgenz_leads"));
       if (s) {
         const parsed = JSON.parse(s);
-        if (Array.isArray(parsed)) return parsed;
+        if (Array.isArray(parsed)) {
+          const ids = new Set(server.map(l => l.id));
+          const localUnique = parsed.filter(l => !ids.has(l.id));
+          return [...server, ...localUnique];
+        }
       }
     } catch (e) {}
-    return [];
+    return server;
   }
 
   getStoredPass() {
@@ -3188,6 +3303,7 @@ class Component extends DCLogic {
   setStoredPass(pass) {
     try { localStorage.setItem("sifen_admin_pass", pass); } catch (e) {}
   }
+
   getGalleryGroups() {
     if (this.state && this.state.galleryGroups) return this.state.galleryGroups;
     try {
@@ -3200,13 +3316,132 @@ class Component extends DCLogic {
     return DEFAULT_GALLERY_GROUPS;
   }
 
-  saveGalleryGroups(groups) {
+  saveGalleryGroups = async (groups) => {
     this.setState({ galleryGroups: groups });
     try {
       localStorage.setItem("sifen_gallery_groups", JSON.stringify(groups));
     } catch (e) {}
+
+    const token = this.state.adminToken || (typeof sessionStorage !== "undefined" ? sessionStorage.getItem("sifen_admin_token") : null);
+    if (token) {
+      try {
+        const res = await fetch("/api/gallery", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({ groups })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.success) {
+          if (data.savedToBlob) {
+            this.showToast("Changes synced to Vercel Blob worldwide! 🌐");
+          } else {
+            this.showToast("Changes saved to cloud! 💾");
+          }
+          return;
+        }
+      } catch (err) {
+        console.warn("Cloud gallery sync notice:", err);
+      }
+    }
     this.showToast("Campaign Groups & Descriptions saved! ✨");
-  }
+  };
+
+  handleAdminUploadImage = (gIdx) => {
+    const token = this.state.adminToken || (typeof sessionStorage !== "undefined" ? sessionStorage.getItem("sifen_admin_token") : null);
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.onchange = async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      this.showToast(`Uploading ${file.name} to Vercel Blob... ⏳`);
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try {
+          const res = await fetch("/api/upload", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              filename: file.name,
+              base64: reader.result,
+              contentType: file.type
+            })
+          });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.url) {
+            const groups = JSON.parse(JSON.stringify(this.getGalleryGroups()));
+            if (!groups[gIdx]) return;
+            if (!groups[gIdx].items) groups[gIdx].items = [];
+            groups[gIdx].items.unshift({
+              src: data.url,
+              title: file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "),
+              angle: "High Conversion Creative",
+              hook: '"Engineered for performance advertising."',
+              platform: "Meta & TikTok",
+              testedCtr: "3.4%",
+              desc: "Direct-to-consumer creative asset produced with high-fidelity visual aesthetics."
+            });
+            await this.saveGalleryGroups(groups);
+            this.showToast("Image uploaded to Vercel and added! 📸✨");
+          } else {
+            alert(data.error || "Upload failed. Please ensure Vercel Blob is connected in your Vercel Dashboard.");
+          }
+        } catch (err) {
+          alert("Upload error: " + err.message);
+        }
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  };
+
+  handleAdminUploadItemImage = (gIdx, iIdx) => {
+    const token = this.state.adminToken || (typeof sessionStorage !== "undefined" ? sessionStorage.getItem("sifen_admin_token") : null);
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.onchange = async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      this.showToast(`Uploading new image to Vercel Blob... ⏳`);
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try {
+          const res = await fetch("/api/upload", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              filename: file.name,
+              base64: reader.result,
+              contentType: file.type
+            })
+          });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.url) {
+            this.handleAdminUpdateItem(gIdx, iIdx, "src", data.url);
+            this.showToast("Creative image updated via Vercel Blob! 📸✨");
+          } else {
+            alert(data.error || "Upload failed. Ensure Vercel Blob is connected.");
+          }
+        } catch (err) {
+          alert("Upload error: " + err.message);
+        }
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  };
 
   getGalleryImages() {
     const groups = this.getGalleryGroups();
@@ -3302,10 +3537,36 @@ class Component extends DCLogic {
   handleFileUploadForCreative = (gIdx, iIdx, e) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
+    const token = this.state.adminToken || (typeof sessionStorage !== "undefined" ? sessionStorage.getItem("sifen_admin_token") : null);
+
+    this.showToast(`Uploading ${file.name} to Vercel Blob... ⏳`);
     const reader = new FileReader();
-    reader.onload = (evt) => {
-      this.handleAdminUpdateItem(gIdx, iIdx, "src", evt.target.result);
-      this.showToast("Creative image updated! 🖼️");
+    reader.onload = async (evt) => {
+      try {
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            filename: file.name,
+            base64: evt.target.result,
+            contentType: file.type
+          })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.url) {
+          this.handleAdminUpdateItem(gIdx, iIdx, "src", data.url);
+          this.showToast("Creative image updated via Vercel Blob! 📸✨");
+        } else {
+          this.handleAdminUpdateItem(gIdx, iIdx, "src", evt.target.result);
+          this.showToast("Local preview updated! (Connect Vercel Blob in Dashboard for global hosting)");
+        }
+      } catch (err) {
+        this.handleAdminUpdateItem(gIdx, iIdx, "src", evt.target.result);
+        this.showToast("Image preview updated.");
+      }
     };
     reader.readAsDataURL(file);
   };
@@ -3335,10 +3596,11 @@ class Component extends DCLogic {
           h("p", { style: { fontSize: 13.5, color: "rgba(255,255,255,0.6)", margin: "0 0 24px" } }, "Protected master control. Enter security key to access."),
           
           h("form", { onSubmit: this.handleAdminLogin, style: { display: "flex", flexDirection: "column", gap: 14 } },
-            h("input", { type: "password", required: true, autoFocus: true, className: "admin-input", placeholder: "Master Password (default: admin123)",
+            h("input", { type: "password", required: true, autoFocus: true, className: "admin-input", placeholder: "Master Password",
               value: this.state.adminPassInput, onChange: (e) => this.setState({ adminPassInput: e.target.value }) }),
             this.state.adminError && h("div", { style: { color: "#EF4444", fontSize: 13, textAlign: "left", fontWeight: 500 } }, this.state.adminError),
-            h("button", { type: "submit", className: "admin-btn-primary", style: { padding: "14px" } }, "Unlock Dashboard ↗")
+            h("button", { type: "submit", className: "admin-btn-primary", style: { padding: "14px" }, disabled: this.state.adminLoading },
+              this.state.adminLoading ? "Verifying with Vercel... 🔒" : "Unlock Dashboard ↗")
           )
         )
       );
@@ -3417,8 +3679,9 @@ class Component extends DCLogic {
                     h("span", { style: { fontSize: 12, fontWeight: 700, color: "#F2D338", textTransform: "uppercase" } }, `Group #${gIdx + 1} Settings`),
                     h("h3", { style: { margin: "2px 0 0", fontSize: 24, fontWeight: 600, color: "#FFF" } }, curGroup.title)
                   ),
-                  h("div", { style: { display: "flex", gap: 10 } },
-                    h("button", { onClick: () => this.handleAdminAddItem(gIdx), className: "admin-btn-primary", style: { padding: "8px 16px", fontSize: 12 } }, "+ Add Creative to this Group"),
+                  h("div", { style: { display: "flex", gap: 10, flexWrap: "wrap" } },
+                    h("button", { onClick: () => this.handleAdminUploadImage(gIdx), className: "admin-btn-primary", style: { padding: "8px 16px", fontSize: 12, background: "#F2D338", color: "#111" } }, "📤 Upload Image (Vercel Blob)"),
+                    h("button", { onClick: () => this.handleAdminAddItem(gIdx), className: "admin-btn-secondary", style: { padding: "8px 16px", fontSize: 12 } }, "+ Add by URL"),
                     h("button", { onClick: () => this.handleAdminDeleteGroup(gIdx), className: "admin-btn-danger", style: { padding: "8px 16px", fontSize: 12 } }, "Delete Group")
                   )
                 ),
@@ -3607,37 +3870,41 @@ class Component extends DCLogic {
             )
           ),
 
-          tab === "settings" && h("div", { style: { maxWidth: 600 } },
-            h("h4", { style: { margin: "0 0 16px", fontSize: 20, fontWeight: 600, color: "#FFF" } }, "Admin Gatekeeper & Secret Trigger Credentials"),
-            h("div", { style: { background: "#161618", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 24, display: "flex", flexDirection: "column", gap: 18 } },
-              h("div", null,
-                h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Secret Admin Name Trigger"),
-                h("input", { className: "admin-input", placeholder: "e.g. Sifen Tekalign Admin",
-                  defaultValue: this.getStoredAdminName(),
-                  onBlur: (e) => { if (e.target.value.trim()) { this.setStoredAdminName(e.target.value.trim()); this.showToast("Secret Admin Name updated! 🤫"); } } })
+          tab === "settings" && h("div", { style: { maxWidth: 640 } },
+            h("h4", { style: { margin: "0 0 16px", fontSize: 20, fontWeight: 600, color: "#FFF" } }, "Vercel Security & Integration Status"),
+            h("div", { style: { background: "#161618", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 24, display: "flex", flexDirection: "column", gap: 20 } },
+              
+              // 1. Password Status
+              h("div", { style: { background: "rgba(255,255,255,0.03)", padding: "16px 20px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.08)" } },
+                h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, flexWrap: "wrap", gap: 8 } },
+                  h("span", { style: { fontSize: 13, fontWeight: 600, color: "#FFF" } }, "Master Authentication Security"),
+                  h("span", { style: { fontSize: 11, padding: "3px 8px", borderRadius: 6, background: this.state.isDefaultPassword ? "rgba(239, 68, 68, 0.15)" : "rgba(34, 197, 94, 0.15)", color: this.state.isDefaultPassword ? "#EF4444" : "#22C55E", fontWeight: 700 } },
+                    this.state.isDefaultPassword ? "DEFAULT KEY (UNSECURED)" : "ENCRYPTED ON VERCEL 🔒")
+                ),
+                h("p", { style: { fontSize: 13, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 } },
+                  this.state.isDefaultPassword
+                    ? "To secure your admin panel with your own private password, go to your Vercel Dashboard → Project Settings → Environment Variables, and add ADMIN_PASSWORD=your_secret_password."
+                    : "Your password is encrypted inside Vercel's private server environment. It cannot be viewed or inspected in the browser code.")
               ),
-              h("div", null,
-                h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Secret Admin Email Trigger"),
-                h("input", { className: "admin-input", placeholder: "e.g. admin@sifentekalign.com",
-                  defaultValue: this.getStoredAdminEmail(),
-                  onBlur: (e) => { if (e.target.value.trim()) { this.setStoredAdminEmail(e.target.value.trim()); this.showToast("Secret Admin Email updated! 🤫"); } } })
+
+              // 2. Email Delivery Status
+              h("div", { style: { background: "rgba(255,255,255,0.03)", padding: "16px 20px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.08)" } },
+                h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, flexWrap: "wrap", gap: 8 } },
+                  h("span", { style: { fontSize: 13, fontWeight: 600, color: "#FFF" } }, "Project Briefs Recipient Email"),
+                  h("span", { style: { fontSize: 12, color: "#F2D338", fontWeight: 600 } }, "sifentekalig@gmail.com")
+                ),
+                h("p", { style: { fontSize: 13, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 } },
+                  "All client project inquiries submitted through the website are forwarded directly to sifentekalig@gmail.com.")
               ),
-              h("div", null,
-                h("label", { style: { display: "block", fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase" } }, "Master Password"),
-                h("div", { style: { display: "flex", gap: 10 } },
-                  h("input", { type: "password", className: "admin-input", placeholder: "Enter new master password",
-                    value: this.state.adminSettingsNewPass, onChange: (e) => this.setState({ adminSettingsNewPass: e.target.value }) }),
-                  h("button", { onClick: () => {
-                    if (this.state.adminSettingsNewPass.length < 4) { alert("Password must be at least 4 characters."); return; }
-                    this.setStoredPass(this.state.adminSettingsNewPass);
-                    this.setState({ adminSettingsNewPass: "" });
-                    this.showToast("Master password updated securely! 🔐");
-                  }, className: "admin-btn-primary", style: { padding: "10px 18px", whiteSpace: "nowrap" } }, "Update")
-                )
-              ),
-              h("div", { style: { height: 1, background: "rgba(255,255,255,0.08)", margin: "4px 0" } },
-              h("div", { style: { fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 } },
-                "💡 ", h("strong", { style: { color: "#F2D338" } }, "How to access:"), " When you enter your secret Admin Name & Admin Email into the footer contact form and hit submit, the website seamlessly opens the password prompt. Regular visitors will simply see the standard thank you confirmation message.")
+
+              // 3. Vercel Blob CDN Storage
+              h("div", { style: { background: "rgba(255,255,255,0.03)", padding: "16px 20px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.08)" } },
+                h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, flexWrap: "wrap", gap: 8 } },
+                  h("span", { style: { fontSize: 13, fontWeight: 600, color: "#FFF" } }, "Vercel Blob Global Image Storage"),
+                  h("span", { style: { fontSize: 11, padding: "3px 8px", borderRadius: 6, background: "rgba(242, 211, 56, 0.15)", color: "#F2D338", fontWeight: 700 } }, "BLOB STORAGE")
+                ),
+                h("p", { style: { fontSize: 13, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 } },
+                  "Upload new campaign photos directly from your device using the 'Upload Image' button in the Gallery Assets tab. To enable cloud saving across deployments, link Vercel Blob in your Vercel Dashboard (Storage → Create Database → Blob).")
               )
             )
           )

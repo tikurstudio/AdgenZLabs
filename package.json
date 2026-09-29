@@ -1,0 +1,24 @@
+{
+  "name": "sifweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tikurstudio/AdgenZLabs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tikurstudio/AdgenZLabs/issues"
+  },
+  "homepage": "https://github.com/tikurstudio/AdgenZLabs#readme",
+  "dependencies": {
+    "@vercel/blob": "^2.8.0"
+  }
+}
