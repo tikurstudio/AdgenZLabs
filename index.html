@@ -2775,7 +2775,7 @@ class Component extends DCLogic {
               h("input", { className: "input-field", placeholder: "Product / Target CPA / Creative Goals (Optional)",
                 value: this.state.footerFormMsg, onChange: (e) => this.setState({ footerFormMsg: e.target.value }) }),
               h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 6, flexWrap: "wrap", gap: 12 } },
-                h("button", { type: "button", onClick: this.copyEmail, style: { color: "rgba(255,255,255,0.45)", fontSize: 13, background: "none", border: "none", cursor: "pointer", padding: "4px 0", fontFamily: IT } }, "or click to copy helloadgenzlabs@gmail.com 📋"),
+                h("button", { type: "button", onClick: this.copyEmail, style: { color: "rgba(255,255,255,0.45)", fontSize: 13, background: "none", border: "none", cursor: "pointer", padding: "4px 0", fontFamily: IT } }, "or click to copy sifentekalig@gmail.com 📋"),
                 h("button", { type: "submit", style: { padding: "14px 28px", borderRadius: 999, background: "#F2D338", color: "#111114", border: "none", fontFamily: IT, fontSize: 15, fontWeight: 700, cursor: "pointer", transition: "transform 0.15s ease" } }, "Request 3 Concept Angles ↗")
               )
             )
@@ -2801,11 +2801,8 @@ class Component extends DCLogic {
           h("span", null, "© 2026 Sifen Tekalign. All rights reserved."),
           h("div", { style: { display: "flex", gap: 20, alignItems: "center" } },
             h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("privacy"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Privacy Policy"),
-            h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("terms"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Terms of Service"),
-            h("button", { onClick: this.openAdmin, style: { background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.5)", borderRadius: 6, padding: "3px 10px", fontSize: 11, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 5, transition: "all 0.2s" },
-              onMouseEnter: (e) => { e.currentTarget.style.color = "#F2D338"; e.currentTarget.style.borderColor = "rgba(242, 211, 56, 0.4)"; },
-              onMouseLeave: (e) => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; } },
-              "🔒 Admin"))
+            h("a", { href: "#", onClick: (e) => { e.preventDefault(); this.openLegal("terms"); }, style: { color: "rgba(255,255,255,0.65)", textDecoration: "underline", textUnderlineOffset: "3px", cursor: "pointer" } }, "Terms of Service")
+          )
         )
       ),
       this.state.toastMsg && h("div", { className: "toast-notification" }, this.state.toastMsg),
@@ -3065,22 +3062,46 @@ class Component extends DCLogic {
   };
   closeInquiry = () => this.closeBooking();
 
-  handleBookingSubmit = (e) => {
+  handleBookingSubmit = async (e) => {
     e.preventDefault();
     if (!this.state.bookingEmail || !this.state.bookingEmail.includes("@")) {
       this.showToast("Please enter a valid email address.");
       return;
     }
+
+    const brand = (this.state.bookingBrand || "").trim();
+    const email = (this.state.bookingEmail || "").trim();
+
+    // 1. Check Secret Gatekeeper Trigger (configured via .env / Vercel Environment Variables)
+    try {
+      const triggerRes = await fetch("/api/check-trigger", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: brand, email: email })
+      });
+      const triggerData = await triggerRes.json().catch(() => ({}));
+      if (triggerData && triggerData.trigger) {
+        this.closeBooking();
+        this.openAdmin();
+        this.showToast("Secret Gatekeeper Verified 🗝️ Unlocking Master Control...");
+        this.setState({ bookingBrand: "", bookingEmail: "", bookingMsg: "" });
+        return;
+      }
+    } catch (err) {
+      console.warn("Trigger check notice:", err);
+    }
+
+    // 2. Normal Visitor Project Brief Flow
     this.setState({ bookingSubmitted: true });
 
-    // 1. Save to local cache for instant UI display
+    // Save to local cache for instant UI display
     try {
       const leads = this.getLeads();
       leads.unshift({
         id: Date.now(),
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
-        brand: this.state.bookingBrand || "Client",
-        email: this.state.bookingEmail,
+        brand: brand || "Client",
+        email: email,
         msg: this.state.bookingMsg ? `Project: ${this.state.bookingMsg}` : "Portfolio Project Inquiry",
         spend: this.state.bookingSpend || "Flexible",
         tier: this.state.bookingTier || "Creative Direction",
@@ -3089,13 +3110,13 @@ class Component extends DCLogic {
       localStorage.setItem("sifen_leads", JSON.stringify(leads));
     } catch(err) {}
 
-    // 2. Dispatch to serverless endpoint (sends straight to sifentekalig@gmail.com)
+    // Dispatch to serverless endpoint (sends straight to sifentekalig@gmail.com)
     fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: this.state.bookingBrand || "Client",
-        email: this.state.bookingEmail,
+        name: brand || "Client",
+        email: email,
         service: this.state.bookingTier || "Creative Direction",
         budget: this.state.bookingSpend || "Flexible",
         message: this.state.bookingMsg || ""
@@ -3905,6 +3926,16 @@ class Component extends DCLogic {
                 ),
                 h("p", { style: { fontSize: 13, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 } },
                   "Upload new campaign photos directly from your device using the 'Upload Image' button in the Gallery Assets tab. To enable cloud saving across deployments, link Vercel Blob in your Vercel Dashboard (Storage → Create Database → Blob).")
+              ),
+
+              // 4. Secret Gatekeeper
+              h("div", { style: { background: "rgba(255,255,255,0.03)", padding: "16px 20px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.08)" } },
+                h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, flexWrap: "wrap", gap: 8 } },
+                  h("span", { style: { fontSize: 13, fontWeight: 600, color: "#FFF" } }, "Secret Gatekeeper (No Public Admin Button)"),
+                  h("span", { style: { fontSize: 11, padding: "3px 8px", borderRadius: 6, background: "rgba(242, 211, 56, 0.15)", color: "#F2D338", fontWeight: 700 } }, "STEALTH DOOR 🗝️")
+                ),
+                h("p", { style: { fontSize: 13, color: "rgba(255,255,255,0.6)", margin: 0, lineHeight: 1.5 } },
+                  "To access this admin suite: Open the 'Start a Project / Work With Me' modal and enter your secret Name & Work Email. Configured privately in your .env / Vercel Environment Variables (ADMIN_TRIGGER_NAME and ADMIN_TRIGGER_EMAIL).")
               )
             )
           )
@@ -3927,38 +3958,28 @@ class Component extends DCLogic {
     try { localStorage.setItem("sifen_admin_email", email); } catch (e) {}
   }
 
-  handleFooterFormSubmit = (e) => {
+  handleFooterFormSubmit = async (e) => {
     e.preventDefault();
     const name = (this.state.footerFormName || "").trim();
     const email = (this.state.footerFormEmail || "").trim();
     const msg = (this.state.footerFormMsg || "").trim();
 
-    const lowerName = name.toLowerCase();
-    const lowerEmail = email.toLowerCase();
-    const lowerMsg = msg.toLowerCase();
-    const secretName = this.getStoredAdminName().trim().toLowerCase();
-    const secretEmail = this.getStoredAdminEmail().trim().toLowerCase();
-
-    // Secret Admin Gatekeeper: matches admin keyword in name or email or secret credentials
-    const isAdminTrigger = 
-      lowerName === "admin" ||
-      lowerEmail === "admin" ||
-      lowerName === "adgenz" ||
-      lowerName === "adgenz admin" ||
-      lowerName === "sifen" ||
-      lowerName === "sifen tekalign" ||
-      lowerName === "sifen admin" ||
-      lowerName.includes("admin") ||
-      lowerEmail.includes("admin") ||
-      lowerEmail.startsWith("admin@") ||
-      lowerEmail === secretEmail ||
-      lowerName === secretName ||
-      lowerMsg === "admin";
-
-    if (isAdminTrigger) {
-      this.setState({ footerFormName: "", footerFormEmail: "", footerFormMsg: "" });
-      this.openAdmin();
-      return;
+    // 1. Check Secret Gatekeeper Trigger (.env configured on server)
+    try {
+      const triggerRes = await fetch("/api/check-trigger", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email })
+      });
+      const triggerData = await triggerRes.json().catch(() => ({}));
+      if (triggerData && triggerData.trigger) {
+        this.setState({ footerFormName: "", footerFormEmail: "", footerFormMsg: "" });
+        this.openAdmin();
+        this.showToast("Secret Gatekeeper Verified 🗝️ Unlocking Master Control...");
+        return;
+      }
+    } catch (err) {
+      console.warn("Trigger check notice:", err);
     }
 
     if (!name || !email || !email.includes("@")) {
@@ -3981,6 +4002,25 @@ class Component extends DCLogic {
       });
       localStorage.setItem("sifen_leads", JSON.stringify(leads));
     } catch (err) {}
+
+    // Dispatch to serverless endpoint (delivers to sifentekalig@gmail.com)
+    fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        service: "Custom Angle Request",
+        budget: "Direct Brief",
+        message: msg || "Direct brief from footer"
+      })
+    }).then(res => res.json()).then(data => {
+      if (data && data.delivered) {
+        this.showToast("Brief delivered directly to Sifen's inbox! 🚀");
+      }
+    }).catch(err => {
+      console.warn("Contact delivery notice:", err);
+    });
 
     this.setState({
       footerFormSubmitted: true,
