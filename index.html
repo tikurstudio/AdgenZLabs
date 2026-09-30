@@ -3110,7 +3110,30 @@ class Component extends DCLogic {
       localStorage.setItem("sifen_leads", JSON.stringify(leads));
     } catch(err) {}
 
-    // Dispatch to serverless endpoint (sends straight to sifentekalig@gmail.com)
+    // 2. Dispatch directly to Web3Forms for immediate email delivery to inbox
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        access_key: "3f46e81a-be92-4eba-9c29-d1f57eb19bf2",
+        subject: `✨ New Inquiry: ${brand || "Client"} - ${this.state.bookingTier || "Creative Direction"}`,
+        from_name: brand || "Client",
+        replyto: email,
+        Client_Name: brand || "Client",
+        Client_Email: email,
+        Project_Scope: this.state.bookingTier || "Creative Direction",
+        Budget_Range: this.state.bookingSpend || "Flexible",
+        Project_Vision: this.state.bookingMsg || "None specified"
+      })
+    }).then(res => res.json()).then(data => {
+      if (data && data.success) {
+        this.showToast("Project Brief delivered directly to Sifen's inbox! 🚀");
+      }
+    }).catch(err => {
+      console.warn("Web3Forms delivery notice:", err);
+    });
+
+    // 3. Dispatch to serverless endpoint for lead tracking in Admin Suite
     fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -3121,13 +3144,7 @@ class Component extends DCLogic {
         budget: this.state.bookingSpend || "Flexible",
         message: this.state.bookingMsg || ""
       })
-    }).then(res => res.json()).then(data => {
-      if (data && data.delivered) {
-        this.showToast("Project Brief delivered directly to Sifen's inbox! 🚀");
-      }
-    }).catch(err => {
-      console.warn("Contact delivery notice:", err);
-    });
+    }).catch(() => {});
 
     this.showToast("Project Brief received! I'll reply within 24h. ✨");
     setTimeout(() => {
@@ -4003,7 +4020,26 @@ class Component extends DCLogic {
       localStorage.setItem("sifen_leads", JSON.stringify(leads));
     } catch (err) {}
 
-    // Dispatch to serverless endpoint (delivers to sifentekalig@gmail.com)
+    // Dispatch directly to Web3Forms for immediate email delivery to inbox
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        access_key: "3f46e81a-be92-4eba-9c29-d1f57eb19bf2",
+        subject: `✨ New Footer Inquiry: ${name}`,
+        from_name: name,
+        replyto: email,
+        Client_Name: name,
+        Client_Email: email,
+        Project_Vision: msg || "Direct brief from footer"
+      })
+    }).then(res => res.json()).then(data => {
+      if (data && data.success) {
+        this.showToast("Brief delivered directly to Sifen's inbox! 🚀");
+      }
+    }).catch(() => {});
+
+    // Dispatch to serverless endpoint for lead tracking in Admin Suite
     fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -4014,13 +4050,7 @@ class Component extends DCLogic {
         budget: "Direct Brief",
         message: msg || "Direct brief from footer"
       })
-    }).then(res => res.json()).then(data => {
-      if (data && data.delivered) {
-        this.showToast("Brief delivered directly to Sifen's inbox! 🚀");
-      }
-    }).catch(err => {
-      console.warn("Contact delivery notice:", err);
-    });
+    }).catch(() => {});
 
     this.setState({
       footerFormSubmitted: true,
