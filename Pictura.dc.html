@@ -3116,6 +3116,9 @@ class Component extends DCLogic {
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
         access_key: "3f46e81a-be92-4eba-9c29-d1f57eb19bf2",
+        name: brand || "Client",
+        email: email,
+        message: `Scope: ${this.state.bookingTier || "Creative Direction"}\nBudget: ${this.state.bookingSpend || "Flexible"}\nNotes: ${this.state.bookingMsg || "None specified"}`,
         subject: `✨ New Inquiry: ${brand || "Client"} - ${this.state.bookingTier || "Creative Direction"}`,
         from_name: brand || "Client",
         replyto: email,
@@ -4026,6 +4029,9 @@ class Component extends DCLogic {
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
         access_key: "3f46e81a-be92-4eba-9c29-d1f57eb19bf2",
+        name: name,
+        email: email,
+        message: msg || "Direct brief from footer",
         subject: `✨ New Footer Inquiry: ${name}`,
         from_name: name,
         replyto: email,
